@@ -141,7 +141,7 @@
               100,
               150
             ],
-            "orient": "bottom-left",
+            "orient": "bottom",
             "direction": "horizontal",
             "symbolFillColor": "#c8465e",
             "symbolStrokeColor": "#ffffff",
