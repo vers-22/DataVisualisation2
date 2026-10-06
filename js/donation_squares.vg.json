@@ -1,0 +1,438 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Nested proportional squares: each square's area is proportional to the number of people at each stage of the organ donation pathway in Australia, 2025. Source: Organ and Tissue Authority, 2025 donation and transplantation data.",
+  "title": {
+    "text": "From 89,000 hospital deaths to 557 donors",
+    "subtitle": "Each square's area is proportional to the number of people at that stage, Australia, 2025",
+    "anchor": "start",
+    "font": "Inter, system-ui, sans-serif",
+    "fontSize": 15,
+    "fontWeight": 600,
+    "color": "#1e2430",
+    "subtitleFont": "Inter, system-ui, sans-serif",
+    "subtitleFontSize": 12,
+    "subtitleColor": "#5c6675",
+    "offset": 14
+  },
+  "width": 900,
+  "height": 447,
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Inter, system-ui, sans-serif"
+  },
+  "data": {
+    "url": "data/donation_funnel.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "value": "number",
+        "order": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.order <= 5"
+    },
+    {
+      "calculate": "sqrt(datum.value)",
+      "as": "side"
+    },
+    {
+      "calculate": "datum.value / 89000",
+      "as": "share_of_deaths"
+    },
+    {
+      "lookup": "order",
+      "from": {
+        "data": {
+          "values": [
+            {
+              "order": 2,
+              "ly": 262,
+              "line1": "1,670 could become donors",
+              "line2": "fewer than 2 in every 100 hospital deaths"
+            },
+            {
+              "order": 3,
+              "ly": 205,
+              "line1": "1,500 families were asked",
+              "line2": "a specialist raises donation with the family"
+            },
+            {
+              "order": 4,
+              "ly": 148,
+              "line1": "790 families said yes",
+              "line2": "a consent rate of 53%"
+            },
+            {
+              "order": 5,
+              "ly": 91,
+              "line1": "557 became organ donors",
+              "line2": "not every agreed donation can go ahead"
+            }
+          ]
+        },
+        "key": "order",
+        "fields": [
+          "ly",
+          "line1",
+          "line2"
+        ]
+      }
+    },
+    {
+      "calculate": "0",
+      "as": "zero"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "#ffffff",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "zero",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "domain": [
+              0,
+              600
+            ],
+            "nice": false,
+            "zero": true
+          }
+        },
+        "x2": {
+          "field": "side"
+        },
+        "y": {
+          "field": "zero",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "domain": [
+              0,
+              298.33
+            ],
+            "nice": false,
+            "zero": true
+          }
+        },
+        "y2": {
+          "field": "side"
+        },
+        "color": {
+          "field": "order",
+          "type": "ordinal",
+          "legend": null,
+          "scale": {
+            "domain": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "range": [
+              "#e3e8ee",
+              "#b9c5d3",
+              "#8fa3b8",
+              "#5c7590",
+              "#c8465e"
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "stage",
+            "title": "Stage"
+          },
+          {
+            "field": "value",
+            "type": "quantitative",
+            "title": "People",
+            "format": ","
+          },
+          {
+            "field": "share_of_deaths",
+            "type": "quantitative",
+            "title": "Share of hospital deaths",
+            "format": ".1%"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.order === 1"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "dx": 14,
+        "dy": 14,
+        "fontSize": 15,
+        "fontWeight": 600,
+        "color": "#1e2430",
+        "lineHeight": 20
+      },
+      "encoding": {
+        "x": {
+          "field": "zero",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "domain": [
+              0,
+              600
+            ],
+            "nice": false,
+            "zero": true
+          }
+        },
+        "y": {
+          "field": "side",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "domain": [
+              0,
+              298.33
+            ],
+            "nice": false,
+            "zero": true
+          }
+        },
+        "text": {
+          "value": [
+            "89,000 people die in",
+            "Australian hospitals each year"
+          ]
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.order === 1"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "dx": 14,
+        "dy": 60,
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "color": "#5c6675",
+        "lineHeight": 16
+      },
+      "encoding": {
+        "x": {
+          "field": "zero",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "domain": [
+              0,
+              600
+            ],
+            "nice": false,
+            "zero": true
+          }
+        },
+        "y": {
+          "field": "side",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "domain": [
+              0,
+              298.33
+            ],
+            "nice": false,
+            "zero": true
+          }
+        },
+        "text": {
+          "value": [
+            "Only a death in intensive care, usually on a",
+            "ventilator, makes organ donation possible."
+          ]
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.order > 1"
+        },
+        {
+          "calculate": "312",
+          "as": "lx"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "color": "#5c6675",
+        "strokeWidth": 0.8,
+        "strokeDash": [
+          2,
+          2
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "side",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "domain": [
+              0,
+              600
+            ],
+            "nice": false,
+            "zero": true
+          }
+        },
+        "y": {
+          "field": "side",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "domain": [
+              0,
+              298.33
+            ],
+            "nice": false,
+            "zero": true
+          }
+        },
+        "x2": {
+          "field": "lx"
+        },
+        "y2": {
+          "field": "ly"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.order > 1"
+        },
+        {
+          "calculate": "316",
+          "as": "lx"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "bottom",
+        "fontSize": 14,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "x": {
+          "field": "lx",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "domain": [
+              0,
+              600
+            ],
+            "nice": false,
+            "zero": true
+          }
+        },
+        "y": {
+          "field": "ly",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "domain": [
+              0,
+              298.33
+            ],
+            "nice": false,
+            "zero": true
+          }
+        },
+        "text": {
+          "field": "line1"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.order === 5",
+            "value": "#c8465e"
+          },
+          "value": "#1e2430"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.order > 1"
+        },
+        {
+          "calculate": "316",
+          "as": "lx"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "dy": 3,
+        "fontSize": 12,
+        "color": "#5c6675"
+      },
+      "encoding": {
+        "x": {
+          "field": "lx",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "domain": [
+              0,
+              600
+            ],
+            "nice": false,
+            "zero": true
+          }
+        },
+        "y": {
+          "field": "ly",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "domain": [
+              0,
+              298.33
+            ],
+            "nice": false,
+            "zero": true
+          }
+        },
+        "text": {
+          "field": "line2"
+        }
+      }
+    }
+  ]
+}

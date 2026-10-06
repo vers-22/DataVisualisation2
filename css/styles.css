@@ -186,7 +186,7 @@ strong { font-weight: 600; }
 
 .vis {
   width: 100%;
-  overflow-x: auto;   /* a stray wide chart scrolls itself, not the page */
+  overflow-x: hidden;
 }
 
 .vis--full { margin: 0 0 var(--gutter); }
@@ -214,3 +214,10 @@ strong { font-weight: 600; }
 }
 
 .band--dark .lede { color: #c3cad4; }
+
+/* Charts shrink proportionally when their column is narrower than the
+   spec's width (e.g. a small laptop at 125% zoom), instead of clipping. */
+.vis.vega-embed { display: block; }
+.vis svg { display: block; max-width: 100%; height: auto; }
+
+.vis--padded { padding-top: 0.5em; }
