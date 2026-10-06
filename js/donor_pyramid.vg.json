@@ -165,6 +165,33 @@
               "type": "quantitative"
             }
           }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "t": [
+                  "Women are 2 in 5 donors",
+                  "(1,011 of 2,472)"
+                ]
+              }
+            ]
+          },
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "fontSize": 10.5,
+            "fontStyle": "italic",
+            "color": "#1e2430",
+            "lineHeight": 13,
+            "x": 125,
+            "y": 222
+          },
+          "encoding": {
+            "text": {
+              "field": "t"
+            }
+          }
         }
       ]
     },
@@ -307,6 +334,33 @@
             "text": {
               "field": "donors",
               "type": "quantitative"
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "t": [
+                  "Men aged 55–64 are the",
+                  "largest group: 319 donors"
+                ]
+              }
+            ]
+          },
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "fontSize": 10.5,
+            "fontStyle": "italic",
+            "color": "#1e2430",
+            "lineHeight": 13,
+            "x": 95,
+            "y": 222
+          },
+          "encoding": {
+            "text": {
+              "field": "t"
             }
           }
         }

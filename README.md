@@ -8,18 +8,19 @@ Live page: GitHub Pages from the `main` branch (`index.html` at the repo root).
 
 | # | Section | File | Idiom | Data |
 |---|---|---|---|---|
-| 1 | Hero | `js/hero_unit_chart.vg.json` | Unit / isotype | OTA 2025 |
-| 2 | Part 1 | `js/funnel_waterfall.vg.json` | Funnel bar | `data/donation_funnel.csv` (OTA 2025) |
-| 3 | Part 1 | `js/donors_recipients_trend.vg.json` | Multi-line with annotations | `data/national_trend.csv` (ANZOD A1.1, A1.24) |
+| 1 | Hero | `js/hero_unit_chart.vg.json` | Unit chart | OTA 2025 |
+| 2 | Part 1 | `js/donation_squares.vg.json` | Nested proportional squares | `data/donation_funnel.csv` (OTA 2025) |
+| 3 | Part 1 | `js/donors_recipients_trend.vg.json` | Annotated multi-line | `data/national_trend.csv` (ANZOD A1.1, A1.24) |
 | 4 | Part 1 | `js/donor_pyramid.vg.json` | Population pyramid | `data/donor_age_sex.csv` (ANZOD A1.2) |
-| 5 | Part 2 | `js/consent_waffle.vg.json` | Isotype / waffle | `data/consent_registration.csv` (OTA 2025) |
-| 6 | Part 2 | `js/consent_slope.vg.json` | Slope graph | `data/donors_by_state_year.csv` (ANZOD Table 2.1) |
-| 7 | Part 3 | `js/dpmp_choropleth.vg.json` | **Map 1:** diverging choropleth | ANZOD Table 2.1 + ABS ASGS state boundaries |
+| 5 | Part 2 | `js/consent_waffle.vg.json` | Isotype | `data/consent_registration.csv` (OTA 2025) |
+| 6 | Part 3 | `js/dpmp_choropleth.vg.json` | **Map:** diverging choropleth | ANZOD Table 2.1 + ABS ASGS boundaries |
+| 7 | Part 3 | `js/dpmp_slope.vg.json` | Slope graph | `data/donors_by_state_year.csv` (ANZOD Table 2.1) |
 | 8 | Part 3 | `js/state_year_heatmap.vg.json` | Heatmap matrix | ANZOD Table 2.1 |
-| 9 | Part 3 | `js/dpmp_hexmap.vg.json` | **Map 2:** hexagonal tile map | `data/organs_leaving_state_2025.csv` (ANZOD A1.25) |
-| 10 | Part 4 | `js/donor_hospitals_map.vg.json` | **Map 3:** proportional symbol map | `data/donor_hospitals.csv` (ANZOD A1.3) |
-| 11 | Part 4 | `js/organ_flows.vg.json` | **Map 4:** flow map (tapered lines) | `data/organ_flow_lines_2025.csv` (ANZOD A1.25) |
-| 12 | Part 5 | `js/world_dpmp.vg.json` | **Map 5:** world choropleth | `data/world_dpmp.csv` (IRODaT 2024) |
+| 9–10 | Part 4 | `js/organ_journeys.vg.json` | **Maps:** hexagonal tile map linked to a flow map (click a state to filter) | ANZOD A1.25 |
+| 11 | Part 4 | `js/donor_hospitals_map.vg.json` | **Map:** proportional symbol map | `data/donor_hospitals.csv` (ANZOD A1.3) |
+| 12 | Part 5 | `js/world_dpmp.vg.json` | **Map:** world choropleth | `data/world_dpmp.csv` (IRODaT 2024) |
+
+The Moodle description draft is in `submission_description.md`.
 
 ## Data notes
 
@@ -44,6 +45,7 @@ Live page: GitHub Pages from the `main` branch (`index.html` at the repo root).
       1,670 eligible, 53% consent, 8 in 10 vs 4 in 10) against the 2025 factsheet.
 - [ ] Spot-check hospital coordinates in `data/donor_hospitals.csv`.
 - [ ] Check the AI declaration wording in the footer.
+- [ ] Hand-drawn sketch: scan to PDF and add to the repo.
 
 ## Run locally
 

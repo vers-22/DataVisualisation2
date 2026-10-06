@@ -66,13 +66,14 @@
     <p class="kicker">Part 1 · The odds</p>
     <h2>Almost nobody dies in a way that makes donation possible</h2>
     <p class="lede">
-      Around 89,000 people die in Australian hospitals each year. Organs can
-      only be donated if someone dies in an intensive care unit, usually on a
-      ventilator, so fewer than 2 in 100 of those deaths could ever lead to
-      donation. Every one of those chances matters.
+      Organs can only be donated if someone dies in an intensive care unit,
+      usually on a ventilator. Fewer than 2 in every 100 hospital deaths
+      happen this way, so every one of those chances matters.
     </p>
 
     <div id="vis-funnel" class="vis vis--full"></div>
+    <p class="source">Source: Organ and Tissue Authority, 2025 donation and
+    transplantation data.</p>
 
     <div class="grid grid--halves">
       <div id="vis-trend" class="vis"></div>
@@ -96,8 +97,8 @@
         <p>Because donation depends on dying in intensive care, donors are
         mostly people aged 35 to 74 who have had a stroke, a brain injury or
         a cardiac arrest. Three in five donors since 2021 have been men.</p>
-        <p>Young children are rare donors, but every age group contributes.
-        The oldest donors in 2021–2025 were over 75.</p>
+        <p>Young children are rare donors, but every age group contributes,
+        including people aged 75 and older.</p>
         <p class="source">Source: ANZOD Registry Annual Report 2026,
         Appendix I, Table A1.2.</p>
       </div>
@@ -114,39 +115,33 @@
   <div class="wrap">
     <p class="kicker">Part 2 · The conversation</p>
     <h2>The bottleneck is one conversation</h2>
-    <p class="lede">
-      When donation is possible, a specialist asks the family. In 2025 only
-      53% said yes, down from a peak of 60% in 2018. The single biggest thing
-      that changes the answer is whether the person who died had registered.
-    </p>
 
     <div class="grid grid--halves">
-      <div>
-        <div id="vis-dumbbell" class="vis"></div>
-        <div class="prose">
-          <p>When someone is registered on the Australian Organ Donor Register,
-          about 8 in 10 families agree. When they are not, it falls to about 4
-          in 10. Families who know what their loved one wanted find the
-          decision much easier.</p>
-          <p>Yet only around 8 million Australians, about 35% of people
-          eligible, have registered, even though 4 in 5 say they support
-          donation.</p>
-          <p class="source">Source: Organ and Tissue Authority, 2025
-          donation and transplantation data.</p>
-        </div>
+      <div class="prose">
+        <p class="lede">
+          When donation is possible, a specialist asks the family. In 2025
+          only 53% said yes, down from a peak of 60% in 2018. Of the 1,500
+          families asked, about 700 said no.
+        </p>
+        <p>The single biggest thing that changes the answer is whether the
+        person who died had registered on the Australian Organ Donor
+        Register. When they had, about 8 in 10 families agree. When they had
+        not, it falls to about 4 in 10. Families who know what their loved
+        one wanted find the decision much easier.</p>
+        <p>Yet only around 8 million Australians, about 35% of people
+        eligible, have registered, even though 4 in 5 say they support
+        donation.</p>
+        <p class="source">Source: Organ and Tissue Authority, 2025
+        donation and transplantation data.</p>
       </div>
-      <div>
-        <div id="vis-slope" class="vis"></div>
-        <p class="source">Source: ANZOD Registry Annual Report 2026, Table 2.1.
-        Rates use June 2025 ABS population.</p>
-      </div>
+      <div id="vis-consent" class="vis vis--padded"></div>
     </div>
   </div>
 </section>
 
 
 <!-- ============================================================
-     SECTION 4 — GEOGRAPHY (MAPS 1 AND 2) + HEATMAP
+     SECTION 4 — GEOGRAPHY: CHOROPLETH, SLOPE, HEATMAP
      ============================================================ -->
 <section class="band">
   <div class="wrap">
@@ -172,50 +167,60 @@
 
     <div class="grid grid--halves">
       <div>
-        <div id="vis-heatmap" class="vis"></div>
-        <p class="note">Read across a row to follow one state over time. The
-        slow darkening from left to right is the 2009 reform at work; the pale
-        band around 2020–2021 is the pandemic.</p>
+        <div id="vis-slope" class="vis"></div>
+        <p class="note">Five of the eight states and territories donate at a
+        lower rate than in 2018, matching the national fall in family
+        consent. The ACT and Victoria fell furthest.</p>
       </div>
       <div>
-        <div id="vis-hexmap" class="vis"></div>
-        <p class="note">Each hexagon is a state or territory, drawn the same
-        size so small places are not lost. In 2025 none of the organs donated in
-        Tasmania, the Northern Territory or the ACT were transplanted there:
-        all of them were flown interstate.</p>
+        <div id="vis-heatmap" class="vis"></div>
+        <p class="note">Read across a row to follow one state over time. The
+        slow darkening from left to right is the 2009 reform at work; the
+        lighter cells in 2020–2021 are the pandemic.</p>
       </div>
     </div>
+    <p class="source">Source for both charts: ANZOD Registry Annual Report 2026,
+    Table 2.1. Rates use June 2025 ABS population.</p>
   </div>
 </section>
 
 
 <!-- ============================================================
-     SECTION 5 — INFRASTRUCTURE (MAPS 3 AND 4)
+     SECTION 5 — THE JOURNEY: LINKED TILE + FLOW MAP, SYMBOL MAP
      ============================================================ -->
 <section class="band band--tinted">
   <div class="wrap">
     <p class="kicker">Part 4 · The journey</p>
     <h2>From hospital bed to operating theatre</h2>
     <p class="lede">
-      Donation happens in intensive care units, so a handful of large trauma
-      hospitals in the capital cities provide most donors. The organs then
-      often travel interstate to the patient who is the best match.
+      Donation happens in intensive care units across 120 hospitals, but the
+      busiest 15 provide half of all donors. The organs then often travel
+      interstate to the patient who is the best match.
     </p>
 
-    <div class="grid grid--halves">
-      <div>
-        <div id="vis-symbolmap" class="vis"></div>
-        <p class="note">Hover over a circle for hospital details. Circle area is
-        proportional to the number of donors.</p>
+    <div id="vis-journeys" class="vis vis--full"></div>
+    <p class="note">Each hexagon is a state or territory, drawn the same size
+    so small places are not lost. <strong>Click a hexagon</strong> to show only
+    the organs donated in that state; double-click to show all again. In 2025
+    no organs were transplanted in Tasmania, the Northern Territory or the
+    ACT, so all of theirs were flown interstate. 52 of Tasmania's 73 organs
+    went to Victoria.</p>
+    <p class="source">Sources: ANZOD Registry Annual Report 2026, Appendix I,
+    Table A1.25; ABS state boundaries.</p>
+
+    <div class="grid grid--two-thirds">
+      <div id="vis-symbolmap" class="vis"></div>
+      <div class="prose">
+        <p>Large hospitals with major trauma, neurosurgery and intensive care
+        units see the most donors. The Royal Melbourne and The Alfred together
+        had 305 donors between 2021 and 2025.</p>
+        <p>Regional hospitals matter too. Newcastle's John Hunter Hospital had
+        30 donors in 2025, the third most in the country, and the Gold Coast
+        and Townsville university hospitals are among the 15 busiest.</p>
+        <p class="note">Hover over a circle for hospital details. Circle area
+        is proportional to the number of donors.</p>
         <p class="source">Source: ANZOD Registry Annual Report 2026, Appendix I,
         Table A1.3. Hospital locations geocoded by the author.</p>
-      </div>
-      <div>
-        <div id="vis-flowmap" class="vis"></div>
-        <p class="note">Hover over a line to highlight all organs leaving that
-        state.</p>
-        <p class="source">Source: ANZOD Registry Annual Report 2026, Appendix I,
-        Table A1.25.</p>
       </div>
     </div>
   </div>
@@ -276,8 +281,6 @@
         Adelaide. <a href="https://anzorrg.org.au/reports/anzod-registry-annual-report-2026">anzorrg.org.au</a></li>
       <li>Organ and Tissue Authority (2026). <em>2025 Australian donation and transplantation
         data</em>. <a href="https://www.donatelife.gov.au/all-about-donation/donation-and-transplantation-data">donatelife.gov.au</a></li>
-      <li>Services Australia. <em>Australian Organ Donor Register statistics</em>.
-        <a href="https://www.servicesaustralia.gov.au/australian-organ-donor-register-statistics">servicesaustralia.gov.au</a></li>
       <li>International Registry in Organ Donation and Transplantation (IRODaT).
         <em>Worldwide Actual Deceased Organ Donors Rate 2024 (pmp)</em>.
         <a href="https://www.irodat.org/?p=database">irodat.org</a></li>
@@ -304,16 +307,15 @@
   const opts = { actions: false, renderer: "svg" };
 
   vegaEmbed("#vis-hero",       "js/hero_unit_chart.vg.json", opts);
-  vegaEmbed("#vis-funnel",     "js/funnel_waterfall.vg.json", opts);
+  vegaEmbed("#vis-funnel",     "js/donation_squares.vg.json", opts);
   vegaEmbed("#vis-trend",      "js/donors_recipients_trend.vg.json", opts);
   vegaEmbed("#vis-pyramid",    "js/donor_pyramid.vg.json", opts);
-  vegaEmbed("#vis-dumbbell",   "js/consent_waffle.vg.json", opts);
-  vegaEmbed("#vis-slope",      "js/consent_slope.vg.json", opts);
+  vegaEmbed("#vis-consent",   "js/consent_waffle.vg.json", opts);
+  vegaEmbed("#vis-slope",      "js/dpmp_slope.vg.json", opts);
   vegaEmbed("#vis-choropleth", "js/dpmp_choropleth.vg.json", opts);
   vegaEmbed("#vis-heatmap",    "js/state_year_heatmap.vg.json", opts);
-  vegaEmbed("#vis-hexmap",     "js/dpmp_hexmap.vg.json", opts);
   vegaEmbed("#vis-symbolmap",  "js/donor_hospitals_map.vg.json", opts);
-  vegaEmbed("#vis-flowmap",    "js/organ_flows.vg.json", opts);
+  vegaEmbed("#vis-journeys",   "js/organ_journeys.vg.json", opts);
   vegaEmbed("#vis-world",      "js/world_dpmp.vg.json", opts);
 </script>
 

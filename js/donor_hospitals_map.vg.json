@@ -2,10 +2,10 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Proportional symbol map of hospitals where deceased organ donors died, sized by number of donors 2021-2025 (hospitals with 5 or more). Sources: ANZOD Registry Annual Report 2026 Appendix I Table A1.3; ABS state boundaries. Hospital locations geocoded by the author.",
   "title": {
-    "text": "A few big-city hospitals provide most donors",
+    "text": "15 hospitals provide half of all donors",
     "subtitle": [
       "Hospitals by number of deceased organ donors, 2021–2025",
-      "Only hospitals with 5 or more donors are shown"
+      "Hospitals with 5 or more donors shown; 120 hospitals had at least one donor"
     ],
     "anchor": "start",
     "font": "Inter, system-ui, sans-serif",
@@ -141,7 +141,7 @@
               100,
               150
             ],
-            "orient": "top-left",
+            "orient": "bottom-left",
             "direction": "horizontal",
             "symbolFillColor": "#c8465e",
             "symbolStrokeColor": "#ffffff",
