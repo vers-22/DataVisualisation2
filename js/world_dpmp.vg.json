@@ -1,10 +1,10 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "World choropleth of deceased organ donors per million population. Sources: IRODaT; ANZOD Registry Annual Report 2026 (Australia, New Zealand); world-atlas (Natural Earth) boundaries.",
+  "description": "World choropleth of actual deceased organ donors per million population, 2024. Sources: IRODaT, Worldwide Actual Deceased Organ Donors Rate 2024; world-atlas (Natural Earth 1:110m) boundaries.",
   "title": {
-    "text": "How Australia compares with the world",
+    "text": "Australia ranks 21st of 83 countries",
     "subtitle": [
-      "Deceased organ donors per million people. Grey = no data"
+      "Actual deceased organ donors per million people, 2024. Grey = no data reported to IRODaT"
     ],
     "anchor": "start",
     "font": "Inter, system-ui, sans-serif",
@@ -87,7 +87,7 @@
               "country",
               "year",
               "dpmp",
-              "source"
+              "note"
             ]
           }
         },
@@ -113,7 +113,7 @@
           "scale": {
             "domain": [
               0,
-              50
+              55
             ],
             "range": [
               "#f6e3e2",
@@ -126,7 +126,15 @@
             "title": "Donors per million",
             "orient": "bottom-left",
             "direction": "horizontal",
-            "gradientLength": 200
+            "gradientLength": 200,
+            "values": [
+              0,
+              10,
+              20,
+              30,
+              40,
+              50
+            ]
           }
         },
         "tooltip": [
@@ -137,15 +145,112 @@
           {
             "field": "dpmp",
             "type": "quantitative",
-            "title": "Donors per million",
-            "format": ".1f"
+            "title": "Donors per million (2024)",
+            "format": ".2f"
           },
           {
-            "field": "year",
-            "title": "Year"
+            "field": "note",
+            "title": "Note"
+          }
+        ],
+        "stroke": {
+          "condition": {
+            "test": "datum.id === '036'",
+            "value": "#ffffff"
+          },
+          "value": "#1e2430"
+        },
+        "strokeWidth": {
+          "condition": {
+            "test": "datum.id === '036'",
+            "value": 1.5
+          },
+          "value": 0.5
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": -3.7,
+            "lat": 40.4,
+            "tx": -30.0,
+            "ty": 30.0,
+            "t": [
+              "Spain 53.9",
+              "world leader"
+            ]
+          },
+          {
+            "lon": -98.0,
+            "lat": 39.0,
+            "tx": -128.0,
+            "ty": 12.0,
+            "t": [
+              "United States 49.7"
+            ]
+          },
+          {
+            "lon": 134.0,
+            "lat": -25.0,
+            "tx": 150.0,
+            "ty": -48.0,
+            "t": [
+              "Australia 19.7"
+            ]
           }
         ]
-      }
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "rule",
+            "color": "#c3cad4",
+            "strokeWidth": 0.8
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "longitude2": {
+              "field": "tx"
+            },
+            "latitude2": {
+              "field": "ty"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "fontSize": 11,
+            "fontWeight": 600,
+            "color": "#ffffff",
+            "lineHeight": 13,
+            "baseline": "top",
+            "dy": 3
+          },
+          "encoding": {
+            "longitude": {
+              "field": "tx",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "ty",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "t"
+            }
+          }
+        }
+      ]
     }
   ]
 }

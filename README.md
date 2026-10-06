@@ -19,7 +19,7 @@ Live page: GitHub Pages from the `main` branch (`index.html` at the repo root).
 | 9 | Part 3 | `js/dpmp_hexmap.vg.json` | **Map 2:** hexagonal tile map | `data/organs_leaving_state_2025.csv` (ANZOD A1.25) |
 | 10 | Part 4 | `js/donor_hospitals_map.vg.json` | **Map 3:** proportional symbol map | `data/donor_hospitals.csv` (ANZOD A1.3) |
 | 11 | Part 4 | `js/organ_flows.vg.json` | **Map 4:** flow map (tapered lines) | `data/organ_flow_lines_2025.csv` (ANZOD A1.25) |
-| 12 | Part 5 | `js/world_dpmp.vg.json` | **Map 5:** world choropleth | `data/world_dpmp.csv` (IRODaT + ANZOD) |
+| 12 | Part 5 | `js/world_dpmp.vg.json` | **Map 5:** world choropleth | `data/world_dpmp.csv` (IRODaT 2024) |
 
 ## Data notes
 
@@ -35,11 +35,11 @@ Live page: GitHub Pages from the `main` branch (`index.html` at the repo root).
 
 ## TODO before submission
 
-- [ ] **World map data.** `data/world_dpmp.csv` has only Australia and New Zealand so far.
-      Add one row per country from the IRODaT database (https://www.irodat.org): ISO 3166
-      numeric code (3 digits, keep leading zeros, e.g. `724` Spain, `840` USA, `036` Australia),
-      country, year, deceased donors pmp, source. Then check the Part 5 lede in `index.html`
-      against the final numbers.
+- [x] World map data: `data/world_dpmp.csv` holds all 83 countries from IRODaT's
+      *Worldwide Actual Deceased Organ Donors Rate 2024 (pmp)*. Australia and NZ use the IRODaT 2024
+      values here (19.74, 13.21) so every country shares one source and year; the rest of the page
+      uses ANZOD 2025 (Australia 20.2). Malta, Singapore and Hong Kong are too small for the 1:110m map.
+      Add the exact IRODaT URL for this chart to the footer source list if you have it.
 - [ ] Spot-check the OTA figures used in the funnel, waffle and narrative (89,000 deaths,
       1,670 eligible, 53% consent, 8 in 10 vs 4 in 10) against the 2025 factsheet.
 - [ ] Spot-check hospital coordinates in `data/donor_hospitals.csv`.
