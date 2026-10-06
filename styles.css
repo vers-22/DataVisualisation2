@@ -1,0 +1,130 @@
+/* ==========================================================
+   FIT3179 Data Visualisation 2 — starter stylesheet
+   Save this as css/styles.css in your repo.
+
+   This is a skeleton, not a design. Layout, colour, figure-ground
+   and typography are worth 5% between them, so the palette and
+   typefaces below are placeholders for YOUR choices.
+   ========================================================== */
+
+:root {
+  /* --- Colour tokens. Replace these. --- */
+  --ink:        #1e2430;   /* body text */
+  --ink-soft:   #5c6675;   /* captions, secondary text */
+  --paper:      #ffffff;   /* default band background */
+  --paper-alt:  #f4f6f8;   /* alternating band background */
+  --dark:       #1e2430;   /* the one dark band */
+  --accent:     #c8465e;   /* used sparingly, so it means something */
+
+  /* --- Layout --- */
+  --column:     1100px;    /* fits a 13" laptop without horizontal scroll */
+  --gutter:     32px;
+  --band-pad:   72px;
+}
+
+/* ---------- Base ---------- */
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  /* Swap in your chosen pairing. A humanist serif for headings over a
+     grotesque for body text scores better than a stock system stack. */
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+h1, h2, h3 {
+  font-family: "Fraunces", Georgia, serif;
+  line-height: 1.15;
+  margin: 0 0 0.5em;
+  text-wrap: balance;
+}
+
+h1 { font-size: clamp(2.2rem, 4.5vw, 3.4rem); }
+h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 1em; }
+h3 { font-size: 1.1rem; margin-top: 2em; }
+
+p { max-width: 68ch; }   /* keeps line length readable */
+
+a { color: var(--accent); }
+
+/* ---------- Bands and the content column ---------- */
+
+.band {
+  padding: var(--band-pad) var(--gutter);
+}
+
+.wrap {
+  max-width: var(--column);
+  margin: 0 auto;
+}
+
+/* Alternating tint does most of the figure-ground work for free. */
+.band--tinted { background: var(--paper-alt); }
+
+.band--dark {
+  background: var(--dark);
+  color: #eef1f5;
+}
+.band--dark h2 { color: #ffffff; }
+
+.band--hero { padding-top: 96px; }
+
+.standfirst {
+  font-size: 1.25rem;
+  color: var(--ink-soft);
+  margin-bottom: 2.5em;
+}
+
+.band--footer {
+  background: var(--paper-alt);
+  font-size: 0.92rem;
+}
+
+.meta { color: var(--ink-soft); }
+
+.sources {
+  max-width: 68ch;
+  padding-left: 1.2em;
+}
+.sources li { margin-bottom: 0.4em; }
+
+/* ---------- Grid splits ---------- */
+/* Only three splits. Resist inventing more — the rubric rewards a
+   layout that is visibly structured in consistent columns and rows. */
+
+.grid {
+  display: grid;
+  gap: var(--gutter);
+  margin-bottom: var(--gutter);
+  align-items: start;
+}
+
+.grid--halves     { grid-template-columns: 1fr 1fr; }
+.grid--thirds     { grid-template-columns: 1fr 1fr 1fr; }
+.grid--two-thirds { grid-template-columns: 2fr 1fr; }
+
+/* ---------- Chart containers ---------- */
+
+.vis {
+  width: 100%;
+  overflow-x: auto;   /* a stray wide chart scrolls itself, not the page */
+}
+
+.vis--full { margin: 0 0 var(--gutter); }
+
+.prose { padding-top: 0.5em; }
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 820px) {
+  .grid--halves,
+  .grid--thirds,
+  .grid--two-thirds { grid-template-columns: 1fr; }
+
+  :root { --band-pad: 48px; --gutter: 20px; }
+}

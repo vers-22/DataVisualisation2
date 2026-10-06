@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Organ Donation in Australia</title>
+
+  <!-- Pure.css: optional grid/reset. Allowed by the assignment spec. -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
+
+  <!-- Vega stack. Pinned versions so your page can't break overnight. -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.25.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.16.3"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.22.2"></script>
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+<!-- ============================================================
+     SECTION 1 — HERO
+     Headline + the isotype chart (557 donors -> 1,438 recipients)
+     ============================================================ -->
+<section class="band band--hero">
+  <div class="wrap">
+    <h1>One conversation stands between 2,000 Australians and a transplant</h1>
+    <p class="standfirst">
+      Replace this with your own standfirst: one sentence that states the
+      problem and makes the reader want the next screen.
+    </p>
+    <div id="vis-hero" class="vis vis--full"></div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 2 — DONATION IS RARER THAN YOU THINK
+     Waterfall (full width) + line chart (half) + text (half)
+     ============================================================ -->
+<section class="band">
+  <div class="wrap">
+    <h2>Almost nobody dies in a way that makes donation possible</h2>
+
+    <div id="vis-funnel" class="vis vis--full"></div>
+
+    <div class="grid grid--halves">
+      <div id="vis-trend" class="vis"></div>
+      <div class="prose">
+        <p>Narrative text sits beside the chart, not under it. Keep lines
+        under about 80 characters — that's part of the typography mark.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 3 — THE BOTTLENECK IS CONSENT
+     Slope graph + dumbbell as halves, pyramid full width below
+     ============================================================ -->
+<section class="band band--tinted">
+  <div class="wrap">
+    <h2>The bottleneck is one conversation</h2>
+
+    <div class="grid grid--halves">
+      <div id="vis-slope" class="vis"></div>
+      <div id="vis-dumbbell" class="vis"></div>
+    </div>
+
+    <div id="vis-pyramid" class="vis vis--full"></div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 4 — GEOGRAPHY (MAPS 1 AND 2)
+     ============================================================ -->
+<section class="band">
+  <div class="wrap">
+    <h2>Where you live changes the odds</h2>
+
+    <div class="grid grid--two-thirds">
+      <div id="vis-choropleth" class="vis"></div>
+      <div class="prose">
+        <p>Annotate the map's outliers here in prose, and again directly on
+        the chart using a Vega-Lite text layer.</p>
+      </div>
+    </div>
+
+    <div class="grid grid--halves">
+      <div id="vis-hexmap" class="vis"></div>
+      <div id="vis-heatmap" class="vis"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 5 — INFRASTRUCTURE (MAPS 3 AND 4)
+     ============================================================ -->
+<section class="band band--tinted">
+  <div class="wrap">
+    <h2>Where the organs go</h2>
+    <div class="grid grid--two-thirds">
+      <div id="vis-symbolmap" class="vis"></div>
+      <div id="vis-flowmap" class="vis"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 6 — INTERNATIONAL (MAP 5)
+     ============================================================ -->
+<section class="band band--dark">
+  <div class="wrap">
+    <h2>Other countries are further ahead</h2>
+    <div id="vis-world" class="vis vis--full"></div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 7 — FOOTER: call to action + required metadata
+     The rubric marks metadata. Do not leave this until the last night.
+     ============================================================ -->
+<footer class="band band--footer">
+  <div class="wrap">
+    <h2>Registering takes one minute</h2>
+
+    <p class="meta">
+      Created by YOUR NAME, Monash University, October 2026.
+    </p>
+
+    <h3>Data sources</h3>
+    <ul class="sources">
+      <li>ANZOD Registry Annual Report 2026 — ANZORRG —
+        <a href="https://anzorrg.org.au/reports/anzod-registry-annual-report-2026">link</a></li>
+      <li>Organ and Tissue Authority, 2025 donation and transplantation data —
+        <a href="https://www.donatelife.gov.au/all-about-donation/donation-and-transplantation-data">link</a></li>
+      <li>Australian Organ Donor Register statistics — Services Australia —
+        <a href="https://www.servicesaustralia.gov.au/australian-organ-donor-register-statistics">link</a></li>
+      <li>Add every remaining source, with a working URL.</li>
+    </ul>
+
+    <h3>Use of generative AI</h3>
+    <p>State plainly what you used AI for. Required by the spec.</p>
+  </div>
+</footer>
+
+
+<script>
+  // Shared options for every chart on the page.
+  const opts = { actions: false, renderer: "svg" };
+
+  // One line per chart. Comment out the ones you haven't built yet,
+  // otherwise the console fills with 404s and hides your real errors.
+  vegaEmbed("#vis-hero", "js/hero_unit_chart.vg.json", opts);
+  // vegaEmbed("#vis-funnel",     "js/funnel_waterfall.vg.json", opts);
+  // vegaEmbed("#vis-trend",      "js/donors_recipients_trend.vg.json", opts);
+  // vegaEmbed("#vis-slope",      "js/consent_slope.vg.json", opts);
+  // vegaEmbed("#vis-dumbbell",   "js/registered_dumbbell.vg.json", opts);
+  // vegaEmbed("#vis-pyramid",    "js/aodr_pyramid.vg.json", opts);
+  // vegaEmbed("#vis-choropleth", "js/registration_choropleth.vg.json", opts);
+  // vegaEmbed("#vis-hexmap",     "js/dpmp_hexmap.vg.json", opts);
+  // vegaEmbed("#vis-heatmap",    "js/state_year_heatmap.vg.json", opts);
+  // vegaEmbed("#vis-symbolmap",  "js/transplant_units.vg.json", opts);
+  // vegaEmbed("#vis-flowmap",    "js/organ_flows.vg.json", opts);
+  // vegaEmbed("#vis-world",      "js/world_dpmp.vg.json", opts);
+</script>
+
+</body>
+</html>

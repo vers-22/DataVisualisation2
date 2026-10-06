@@ -1,0 +1,126 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Unit chart. Each dot is one person. 557 deceased organ donors in Australia in 2025 made 1,438 transplants possible. Source: Organ and Tissue Authority, 2025 donation and transplantation data.",
+  "background": null,
+  "padding": 5,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "title": {
+      "font": "Inter, system-ui, sans-serif",
+      "fontSize": 15,
+      "fontWeight": 600,
+      "color": "#1e2430",
+      "subtitleFont": "Inter, system-ui, sans-serif",
+      "subtitleFontSize": 13,
+      "subtitleColor": "#5c6675",
+      "anchor": "start",
+      "offset": 12
+    }
+  },
+  "vconcat": [
+    {
+      "title": {
+        "text": "557 people became organ donors in 2025",
+        "subtitle": "Each dot is one deceased organ donor"
+      },
+      "width": 585,
+      "height": 169,
+      "data": {
+        "sequence": {
+          "start": 0,
+          "stop": 557,
+          "step": 1,
+          "as": "i"
+        }
+      },
+      "transform": [
+        {
+          "calculate": "floor(datum.i / 45)",
+          "as": "row"
+        },
+        {
+          "calculate": "datum.i % 45",
+          "as": "col"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 42,
+        "color": "#c8465e"
+      },
+      "encoding": {
+        "x": {
+          "field": "col",
+          "type": "ordinal",
+          "axis": null,
+          "scale": {
+            "paddingInner": 0,
+            "paddingOuter": 0
+          }
+        },
+        "y": {
+          "field": "row",
+          "type": "ordinal",
+          "axis": null,
+          "scale": {
+            "paddingInner": 0,
+            "paddingOuter": 0
+          }
+        }
+      }
+    },
+    {
+      "title": {
+        "text": "1,438 people received a transplant",
+        "subtitle": "One donor can save or transform several lives"
+      },
+      "width": 585,
+      "height": 416,
+      "data": {
+        "sequence": {
+          "start": 0,
+          "stop": 1438,
+          "step": 1,
+          "as": "i"
+        }
+      },
+      "transform": [
+        {
+          "calculate": "floor(datum.i / 45)",
+          "as": "row"
+        },
+        {
+          "calculate": "datum.i % 45",
+          "as": "col"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 42,
+        "color": "#8fa3b8"
+      },
+      "encoding": {
+        "x": {
+          "field": "col",
+          "type": "ordinal",
+          "axis": null,
+          "scale": {
+            "paddingInner": 0,
+            "paddingOuter": 0
+          }
+        },
+        "y": {
+          "field": "row",
+          "type": "ordinal",
+          "axis": null,
+          "scale": {
+            "paddingInner": 0,
+            "paddingOuter": 0
+          }
+        }
+      }
+    }
+  ]
+}
