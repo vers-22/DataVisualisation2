@@ -1,0 +1,316 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Population pyramid of deceased organ donors by age group and sex, Australia, 2021-2025 combined. Source: ANZOD Registry Annual Report 2026, Appendix I Table A1.2.",
+  "title": {
+    "text": "Donors are mostly middle-aged, and more often men",
+    "subtitle": [
+      "Deceased organ donors by age and sex, Australia, 2021–2025 combined (2,472 donors)"
+    ],
+    "anchor": "start",
+    "font": "Inter, system-ui, sans-serif",
+    "fontSize": 15,
+    "fontWeight": 600,
+    "color": "#1e2430",
+    "subtitleFont": "Inter, system-ui, sans-serif",
+    "subtitleFontSize": 12,
+    "subtitleColor": "#5c6675",
+    "offset": 12
+  },
+  "background": null,
+  "data": {
+    "url": "data/donor_age_sex.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "age_order": "number",
+        "donors": "number"
+      }
+    }
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Inter, system-ui, sans-serif",
+    "axis": {
+      "labelColor": "#5c6675",
+      "titleColor": "#5c6675",
+      "labelFontSize": 11,
+      "titleFontSize": 11,
+      "titleFontWeight": 500,
+      "domainColor": "#c9cfd8",
+      "tickColor": "#c9cfd8",
+      "gridColor": "#e6e2db",
+      "gridDash": [
+        3,
+        3
+      ]
+    },
+    "legend": {
+      "labelColor": "#5c6675",
+      "titleColor": "#5c6675",
+      "labelFontSize": 11,
+      "titleFontSize": 11,
+      "titleFontWeight": 500
+    }
+  },
+  "spacing": 0,
+  "hconcat": [
+    {
+      "title": {
+        "text": "Females",
+        "fontSize": 13,
+        "fontWeight": 600,
+        "color": "#1e2430",
+        "font": "Inter, system-ui, sans-serif",
+        "anchor": "end"
+      },
+      "transform": [
+        {
+          "filter": "datum.sex === 'Female'"
+        }
+      ],
+      "width": 220,
+      "height": 250,
+      "layer": [
+        {
+          "mark": {
+            "type": "bar",
+            "cornerRadiusEnd": 2,
+            "height": {
+              "band": 0.8
+            }
+          },
+          "encoding": {
+            "y": {
+              "field": "age_group",
+              "type": "ordinal",
+              "sort": {
+                "field": "age_order",
+                "order": "descending"
+              },
+              "axis": null
+            },
+            "x": {
+              "field": "donors",
+              "type": "quantitative",
+              "title": "Donors, 2021–2025",
+              "scale": {
+                "domain": [
+                  0,
+                  340
+                ],
+                "reverse": true
+              },
+              "axis": {
+                "tickCount": 4,
+                "grid": true
+              }
+            },
+            "color": {
+              "field": "sex",
+              "type": "nominal",
+              "scale": {
+                "domain": [
+                  "Female",
+                  "Male"
+                ],
+                "range": [
+                  "#b0707d",
+                  "#4f6d8a"
+                ]
+              },
+              "legend": null
+            },
+            "tooltip": [
+              {
+                "field": "sex",
+                "title": "Sex"
+              },
+              {
+                "field": "age_group",
+                "title": "Age"
+              },
+              {
+                "field": "donors",
+                "type": "quantitative",
+                "title": "Donors"
+              }
+            ]
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "dx": -4,
+            "fontSize": 10,
+            "color": "#5c6675"
+          },
+          "encoding": {
+            "y": {
+              "field": "age_group",
+              "type": "ordinal",
+              "sort": {
+                "field": "age_order",
+                "order": "descending"
+              }
+            },
+            "x": {
+              "field": "donors",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "donors",
+              "type": "quantitative"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "width": 50,
+      "height": 250,
+      "view": {
+        "stroke": null
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontWeight": 600,
+        "color": "#1e2430"
+      },
+      "encoding": {
+        "y": {
+          "field": "age_group",
+          "type": "ordinal",
+          "sort": {
+            "field": "age_order",
+            "order": "descending"
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "age_group"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.sex === 'Male'"
+        }
+      ]
+    },
+    {
+      "title": {
+        "text": "Males",
+        "fontSize": 13,
+        "fontWeight": 600,
+        "color": "#1e2430",
+        "font": "Inter, system-ui, sans-serif",
+        "anchor": "start"
+      },
+      "transform": [
+        {
+          "filter": "datum.sex === 'Male'"
+        }
+      ],
+      "width": 220,
+      "height": 250,
+      "layer": [
+        {
+          "mark": {
+            "type": "bar",
+            "cornerRadiusEnd": 2,
+            "height": {
+              "band": 0.8
+            }
+          },
+          "encoding": {
+            "y": {
+              "field": "age_group",
+              "type": "ordinal",
+              "sort": {
+                "field": "age_order",
+                "order": "descending"
+              },
+              "axis": null
+            },
+            "x": {
+              "field": "donors",
+              "type": "quantitative",
+              "title": "Donors, 2021–2025",
+              "scale": {
+                "domain": [
+                  0,
+                  340
+                ],
+                "reverse": false
+              },
+              "axis": {
+                "tickCount": 4,
+                "grid": true
+              }
+            },
+            "color": {
+              "field": "sex",
+              "type": "nominal",
+              "scale": {
+                "domain": [
+                  "Female",
+                  "Male"
+                ],
+                "range": [
+                  "#b0707d",
+                  "#4f6d8a"
+                ]
+              },
+              "legend": null
+            },
+            "tooltip": [
+              {
+                "field": "sex",
+                "title": "Sex"
+              },
+              {
+                "field": "age_group",
+                "title": "Age"
+              },
+              {
+                "field": "donors",
+                "type": "quantitative",
+                "title": "Donors"
+              }
+            ]
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 4,
+            "fontSize": 10,
+            "color": "#5c6675"
+          },
+          "encoding": {
+            "y": {
+              "field": "age_group",
+              "type": "ordinal",
+              "sort": {
+                "field": "age_order",
+                "order": "descending"
+              }
+            },
+            "x": {
+              "field": "donors",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "donors",
+              "type": "quantitative"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

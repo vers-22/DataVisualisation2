@@ -1,0 +1,190 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Heatmap of deceased organ donors per million population by state and year, 2006-2025. Source: ANZOD Registry Annual Report 2026, Table 2.1.",
+  "title": {
+    "text": "Twenty years of donation, state by state",
+    "subtitle": [
+      "Deceased organ donors per million people, 2006–2025. Darker = higher rate"
+    ],
+    "anchor": "start",
+    "font": "Inter, system-ui, sans-serif",
+    "fontSize": 15,
+    "fontWeight": 600,
+    "color": "#1e2430",
+    "subtitleFont": "Inter, system-ui, sans-serif",
+    "subtitleFontSize": 12,
+    "subtitleColor": "#5c6675",
+    "offset": 12
+  },
+  "width": 420,
+  "height": 270,
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Inter, system-ui, sans-serif",
+    "axis": {
+      "labelColor": "#5c6675",
+      "titleColor": "#5c6675",
+      "labelFontSize": 11,
+      "titleFontSize": 11,
+      "titleFontWeight": 500,
+      "domainColor": "#c9cfd8",
+      "tickColor": "#c9cfd8",
+      "gridColor": "#e6e2db",
+      "gridDash": [
+        3,
+        3
+      ]
+    },
+    "legend": {
+      "labelColor": "#5c6675",
+      "titleColor": "#5c6675",
+      "labelFontSize": 11,
+      "titleFontSize": 11,
+      "titleFontWeight": 500
+    }
+  },
+  "data": {
+    "url": "data/donors_by_state_year.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "year": "number",
+        "donors": "number",
+        "dpmp": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "calculate": "datum.state === 'AUS' ? 'Australia' : datum.state",
+      "as": "row"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "title": null,
+      "axis": {
+        "labelAngle": 0,
+        "labelExpr": "datum.value % 5 === 0 ? datum.label : ''",
+        "domain": false,
+        "ticks": false
+      }
+    },
+    "y": {
+      "field": "row",
+      "type": "nominal",
+      "title": null,
+      "sort": [
+        "NSW",
+        "VIC",
+        "QLD",
+        "SA",
+        "WA",
+        "TAS",
+        "NT",
+        "ACT",
+        "Australia"
+      ],
+      "axis": {
+        "domain": false,
+        "ticks": false,
+        "labelColor": "#1e2430",
+        "labelFontWeight": 600
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "#faf7f2",
+        "strokeWidth": 1.5,
+        "cornerRadius": 2
+      },
+      "encoding": {
+        "color": {
+          "field": "dpmp",
+          "type": "quantitative",
+          "scale": {
+            "type": "sqrt",
+            "domain": [
+              0,
+              45
+            ],
+            "range": [
+              "#f8eeec",
+              "#e7a3a8",
+              "#c8465e",
+              "#6e1427"
+            ]
+          },
+          "legend": {
+            "title": "Donors per million",
+            "orient": "bottom",
+            "direction": "horizontal",
+            "gradientLength": 200,
+            "values": [
+              0,
+              10,
+              20,
+              30,
+              40
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state_name",
+            "title": "State"
+          },
+          {
+            "field": "year",
+            "title": "Year"
+          },
+          {
+            "field": "donors",
+            "type": "quantitative",
+            "title": "Donors"
+          },
+          {
+            "field": "dpmp",
+            "type": "quantitative",
+            "title": "Donors per million",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.dpmp >= 40 || (datum.year === 2018 && datum.state === 'AUS')"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 9,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "text": {
+          "field": "dpmp",
+          "type": "quantitative",
+          "format": ".0f"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.dpmp >= 30",
+            "value": "#ffffff"
+          },
+          "value": "#1e2430"
+        }
+      }
+    }
+  ]
+}

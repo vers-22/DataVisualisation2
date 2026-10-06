@@ -1,0 +1,267 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Flow map of solid organs transplanted interstate in 2025, from donor state to transplanting state. Lines taper from origin (thick) to destination (thin). Source: ANZOD Registry Annual Report 2026, Appendix I Table A1.25.",
+  "title": {
+    "text": "Every year, hundreds of organs cross state lines",
+    "subtitle": [
+      "Organs transplanted interstate in 2025.",
+      "Each line tapers from the donor state (thick) to the transplanting state (thin)"
+    ],
+    "anchor": "start",
+    "font": "Inter, system-ui, sans-serif",
+    "fontSize": 15,
+    "fontWeight": 600,
+    "color": "#1e2430",
+    "subtitleFont": "Inter, system-ui, sans-serif",
+    "subtitleFontSize": 12,
+    "subtitleColor": "#5c6675",
+    "offset": 12
+  },
+  "width": 470,
+  "height": 420,
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Inter, system-ui, sans-serif",
+    "axis": {
+      "labelColor": "#5c6675",
+      "titleColor": "#5c6675",
+      "labelFontSize": 11,
+      "titleFontSize": 11,
+      "titleFontWeight": 500,
+      "domainColor": "#c9cfd8",
+      "tickColor": "#c9cfd8",
+      "gridColor": "#e6e2db",
+      "gridDash": [
+        3,
+        3
+      ]
+    },
+    "legend": {
+      "labelColor": "#5c6675",
+      "titleColor": "#5c6675",
+      "labelFontSize": 11,
+      "titleFontSize": 11,
+      "titleFontWeight": 500
+    }
+  },
+  "projection": {
+    "type": "conicEqualArea",
+    "rotate": [
+      -132,
+      0
+    ],
+    "parallels": [
+      -18,
+      -36
+    ],
+    "center": [
+      0,
+      -27
+    ]
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/au_states.topojson.json",
+        "format": {
+          "type": "topojson",
+          "feature": "STE_2026_AUST_GDA2020"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.properties.STE_CODE26 <= '8'"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "#ece7df",
+        "stroke": "#ffffff",
+        "strokeWidth": 1
+      }
+    },
+    {
+      "data": {
+        "url": "data/organ_flow_lines_2025.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "organs": "number",
+            "end": "number",
+            "lat": "number",
+            "lon": "number"
+          }
+        }
+      },
+      "params": [
+        {
+          "name": "from",
+          "select": {
+            "type": "point",
+            "fields": [
+              "origin"
+            ],
+            "on": "pointerover",
+            "clear": "pointerout"
+          }
+        }
+      ],
+      "transform": [
+        {
+          "calculate": "datum.end === 0 ? datum.organs : 0",
+          "as": "width"
+        }
+      ],
+      "mark": {
+        "type": "trail"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "detail": {
+          "field": "flow_id",
+          "type": "nominal"
+        },
+        "order": {
+          "field": "end"
+        },
+        "size": {
+          "field": "width",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              60
+            ],
+            "range": [
+              0,
+              16
+            ]
+          },
+          "legend": null
+        },
+        "color": {
+          "value": "#c8465e"
+        },
+        "opacity": {
+          "condition": {
+            "param": "from",
+            "empty": true,
+            "value": 0.6
+          },
+          "value": 0.08
+        },
+        "tooltip": [
+          {
+            "field": "origin_city",
+            "title": "From"
+          },
+          {
+            "field": "destination_city",
+            "title": "To"
+          },
+          {
+            "field": "organs",
+            "type": "quantitative",
+            "title": "Organs (2025)"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/state_capitals.csv"
+      },
+      "mark": {
+        "type": "circle",
+        "size": 40,
+        "color": "#1e2430"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "city",
+            "title": "City"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/state_capitals.csv"
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontWeight": 600,
+        "color": "#1e2430",
+        "dy": -10
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "city"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 140.5,
+            "lat": -42.2,
+            "t": [
+              "52 of Tasmania's 73 organs",
+              "went to Victoria"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "fontSize": 10.5,
+        "fontStyle": "italic",
+        "color": "#1e2430",
+        "lineHeight": 12
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    }
+  ]
+}

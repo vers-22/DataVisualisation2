@@ -1,108 +1,182 @@
 /* ==========================================================
-   FIT3179 Data Visualisation 2 — starter stylesheet
-   Save this as css/styles.css in your repo.
-
-   This is a skeleton, not a design. Layout, colour, figure-ground
-   and typography are worth 5% between them, so the palette and
-   typefaces below are placeholders for YOUR choices.
+   FIT3179 Data Visualisation 2 — The Gift Gap
+   Organ donation in Australia
    ========================================================== */
 
 :root {
-  /* --- Colour tokens. Replace these. --- */
+  /* Colour tokens */
   --ink:        #1e2430;   /* body text */
   --ink-soft:   #5c6675;   /* captions, secondary text */
-  --paper:      #ffffff;   /* default band background */
-  --paper-alt:  #f4f6f8;   /* alternating band background */
+  --paper:      #faf7f2;   /* warm off-white page */
+  --paper-alt:  #f1ece4;   /* alternating band */
+  --rule:       #e2dcd2;
   --dark:       #1e2430;   /* the one dark band */
-  --accent:     #c8465e;   /* used sparingly, so it means something */
+  --accent:     #c8465e;   /* donors / action. Used sparingly. */
+  --slate:      #8fa3b8;   /* recipients / structure */
 
-  /* --- Layout --- */
+  /* Type */
+  --serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --sans:  "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Layout */
   --column:     1100px;    /* fits a 13" laptop without horizontal scroll */
   --gutter:     32px;
-  --band-pad:   72px;
+  --band-pad:   80px;
 }
 
 /* ---------- Base ---------- */
 
 * { box-sizing: border-box; }
 
+html { overflow-x: hidden; }
+
 body {
   margin: 0;
-  /* Swap in your chosen pairing. A humanist serif for headings over a
-     grotesque for body text scores better than a stock system stack. */
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: var(--sans);
   font-size: 17px;
   line-height: 1.65;
   color: var(--ink);
   background: var(--paper);
+  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3 {
-  font-family: "Fraunces", Georgia, serif;
+  font-family: var(--serif);
+  font-optical-sizing: auto;
+  font-weight: 600;
   line-height: 1.15;
   margin: 0 0 0.5em;
   text-wrap: balance;
 }
 
-h1 { font-size: clamp(2.2rem, 4.5vw, 3.4rem); }
-h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 1em; }
-h3 { font-size: 1.1rem; margin-top: 2em; }
+h1 { font-size: clamp(2.2rem, 4.5vw, 3.5rem); font-weight: 700; letter-spacing: -0.01em; max-width: 22ch; }
+h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); max-width: 28ch; }
+h3 { font-size: 1.25rem; margin-top: 0.2em; }
 
-p { max-width: 68ch; }   /* keeps line length readable */
+p { max-width: 68ch; margin: 0 0 1em; }
 
-a { color: var(--accent); }
+a { color: var(--accent); text-underline-offset: 2px; }
+
+strong { font-weight: 600; }
+
+.accent { color: var(--accent); }
 
 /* ---------- Bands and the content column ---------- */
 
-.band {
-  padding: var(--band-pad) var(--gutter);
-}
+.band { padding: var(--band-pad) var(--gutter); }
 
 .wrap {
   max-width: var(--column);
   margin: 0 auto;
 }
 
-/* Alternating tint does most of the figure-ground work for free. */
 .band--tinted { background: var(--paper-alt); }
 
 .band--dark {
   background: var(--dark);
-  color: #eef1f5;
+  color: #e8ebf0;
 }
 .band--dark h2 { color: #ffffff; }
+.band--dark .kicker { color: #f08a9b; }
+.band--dark .source { color: #a6afbc; }
 
-.band--hero { padding-top: 96px; }
+.band--hero { padding-top: 96px; border-bottom: 1px solid var(--rule); }
+
+.kicker {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.8em;
+}
 
 .standfirst {
   font-size: 1.25rem;
+  line-height: 1.55;
   color: var(--ink-soft);
   margin-bottom: 2.5em;
+  max-width: 60ch;
 }
+
+.lede {
+  font-size: 1.1rem;
+  color: var(--ink-soft);
+  margin-bottom: 2em;
+}
+
+/* ---------- Hero stats ---------- */
+
+.stat-stack { padding-top: 3.2em; }
+
+.stat {
+  display: block;
+  padding: 0 0 1.1em;
+  margin-bottom: 1.1em;
+  border-bottom: 1px solid var(--rule);
+}
+
+.stat__num {
+  display: block;
+  font-family: var(--serif);
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.stat__label {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+/* ---------- Captions ---------- */
+
+.note {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.source {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+/* ---------- Footer ---------- */
 
 .band--footer {
   background: var(--paper-alt);
   font-size: 0.92rem;
 }
 
+.band--footer h3 { font-size: 1.1rem; margin-top: 2em; }
+
+.cta {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  line-height: 1.4;
+}
+
 .meta { color: var(--ink-soft); }
 
 .sources {
-  max-width: 68ch;
+  max-width: 80ch;
   padding-left: 1.2em;
 }
-.sources li { margin-bottom: 0.4em; }
+.sources li { margin-bottom: 0.5em; }
 
 /* ---------- Grid splits ---------- */
-/* Only three splits. Resist inventing more — the rubric rewards a
-   layout that is visibly structured in consistent columns and rows. */
 
 .grid {
   display: grid;
   gap: var(--gutter);
-  margin-bottom: var(--gutter);
+  margin-bottom: calc(var(--gutter) * 1.5);
   align-items: start;
 }
+
+.grid > * { min-width: 0; }   /* lets wide charts scroll inside their cell */
 
 .grid--halves     { grid-template-columns: 1fr 1fr; }
 .grid--thirds     { grid-template-columns: 1fr 1fr 1fr; }
@@ -119,12 +193,24 @@ a { color: var(--accent); }
 
 .prose { padding-top: 0.5em; }
 
+/* Vega tooltip, matched to the page */
+#vg-tooltip-element {
+  font-family: var(--sans);
+  font-size: 12px;
+  border-radius: 4px;
+  box-shadow: 0 4px 14px rgba(30, 36, 48, 0.15);
+}
+
 /* ---------- Small screens ---------- */
 
-@media (max-width: 820px) {
+@media (max-width: 900px) {
   .grid--halves,
   .grid--thirds,
   .grid--two-thirds { grid-template-columns: 1fr; }
 
+  .stat-stack { padding-top: 0; }
+
   :root { --band-pad: 48px; --gutter: 20px; }
 }
+
+.band--dark .lede { color: #c3cad4; }

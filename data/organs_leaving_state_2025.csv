@@ -1,0 +1,9 @@
+state,state_name,organs_transplanted,transplanted_in_state,sent_interstate,pct_interstate
+NSW,New South Wales,453,342,111,24.5
+VIC,Victoria,414,332,82,19.8
+QLD,Queensland,322,210,112,34.8
+SA,South Australia,105,47,58,55.2
+WA,Western Australia,197,144,53,26.9
+TAS,Tasmania,73,0,73,100.0
+NT,Northern Territory,17,0,17,100.0
+ACT,Australian Capital Territory,44,0,44,100.0

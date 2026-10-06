@@ -1,0 +1,151 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "World choropleth of deceased organ donors per million population. Sources: IRODaT; ANZOD Registry Annual Report 2026 (Australia, New Zealand); world-atlas (Natural Earth) boundaries.",
+  "title": {
+    "text": "How Australia compares with the world",
+    "subtitle": [
+      "Deceased organ donors per million people. Grey = no data"
+    ],
+    "anchor": "start",
+    "font": "Inter, system-ui, sans-serif",
+    "fontSize": 15,
+    "fontWeight": 600,
+    "color": "#ffffff",
+    "subtitleFont": "Inter, system-ui, sans-serif",
+    "subtitleFontSize": 12,
+    "subtitleColor": "#c3cad4",
+    "offset": 12
+  },
+  "width": 1000,
+  "height": 500,
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Inter, system-ui, sans-serif",
+    "axis": {
+      "labelColor": "#5c6675",
+      "titleColor": "#5c6675",
+      "labelFontSize": 11,
+      "titleFontSize": 11,
+      "titleFontWeight": 500,
+      "domainColor": "#c9cfd8",
+      "tickColor": "#c9cfd8",
+      "gridColor": "#e6e2db",
+      "gridDash": [
+        3,
+        3
+      ]
+    },
+    "legend": {
+      "labelColor": "#c3cad4",
+      "titleColor": "#c3cad4",
+      "labelFontSize": 11,
+      "titleFontSize": 11,
+      "titleFontWeight": 500
+    }
+  },
+  "projection": {
+    "type": "equalEarth"
+  },
+  "layer": [
+    {
+      "data": {
+        "sphere": true
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#262e3c",
+        "stroke": "#3a4456"
+      }
+    },
+    {
+      "data": {
+        "url": "data/world_countries_110m.json",
+        "format": {
+          "type": "topojson",
+          "feature": "countries"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "id",
+          "from": {
+            "data": {
+              "url": "data/world_dpmp.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "iso_n3": "string",
+                  "dpmp": "number"
+                }
+              }
+            },
+            "key": "iso_n3",
+            "fields": [
+              "country",
+              "year",
+              "dpmp",
+              "source"
+            ]
+          }
+        },
+        {
+          "calculate": "datum.properties.name",
+          "as": "name"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#1e2430",
+        "strokeWidth": 0.5,
+        "invalid": null
+      },
+      "encoding": {
+        "color": {
+          "condition": {
+            "test": "!isValid(datum.dpmp)",
+            "value": "#4a5263"
+          },
+          "field": "dpmp",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              50
+            ],
+            "range": [
+              "#f6e3e2",
+              "#e7a3a8",
+              "#c8465e",
+              "#7a1a2e"
+            ]
+          },
+          "legend": {
+            "title": "Donors per million",
+            "orient": "bottom-left",
+            "direction": "horizontal",
+            "gradientLength": 200
+          }
+        },
+        "tooltip": [
+          {
+            "field": "name",
+            "title": "Country"
+          },
+          {
+            "field": "dpmp",
+            "type": "quantitative",
+            "title": "Donors per million",
+            "format": ".1f"
+          },
+          {
+            "field": "year",
+            "title": "Year"
+          }
+        ]
+      }
+    }
+  ]
+}
