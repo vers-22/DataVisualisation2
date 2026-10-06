@@ -1,0 +1,279 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Proportional symbol map of hospitals where deceased organ donors died, sized by number of donors 2021-2025 (hospitals with 5 or more). Sources: ANZOD Registry Annual Report 2026 Appendix I Table A1.3; ABS state boundaries. Hospital locations geocoded by the author.",
+  "title": {
+    "text": "A few big-city hospitals provide most donors",
+    "subtitle": [
+      "Hospitals by number of deceased organ donors, 2021–2025",
+      "Only hospitals with 5 or more donors are shown"
+    ],
+    "anchor": "start",
+    "font": "Inter, system-ui, sans-serif",
+    "fontSize": 15,
+    "fontWeight": 600,
+    "color": "#1e2430",
+    "subtitleFont": "Inter, system-ui, sans-serif",
+    "subtitleFontSize": 12,
+    "subtitleColor": "#5c6675",
+    "offset": 12
+  },
+  "width": 450,
+  "height": 410,
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Inter, system-ui, sans-serif",
+    "axis": {
+      "labelColor": "#5c6675",
+      "titleColor": "#5c6675",
+      "labelFontSize": 11,
+      "titleFontSize": 11,
+      "titleFontWeight": 500,
+      "domainColor": "#c9cfd8",
+      "tickColor": "#c9cfd8",
+      "gridColor": "#e6e2db",
+      "gridDash": [
+        3,
+        3
+      ]
+    },
+    "legend": {
+      "labelColor": "#5c6675",
+      "titleColor": "#5c6675",
+      "labelFontSize": 11,
+      "titleFontSize": 11,
+      "titleFontWeight": 500
+    }
+  },
+  "projection": {
+    "type": "conicEqualArea",
+    "rotate": [
+      -132,
+      0
+    ],
+    "parallels": [
+      -18,
+      -36
+    ],
+    "center": [
+      0,
+      -27
+    ]
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/au_states.topojson.json",
+        "format": {
+          "type": "topojson",
+          "feature": "STE_2026_AUST_GDA2020"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.properties.STE_CODE26 <= '8'"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "#ece7df",
+        "stroke": "#ffffff",
+        "strokeWidth": 1
+      }
+    },
+    {
+      "data": {
+        "url": "data/donor_hospitals.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "lat": "number",
+            "lon": "number",
+            "donors_2025": "number",
+            "donors_2021_2025": "number",
+            "donors_1989_2025": "number"
+          }
+        }
+      },
+      "params": [
+        {
+          "name": "pick",
+          "select": {
+            "type": "point",
+            "fields": [
+              "state"
+            ],
+            "on": "pointerover",
+            "clear": "pointerout"
+          }
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "stroke": "#ffffff",
+        "strokeWidth": 0.8
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "donors_2021_2025",
+          "type": "quantitative",
+          "scale": {
+            "range": [
+              20,
+              1400
+            ]
+          },
+          "legend": {
+            "title": "Donors 2021–2025",
+            "values": [
+              10,
+              50,
+              100,
+              150
+            ],
+            "orient": "top-left",
+            "direction": "horizontal",
+            "symbolFillColor": "#c8465e",
+            "symbolStrokeColor": "#ffffff",
+            "symbolOpacity": 0.7
+          }
+        },
+        "color": {
+          "value": "#c8465e"
+        },
+        "opacity": {
+          "condition": {
+            "param": "pick",
+            "value": 0.75
+          },
+          "value": 0.25
+        },
+        "order": {
+          "field": "donors_2021_2025",
+          "sort": "descending"
+        },
+        "tooltip": [
+          {
+            "field": "hospital",
+            "title": "Hospital"
+          },
+          {
+            "field": "city",
+            "title": "City"
+          },
+          {
+            "field": "donors_2025",
+            "type": "quantitative",
+            "title": "Donors in 2025"
+          },
+          {
+            "field": "donors_2021_2025",
+            "type": "quantitative",
+            "title": "Donors 2021–2025"
+          },
+          {
+            "field": "donors_1989_2025",
+            "type": "quantitative",
+            "title": "Donors since 1989"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 141.0,
+            "lat": -40.6,
+            "t": [
+              "Royal Melbourne (167)",
+              "& The Alfred (138)"
+            ]
+          },
+          {
+            "lon": 129.6,
+            "lat": -36.4,
+            "t": [
+              "Royal Adelaide",
+              "Hospital (126)"
+            ]
+          },
+          {
+            "lon": 151.4,
+            "lat": -25.4,
+            "t": [
+              "Princess Alexandra,",
+              "Brisbane (86)"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "fontSize": 10.5,
+        "fontStyle": "italic",
+        "color": "#1e2430",
+        "lineHeight": 12
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 155.6,
+            "lat": -31.9,
+            "t": [
+              "John Hunter,",
+              "Newcastle (90)"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "fontSize": 10.5,
+        "fontStyle": "italic",
+        "color": "#1e2430",
+        "lineHeight": 12
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    }
+  ]
+}

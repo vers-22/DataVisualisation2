@@ -1,0 +1,396 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Deceased organ donors and solid organs transplanted from Australian donors, 1989-2025. Source: ANZOD Registry Annual Report 2026, Appendix I Tables A1.1 and A1.24.",
+  "title": {
+    "text": "Donation has more than doubled since 2009",
+    "subtitle": "Deceased organ donors and organs transplanted each year, Australia, 1989–2025",
+    "anchor": "start",
+    "font": "Inter, system-ui, sans-serif",
+    "fontSize": 15,
+    "fontWeight": 600,
+    "color": "#1e2430",
+    "subtitleFont": "Inter, system-ui, sans-serif",
+    "subtitleFontSize": 12,
+    "subtitleColor": "#5c6675",
+    "offset": 12
+  },
+  "width": 420,
+  "height": 300,
+  "background": null,
+  "data": {
+    "url": "data/national_trend.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "year": "number",
+        "value": "number"
+      }
+    }
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Inter, system-ui, sans-serif",
+    "axis": {
+      "labelColor": "#5c6675",
+      "titleColor": "#5c6675",
+      "labelFontSize": 11,
+      "titleFontSize": 11,
+      "titleFontWeight": 500,
+      "domainColor": "#c9cfd8",
+      "tickColor": "#c9cfd8",
+      "gridColor": "#e6e2db",
+      "gridDash": [
+        3,
+        3
+      ]
+    }
+  },
+  "layer": [
+    {
+      "data": {
+        "values": [
+          {
+            "start": 2020,
+            "end": 2021
+          }
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "color": "#8fa3b8",
+        "opacity": 0.15
+      },
+      "encoding": {
+        "x": {
+          "field": "start",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1989,
+              2025
+            ],
+            "zero": false
+          }
+        },
+        "x2": {
+          "field": "end"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "year": 2020,
+            "label": "COVID-19"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 3,
+        "y": 4,
+        "fontSize": 10,
+        "fontStyle": "italic",
+        "color": "#5c6675",
+        "baseline": "top"
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1989,
+              2025
+            ],
+            "zero": false
+          }
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "year": 2009
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "top",
+        "dx": -4,
+        "y": 4,
+        "fontSize": 10,
+        "fontStyle": "italic",
+        "color": "#5c6675",
+        "lineHeight": 12
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1989,
+              2025
+            ],
+            "zero": false
+          }
+        },
+        "text": {
+          "value": [
+            "2009: national reform",
+            "& DonateLife network"
+          ]
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "year": 2009
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#5c6675",
+        "strokeDash": [
+          2,
+          2
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1989,
+              2025
+            ],
+            "zero": false
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.5,
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "title": null,
+          "scale": {
+            "domain": [
+              1989,
+              2025
+            ],
+            "zero": false
+          },
+          "axis": {
+            "format": "d",
+            "values": [
+              1989,
+              1995,
+              2000,
+              2005,
+              2009,
+              2015,
+              2020,
+              2025
+            ],
+            "grid": false
+          }
+        },
+        "y": {
+          "field": "value",
+          "type": "quantitative",
+          "title": "Count per year",
+          "axis": {
+            "tickCount": 5
+          }
+        },
+        "color": {
+          "field": "series",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Deceased organ donors",
+              "Organs transplanted"
+            ],
+            "range": [
+              "#c8465e",
+              "#8fa3b8"
+            ]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "params": [
+        {
+          "name": "hover",
+          "select": {
+            "type": "point",
+            "fields": [
+              "year"
+            ],
+            "nearest": true,
+            "on": "pointerover",
+            "clear": "pointerout"
+          }
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 50
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1989,
+              2025
+            ],
+            "zero": false
+          }
+        },
+        "y": {
+          "field": "value",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "series",
+          "type": "nominal",
+          "legend": null
+        },
+        "opacity": {
+          "condition": {
+            "param": "hover",
+            "empty": false,
+            "value": 1
+          },
+          "value": 0
+        },
+        "tooltip": [
+          {
+            "field": "year",
+            "type": "quantitative",
+            "title": "Year",
+            "format": "d"
+          },
+          {
+            "field": "series",
+            "type": "nominal",
+            "title": "Series"
+          },
+          {
+            "field": "value",
+            "type": "quantitative",
+            "title": "Count",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year === 2025"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 6,
+        "fontSize": 11,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1989,
+              2025
+            ],
+            "zero": false
+          }
+        },
+        "y": {
+          "field": "value",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "value",
+          "type": "quantitative",
+          "format": ","
+        },
+        "color": {
+          "field": "series",
+          "type": "nominal",
+          "legend": null
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year === 1992"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dy": -14,
+        "fontSize": 11,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1989,
+              2025
+            ],
+            "zero": false
+          }
+        },
+        "y": {
+          "field": "value",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "series"
+        },
+        "color": {
+          "field": "series",
+          "type": "nominal",
+          "legend": null
+        }
+      }
+    }
+  ]
+}

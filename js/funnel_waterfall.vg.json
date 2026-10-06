@@ -5,10 +5,19 @@
   "height": 320,
   "background": null,
   "data": {
-    "url": "data/donation_funnel.csv"
+    "url": "data/donation_funnel.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "value": "number",
+        "order": "number"
+      }
+    }
   },
   "config": {
-    "view": {"stroke": null},
+    "view": {
+      "stroke": null
+    },
     "font": "Inter, system-ui, sans-serif",
     "axis": {
       "labelFont": "Inter, system-ui, sans-serif",
@@ -28,7 +37,10 @@
         "y": {
           "field": "stage",
           "type": "nominal",
-          "sort": {"field": "order"},
+          "sort": {
+            "field": "order",
+            "op": "min"
+          },
           "axis": {
             "title": null,
             "labelFontSize": 13,
@@ -43,7 +55,10 @@
           "axis": {
             "title": "Number of people",
             "grid": true,
-            "gridDash": [3, 3],
+            "gridDash": [
+              3,
+              3
+            ],
             "gridColor": "#e0e4ea"
           }
         },
@@ -55,8 +70,17 @@
           "value": "#8fa3b8"
         },
         "tooltip": [
-          {"field": "stage", "type": "nominal", "title": "Stage"},
-          {"field": "value", "type": "quantitative", "title": "People", "format": ","}
+          {
+            "field": "stage",
+            "type": "nominal",
+            "title": "Stage"
+          },
+          {
+            "field": "value",
+            "type": "quantitative",
+            "title": "People",
+            "format": ","
+          }
         ]
       }
     },
@@ -72,7 +96,10 @@
         "y": {
           "field": "stage",
           "type": "nominal",
-          "sort": {"field": "order"}
+          "sort": {
+            "field": "order",
+            "op": "min"
+          }
         },
         "x": {
           "field": "value",
@@ -102,20 +129,29 @@
         "fontStyle": "italic"
       },
       "transform": [
-        {"filter": "datum.order === 1"}
+        {
+          "filter": "datum.order === 1"
+        }
       ],
       "encoding": {
         "y": {
           "field": "stage",
           "type": "nominal",
-          "sort": {"field": "order"}
+          "sort": {
+            "field": "order",
+            "op": "min"
+          }
         },
         "x": {
           "field": "value",
           "type": "quantitative"
         },
-        "text": {"value": "Only ~2% are suitable for organ donation"},
-        "color": {"value": "#5c6675"}
+        "text": {
+          "value": "Only ~2% are suitable for organ donation"
+        },
+        "color": {
+          "value": "#5c6675"
+        }
       }
     },
     {
@@ -128,20 +164,29 @@
         "fontStyle": "italic"
       },
       "transform": [
-        {"filter": "datum.order === 4"}
+        {
+          "filter": "datum.order === 4"
+        }
       ],
       "encoding": {
         "y": {
           "field": "stage",
           "type": "nominal",
-          "sort": {"field": "order"}
+          "sort": {
+            "field": "order",
+            "op": "min"
+          }
         },
         "x": {
           "field": "value",
           "type": "quantitative"
         },
-        "text": {"value": "Consent rate: 53%"},
-        "color": {"value": "#5c6675"}
+        "text": {
+          "value": "Consent rate: 53%"
+        },
+        "color": {
+          "value": "#5c6675"
+        }
       }
     },
     {
@@ -154,20 +199,29 @@
         "fontStyle": "italic"
       },
       "transform": [
-        {"filter": "datum.order === 6"}
+        {
+          "filter": "datum.order === 6"
+        }
       ],
       "encoding": {
         "y": {
           "field": "stage",
           "type": "nominal",
-          "sort": {"field": "order"}
+          "sort": {
+            "field": "order",
+            "op": "min"
+          }
         },
         "x": {
           "field": "value",
           "type": "quantitative"
         },
-        "text": {"value": "One donor can save up to 7 lives"},
-        "color": {"value": "#c8465e"}
+        "text": {
+          "value": "One donor can save up to 7 lives"
+        },
+        "color": {
+          "value": "#c8465e"
+        }
       }
     }
   ]

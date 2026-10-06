@@ -1,0 +1,76 @@
+state,hospital,city,lat,lon,donors_2025,donors_2021_2025,donors_1989_2025
+VIC,The Royal Melbourne Hospital,Melbourne,-37.7990,144.9560,36,167,578
+VIC,Alfred Hospital,Melbourne,-37.8460,144.9820,31,138,705
+SA,Royal Adelaide Hospital & Transplant Service,Adelaide,-34.9210,138.5850,19,126,620
+NSW,John Hunter Hospital,Newcastle,-32.9220,151.6930,30,90,429
+QLD,Princess Alexandra Hospital,Brisbane,-27.4990,153.0330,20,86,442
+WA,Royal Perth Hospital,Perth,-31.9540,115.8660,20,83,457
+QLD,Gold Coast University Hospital,Gold Coast,-27.9620,153.3830,15,80,331
+NSW,Royal North Shore Hospital,Sydney,-33.8210,151.1920,15,76,381
+TAS,Royal Hobart Hospital,Hobart,-42.8810,147.3300,19,72,219
+QLD,Royal Brisbane And Women's Hospital,Brisbane,-27.4480,153.0280,12,68,407
+NSW,Royal Prince Alfred Hospital,Sydney,-33.8890,151.1830,8,64,278
+NSW,Westmead Hospital,Sydney,-33.8020,150.9880,14,63,348
+VIC,Monash Medical Centre,Melbourne,-37.9210,145.1230,15,63,302
+WA,Sir Charles Gairdner Hospital,Perth,-31.9670,115.8170,12,60,336
+QLD,Townsville University Hospital,Townsville,-19.3200,146.7610,9,57,265
+SA,Flinders Medical Centre,Adelaide,-35.0210,138.5680,9,51,349
+VIC,Austin Hospital,Melbourne,-37.7560,145.0590,14,49,300
+WA,Fiona Stanley Hospital,Perth,-32.0700,115.8470,17,48,99
+NSW,Liverpool Hospital,Sydney,-33.9210,150.9300,18,47,183
+ACT,Canberra Hospital,Canberra,-35.3450,149.1000,11,47,270
+VIC,University Hospital Geelong Barwon Health,Geelong,-38.1530,144.3640,13,45,116
+NSW,St George Hospital,Sydney,-33.9670,151.1340,7,40,203
+NSW,Nepean Hospital,Sydney,-33.7600,150.7130,12,39,180
+QLD,Sunshine Coast University Hospital,Sunshine Coast,-26.7470,153.1200,13,35,61
+NSW,St Vincent's Hospital Sydney,Sydney,-33.8810,151.2210,8,30,149
+VIC,St Vincent's Hospital Melbourne,Melbourne,-37.8070,144.9750,5,30,187
+NSW,Wollongong Hospital,Wollongong,-34.4190,150.8850,4,28,152
+SA,Lyell Mc Ewin Hospital,Adelaide,-34.7470,138.6650,6,28,87
+VIC,Sunshine Hospital,Melbourne,-37.7630,144.8110,3,26,56
+VIC,"Peninsula University Hospital, Frankston",Frankston,-38.1520,145.1280,6,25,90
+QLD,Cairns Hospital,Cairns,-16.9130,145.7710,3,24,100
+NSW,The Prince Of Wales Hospital,Sydney,-33.9190,151.2390,6,22,144
+NSW,Gosford Hospital,Gosford,-33.4220,151.3410,6,21,70
+VIC,Box Hill Hospital,Melbourne,-37.8140,145.1190,5,20,84
+VIC,Royal Children's Hospital,Melbourne,-37.7940,144.9500,2,19,125
+NSW,The Children's Hospital At Westmead,Sydney,-33.8020,150.9910,2,18,28
+VIC,Ballarat Hospital,Ballarat,-37.5590,143.8480,2,18,51
+TAS,Launceston General Hospital,Launceston,-41.4440,147.1310,5,18,57
+QLD,Prince Charles Hospital,Brisbane,-27.3920,153.0330,5,17,55
+QLD,Queensland Children's Hospital,Brisbane,-27.4840,153.0270,4,16,23
+WA,Joondalup Health Campus,Perth,-31.7480,115.7740,4,16,26
+NSW,Tweed Valley Hospital,Tweed Heads,-28.2640,153.5600,3,15,54
+VIC,Albury Wodonga Hospital,Albury,-36.0790,146.9220,3,15,47
+NT,Royal Darwin Hospital,Darwin,-12.3550,130.8820,5,15,95
+QLD,Mackay Base Hospital,Mackay,-21.1440,149.1650,2,14,57
+QLD,Rockhampton Hospital,Rockhampton,-23.3870,150.5060,3,14,74
+VIC,Bendigo Hospital,Bendigo,-36.7530,144.2730,2,13,43
+VIC,Northern Hospital,Melbourne,-37.6530,145.0150,5,13,44
+VIC,Victorian Heart Hospital Monash,Melbourne,-37.9100,145.1320,5,13,13
+WA,Perth Children's Hospital,Perth,-31.9680,115.8150,3,13,22
+QLD,Toowoomba Hospital,Toowoomba,-27.5560,151.9490,3,11,48
+NSW,Campbelltown Hospital,Sydney,-34.0790,150.8040,2,11,31
+QLD,Logan Hospital,Logan,-27.6640,153.1440,3,10,31
+NSW,Sydney Children's Hospital,Sydney,-33.9170,151.2370,1,9,46
+SA,Women's And Children's Hospital,Adelaide,-34.9110,138.6000,0,9,56
+QLD,Ipswich Hospital,Ipswich,-27.6160,152.7640,1,8,27
+NSW,Concord Repatriation General Hospital,Sydney,-33.8380,151.0940,2,8,30
+NSW,Northern Beaches Hospital,Sydney,-33.7520,151.2380,5,8,9
+NSW,Sutherland Hospital,Sydney,-34.0370,151.1110,0,8,29
+VIC,Latrobe Hospital - Traralgon,Traralgon,-38.2090,146.4830,0,8,23
+VIC,Maroondah Hospital,Melbourne,-37.8130,145.2490,1,8,23
+NSW,Coffs Harbour Hospital,Coffs Harbour,-30.3140,153.1100,1,7,57
+NSW,Wagga Wagga Base Hospital,Wagga Wagga,-35.1180,147.3600,2,7,31
+VIC,Goulburn Valley Hospital,Shepparton,-36.3540,145.4030,0,7,24
+QLD,Bundaberg Hospital,Bundaberg,-24.8700,152.3480,1,6,34
+QLD,Caboolture Public Hospital,Caboolture,-27.0670,152.9640,2,6,11
+QLD,Redcliffe Hospital,Redcliffe,-27.2290,153.1050,1,6,40
+NSW,Lismore Base Hospital,Lismore,-28.8100,153.2880,1,6,38
+NSW,Orange Health Service,Orange,-33.2700,149.0960,1,6,28
+VIC,Angliss Hospital,Melbourne,-37.8930,145.3070,0,6,7
+TAS,North West Regional Hospital,Burnie,-41.0590,145.8930,1,6,14
+WA,St John Of God Midland Hospital,Perth,-31.8880,116.0080,3,6,10
+QLD,Hervey Bay Hospital,Hervey Bay,-25.2960,152.8230,1,5,25
+VIC,Mildura Hospital,Mildura,-34.2010,142.1530,0,5,17
+WA,Rockingham Hospital,Perth,-32.2850,115.7500,1,5,17

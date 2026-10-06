@@ -3,12 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Organ Donation in Australia</title>
+  <title>The Gift Gap: Organ Donation in Australia</title>
+  <meta name="description" content="A data story about organ donation in Australia: who donates, why so few families say yes, and where donated organs go.">
 
-  <!-- Pure.css: optional grid/reset. Allowed by the assignment spec. -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
+  <!-- Typefaces: Fraunces (headings) + Inter (body) from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap">
 
-  <!-- Vega stack. Pinned versions so your page can't break overnight. -->
+  <!-- Vega stack, pinned versions -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5.25.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.16.3"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.22.2"></script>
@@ -20,36 +23,85 @@
 
 <!-- ============================================================
      SECTION 1 — HERO
-     Headline + the isotype chart (557 donors -> 1,438 recipients)
      ============================================================ -->
-<section class="band band--hero">
+<header class="band band--hero">
   <div class="wrap">
+    <p class="kicker">Organ donation in Australia · 2025</p>
     <h1>One conversation stands between 2,000 Australians and a transplant</h1>
     <p class="standfirst">
-      Replace this with your own standfirst: one sentence that states the
-      problem and makes the reader want the next screen.
+      Last year 557 people became organ donors after they died. Their gift
+      reached 1,438 people. Most Australians say they support donation, yet
+      only about one in three has registered, and half of grieving families
+      still say no.
     </p>
-    <div id="vis-hero" class="vis vis--full"></div>
+
+    <div class="grid grid--two-thirds">
+      <div id="vis-hero" class="vis"></div>
+      <aside class="stat-stack">
+        <div class="stat">
+          <span class="stat__num accent">557</span>
+          <span class="stat__label">deceased organ donors in 2025</span>
+        </div>
+        <div class="stat">
+          <span class="stat__num">1,438</span>
+          <span class="stat__label">people who received a transplant</span>
+        </div>
+        <div class="stat">
+          <span class="stat__num">20.2</span>
+          <span class="stat__label">donors per million people, against a national target of 25</span>
+        </div>
+        <p class="note">Each dot is one person. One donor can save or transform the lives
+        of up to seven people, which is why the grey block is so much bigger.</p>
+      </aside>
+    </div>
   </div>
-</section>
+</header>
 
 
 <!-- ============================================================
      SECTION 2 — DONATION IS RARER THAN YOU THINK
-     Waterfall (full width) + line chart (half) + text (half)
      ============================================================ -->
 <section class="band">
   <div class="wrap">
+    <p class="kicker">Part 1 · The odds</p>
     <h2>Almost nobody dies in a way that makes donation possible</h2>
+    <p class="lede">
+      Around 89,000 people die in Australian hospitals each year. Organs can
+      only be donated if someone dies in an intensive care unit, usually on a
+      ventilator, so fewer than 2 in 100 of those deaths could ever lead to
+      donation. Every one of those chances matters.
+    </p>
 
     <div id="vis-funnel" class="vis vis--full"></div>
 
     <div class="grid grid--halves">
       <div id="vis-trend" class="vis"></div>
       <div class="prose">
-        <p>Narrative text sits beside the chart, not under it. Keep lines
-        under about 80 characters — that's part of the typography mark.</p>
+        <h3>A national reform worked, then stalled</h3>
+        <p>For twenty years Australia hovered around 200 donors a year. In
+        2009 the Commonwealth set up the Organ and Tissue Authority and the
+        DonateLife network of specialist hospital staff. Donor numbers
+        climbed almost every year after that, peaking at 554 in 2018.</p>
+        <p>COVID-19 hit hard: intensive care units filled and donation fell to
+        421 donors in 2021. Numbers have now recovered to a record 557, but the
+        rate per person is still below its 2018 level.</p>
+        <p class="source">Source: ANZOD Registry Annual Report 2026,
+        Appendix I, Tables A1.1 and A1.24.</p>
       </div>
+    </div>
+
+    <div class="grid grid--halves">
+      <div class="prose">
+        <h3>Who becomes a donor?</h3>
+        <p>Because donation depends on dying in intensive care, donors are
+        mostly people aged 35 to 74 who have had a stroke, a brain injury or
+        a cardiac arrest. Three in five donors since 2021 have been men.</p>
+        <p>Young children are rare donors, but every age group contributes.
+        The oldest donors in 2021–2025 were over 75.</p>
+        <p class="source">Source: ANZOD Registry Annual Report 2026,
+        Appendix I, Table A1.2.</p>
+      </div>
+      <div id="vis-pyramid" class="vis"></div>
     </div>
   </div>
 </section>
@@ -57,40 +109,81 @@
 
 <!-- ============================================================
      SECTION 3 — THE BOTTLENECK IS CONSENT
-     Slope graph + dumbbell as halves, pyramid full width below
      ============================================================ -->
 <section class="band band--tinted">
   <div class="wrap">
+    <p class="kicker">Part 2 · The conversation</p>
     <h2>The bottleneck is one conversation</h2>
+    <p class="lede">
+      When donation is possible, a specialist asks the family. In 2025 only
+      53% said yes, down from a peak of 60% in 2018. The single biggest thing
+      that changes the answer is whether the person who died had registered.
+    </p>
 
     <div class="grid grid--halves">
-      <div id="vis-slope" class="vis"></div>
-      <div id="vis-dumbbell" class="vis"></div>
+      <div>
+        <div id="vis-dumbbell" class="vis"></div>
+        <div class="prose">
+          <p>When someone is registered on the Australian Organ Donor Register,
+          about 8 in 10 families agree. When they are not, it falls to about 4
+          in 10. Families who know what their loved one wanted find the
+          decision much easier.</p>
+          <p>Yet only around 8 million Australians, about 35% of people
+          eligible, have registered, even though 4 in 5 say they support
+          donation.</p>
+          <p class="source">Source: Organ and Tissue Authority, 2025
+          donation and transplantation data.</p>
+        </div>
+      </div>
+      <div>
+        <div id="vis-slope" class="vis"></div>
+        <p class="source">Source: ANZOD Registry Annual Report 2026, Table 2.1.
+        Rates use June 2025 ABS population.</p>
+      </div>
     </div>
-
-    <div id="vis-pyramid" class="vis vis--full"></div>
   </div>
 </section>
 
 
 <!-- ============================================================
-     SECTION 4 — GEOGRAPHY (MAPS 1 AND 2)
+     SECTION 4 — GEOGRAPHY (MAPS 1 AND 2) + HEATMAP
      ============================================================ -->
 <section class="band">
   <div class="wrap">
+    <p class="kicker">Part 3 · The map</p>
     <h2>Where you live changes the odds</h2>
 
     <div class="grid grid--two-thirds">
       <div id="vis-choropleth" class="vis"></div>
       <div class="prose">
-        <p>Annotate the map's outliers here in prose, and again directly on
-        the chart using a Vega-Lite text layer.</p>
+        <p>Donation rates are measured as donors per million people, so
+        large and small states can be compared fairly.</p>
+        <p><strong>Tasmania</strong> is the stand-out: 25 donors from about
+        575,000 people gives 43.4 per million, close to the world's best
+        performers.</p>
+        <p><strong>Every other state and territory</strong> sits below the
+        national target of 25 per million. Victoria is closest at 22.1.</p>
+        <p>Small states swing a lot from year to year: one or two extra donors
+        in the Northern Territory moves its rate by four to eight points.</p>
+        <p class="source">Sources: ANZOD Registry Annual Report 2026, Table 2.1;
+        ABS state boundaries (ASGS Edition 3).</p>
       </div>
     </div>
 
     <div class="grid grid--halves">
-      <div id="vis-hexmap" class="vis"></div>
-      <div id="vis-heatmap" class="vis"></div>
+      <div>
+        <div id="vis-heatmap" class="vis"></div>
+        <p class="note">Read across a row to follow one state over time. The
+        slow darkening from left to right is the 2009 reform at work; the pale
+        band around 2020–2021 is the pandemic.</p>
+      </div>
+      <div>
+        <div id="vis-hexmap" class="vis"></div>
+        <p class="note">Each hexagon is a state or territory, drawn the same
+        size so small places are not lost. In 2025 none of the organs donated in
+        Tasmania, the Northern Territory or the ACT were transplanted there:
+        all of them were flown interstate.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -101,10 +194,29 @@
      ============================================================ -->
 <section class="band band--tinted">
   <div class="wrap">
-    <h2>Where the organs go</h2>
-    <div class="grid grid--two-thirds">
-      <div id="vis-symbolmap" class="vis"></div>
-      <div id="vis-flowmap" class="vis"></div>
+    <p class="kicker">Part 4 · The journey</p>
+    <h2>From hospital bed to operating theatre</h2>
+    <p class="lede">
+      Donation happens in intensive care units, so a handful of large trauma
+      hospitals in the capital cities provide most donors. The organs then
+      often travel interstate to the patient who is the best match.
+    </p>
+
+    <div class="grid grid--halves">
+      <div>
+        <div id="vis-symbolmap" class="vis"></div>
+        <p class="note">Hover over a circle for hospital details. Circle area is
+        proportional to the number of donors.</p>
+        <p class="source">Source: ANZOD Registry Annual Report 2026, Appendix I,
+        Table A1.3. Hospital locations geocoded by the author.</p>
+      </div>
+      <div>
+        <div id="vis-flowmap" class="vis"></div>
+        <p class="note">Hover over a line to highlight all organs leaving that
+        state.</p>
+        <p class="source">Source: ANZOD Registry Annual Report 2026, Appendix I,
+        Table A1.25.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -115,59 +227,86 @@
      ============================================================ -->
 <section class="band band--dark">
   <div class="wrap">
+    <p class="kicker">Part 5 · The world</p>
     <h2>Other countries are further ahead</h2>
+    <p class="lede">
+      Spain has led the world for more than three decades, with over 50
+      donors per million people. Australia's 20.2 is less than half that.
+      <!-- TODO: once data/world_dpmp.csv is filled from IRODaT, check this
+           sentence against the final numbers. -->
+    </p>
     <div id="vis-world" class="vis vis--full"></div>
+    <p class="source">Sources: International Registry in Organ Donation and
+    Transplantation (IRODaT); ANZOD Registry Annual Report 2026.</p>
   </div>
 </section>
 
 
 <!-- ============================================================
-     SECTION 7 — FOOTER: call to action + required metadata
-     The rubric marks metadata. Do not leave this until the last night.
+     SECTION 7 — FOOTER: call to action + metadata
      ============================================================ -->
 <footer class="band band--footer">
   <div class="wrap">
     <h2>Registering takes one minute</h2>
+    <div class="grid grid--two-thirds">
+      <div class="prose">
+        <p class="cta">Register at
+          <a href="https://www.donatelife.gov.au/register">donatelife.gov.au</a>,
+          then tell your family. It is the one thing that most changes what they
+          will say if they are ever asked.</p>
+      </div>
+    </div>
 
     <p class="meta">
-      Created by Denver Samarakoon 32911149, Monash University, October 2026.
+      Created by Denver Samarakoon (32911149), Monash University,
+      FIT3179 Data Visualisation 2, October 2026.
     </p>
 
     <h3>Data sources</h3>
     <ul class="sources">
-      <li>ANZOD Registry Annual Report 2026 — ANZORRG —
-        <a href="https://anzorrg.org.au/reports/anzod-registry-annual-report-2026">link</a></li>
-      <li>Organ and Tissue Authority, 2025 donation and transplantation data —
-        <a href="https://www.donatelife.gov.au/all-about-donation/donation-and-transplantation-data">link</a></li>
-      <li>Australian Organ Donor Register statistics — Services Australia —
-        <a href="https://www.servicesaustralia.gov.au/australian-organ-donor-register-statistics">link</a></li>
-      <li>Add every remaining source, with a working URL.</li>
+      <li>ANZOD Registry (2026). <em>ANZOD Registry Annual Report 2026</em>, Chapter 2 and
+        Appendix I: Australian Data Tables. Australia and New Zealand Organ Donation Registry,
+        Adelaide. <a href="https://anzorrg.org.au/reports/anzod-registry-annual-report-2026">anzorrg.org.au</a></li>
+      <li>Organ and Tissue Authority (2026). <em>2025 Australian donation and transplantation
+        data</em>. <a href="https://www.donatelife.gov.au/all-about-donation/donation-and-transplantation-data">donatelife.gov.au</a></li>
+      <li>Services Australia. <em>Australian Organ Donor Register statistics</em>.
+        <a href="https://www.servicesaustralia.gov.au/australian-organ-donor-register-statistics">servicesaustralia.gov.au</a></li>
+      <li>International Registry in Organ Donation and Transplantation (IRODaT).
+        <a href="https://www.irodat.org">irodat.org</a></li>
+      <li>Australian Bureau of Statistics. <em>Australian Statistical Geography Standard (ASGS)
+        Edition 3, State and Territory boundaries</em>.
+        <a href="https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs-edition-3/jul2021-jun2026/access-and-downloads/digital-boundary-files">abs.gov.au</a></li>
+      <li>World country boundaries: <em>world-atlas</em> (Natural Earth 1:110m), Mike Bostock.
+        <a href="https://github.com/topojson/world-atlas">github.com/topojson/world-atlas</a></li>
+      <li>Typefaces: Fraunces and Inter, Google Fonts (SIL Open Font License).
+        <a href="https://fonts.google.com">fonts.google.com</a></li>
+      <li>Built with Vega-Lite. <a href="https://vega.github.io/vega-lite/">vega.github.io/vega-lite</a></li>
     </ul>
 
     <h3>Use of generative AI</h3>
-    <p>State plainly what you used AI for. Required by the spec.</p>
+    <p>Claude (Anthropic) was used to help plan the page structure, extract
+    tables from the ANZOD Excel files into CSV, draft Vega-Lite specifications
+    and CSS, and suggest wording. All data values were taken from the cited
+    sources and all charts and text were checked and edited by the author.</p>
   </div>
 </footer>
 
 
 <script>
-  // Shared options for every chart on the page.
   const opts = { actions: false, renderer: "svg" };
 
-  // One line per chart. Comment out the ones you haven't built yet,
-  // otherwise the console fills with 404s and hides your real errors.
-  vegaEmbed("#vis-hero", "js/hero_unit_chart.vg.json", opts);
+  vegaEmbed("#vis-hero",       "js/hero_unit_chart.vg.json", opts);
   vegaEmbed("#vis-funnel",     "js/funnel_waterfall.vg.json", opts);
-  // vegaEmbed("#vis-trend",      "js/donors_recipients_trend.vg.json", opts);
-  // vegaEmbed("#vis-slope",      "js/consent_slope.vg.json", opts);
-  // vegaEmbed("#vis-dumbbell",   "js/registered_dumbbell.vg.json", opts);
-  // vegaEmbed("#vis-pyramid",    "js/aodr_pyramid.vg.json", opts);
-  // vegaEmbed("#vis-choropleth", "js/registration_choropleth.vg.json", opts);
-  // vegaEmbed("#vis-hexmap",     "js/dpmp_hexmap.vg.json", opts);
-  // vegaEmbed("#vis-heatmap",    "js/state_year_heatmap.vg.json", opts);
-  // vegaEmbed("#vis-symbolmap",  "js/transplant_units.vg.json", opts);
-  // vegaEmbed("#vis-flowmap",    "js/organ_flows.vg.json", opts);
-  // vegaEmbed("#vis-world",      "js/world_dpmp.vg.json", opts);
+  vegaEmbed("#vis-trend",      "js/donors_recipients_trend.vg.json", opts);
+  vegaEmbed("#vis-pyramid",    "js/donor_pyramid.vg.json", opts);
+  vegaEmbed("#vis-dumbbell",   "js/consent_waffle.vg.json", opts);
+  vegaEmbed("#vis-slope",      "js/consent_slope.vg.json", opts);
+  vegaEmbed("#vis-choropleth", "js/dpmp_choropleth.vg.json", opts);
+  vegaEmbed("#vis-heatmap",    "js/state_year_heatmap.vg.json", opts);
+  vegaEmbed("#vis-hexmap",     "js/dpmp_hexmap.vg.json", opts);
+  vegaEmbed("#vis-symbolmap",  "js/donor_hospitals_map.vg.json", opts);
+  vegaEmbed("#vis-flowmap",    "js/organ_flows.vg.json", opts);
+  vegaEmbed("#vis-world",      "js/world_dpmp.vg.json", opts);
 </script>
 
 </body>

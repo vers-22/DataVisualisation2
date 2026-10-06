@@ -1,0 +1,472 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Slope graph of deceased donors per million population by state, 2018 vs 2025. Source: ANZOD Registry Annual Report 2026, Table 2.1.",
+  "title": {
+    "text": "Most states are still below their 2018 donation rate",
+    "subtitle": [
+      "Deceased organ donors per million people, 2018 (national peak) vs 2025"
+    ],
+    "anchor": "start",
+    "font": "Inter, system-ui, sans-serif",
+    "fontSize": 15,
+    "fontWeight": 600,
+    "color": "#1e2430",
+    "subtitleFont": "Inter, system-ui, sans-serif",
+    "subtitleFontSize": 12,
+    "subtitleColor": "#5c6675",
+    "offset": 12
+  },
+  "width": 380,
+  "height": 400,
+  "background": null,
+  "data": {
+    "url": "data/donors_by_state_year.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "year": "number",
+        "donors": "number",
+        "dpmp": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.year === 2018 || datum.year === 2025"
+    },
+    {
+      "pivot": "year",
+      "value": "dpmp",
+      "groupby": [
+        "state",
+        "state_name"
+      ]
+    },
+    {
+      "calculate": "datum['2025'] >= datum['2018'] ? 'Rose' : 'Fell'",
+      "as": "direction"
+    },
+    {
+      "fold": [
+        "2018",
+        "2025"
+      ],
+      "as": [
+        "year",
+        "dpmp"
+      ]
+    },
+    {
+      "calculate": "toNumber(datum.year)",
+      "as": "year"
+    },
+    {
+      "lookup": "state",
+      "from": {
+        "data": {
+          "values": [
+            {
+              "state": "WA",
+              "y2018": 15.3,
+              "y2025": 21.0
+            },
+            {
+              "state": "NT",
+              "y2018": 16.5,
+              "y2025": 19.0
+            },
+            {
+              "state": "QLD",
+              "y2018": 18.5,
+              "y2025": 17.2
+            },
+            {
+              "state": "NSW",
+              "y2018": 19.7,
+              "y2025": 20.0
+            },
+            {
+              "state": "SA",
+              "y2018": 20.9,
+              "y2025": 18.1
+            },
+            {
+              "state": "AUS",
+              "y2018": 22.2,
+              "y2025": 22.0
+            },
+            {
+              "state": "TAS",
+              "y2018": 26.1,
+              "y2025": 43.4
+            },
+            {
+              "state": "VIC",
+              "y2018": 30.0,
+              "y2025": 23.1
+            },
+            {
+              "state": "ACT",
+              "y2018": 32.0,
+              "y2025": 16.2
+            }
+          ]
+        },
+        "key": "state",
+        "fields": [
+          "y2018",
+          "y2025"
+        ]
+      }
+    },
+    {
+      "calculate": "datum.year === 2018 ? datum.y2018 : datum.y2025",
+      "as": "label_y"
+    },
+    {
+      "calculate": "(datum.state === 'AUS' ? 'Australia' : datum.state) + '  ' + format(datum.dpmp, '.1f')",
+      "as": "label_right"
+    },
+    {
+      "calculate": "format(datum.dpmp, '.1f') + '  ' + (datum.state === 'AUS' ? 'Australia' : datum.state)",
+      "as": "label_left"
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Inter, system-ui, sans-serif",
+    "axis": {
+      "labelColor": "#5c6675",
+      "titleColor": "#5c6675",
+      "labelFontSize": 11,
+      "titleFontSize": 11,
+      "titleFontWeight": 500,
+      "domainColor": "#c9cfd8",
+      "tickColor": "#c9cfd8",
+      "gridColor": "#e6e2db",
+      "gridDash": [
+        3,
+        3
+      ]
+    },
+    "legend": {
+      "labelColor": "#5c6675",
+      "titleColor": "#5c6675",
+      "labelFontSize": 11,
+      "titleFontSize": 11,
+      "titleFontWeight": 500
+    }
+  },
+  "layer": [
+    {
+      "data": {
+        "values": [
+          {
+            "y": 25
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "strokeDash": [
+          4,
+          3
+        ],
+        "color": "#5c6675"
+      },
+      "encoding": {
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              14,
+              45
+            ]
+          },
+          "axis": null,
+          "title": null
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "y": 25,
+            "t": "National target: 25"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dy": -7,
+        "fontSize": 10,
+        "fontStyle": "italic",
+        "color": "#5c6675",
+        "x": "width"
+      },
+      "encoding": {
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              14,
+              45
+            ]
+          },
+          "axis": null,
+          "title": null
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "point": {
+          "filled": true,
+          "size": 40
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "title": null,
+          "scale": {
+            "padding": 0.6
+          },
+          "axis": {
+            "labelAngle": 0,
+            "labelFontSize": 13,
+            "labelFontWeight": 600,
+            "labelColor": "#1e2430",
+            "domain": false,
+            "ticks": false,
+            "orient": "top"
+          }
+        },
+        "y": {
+          "field": "dpmp",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              14,
+              45
+            ]
+          },
+          "axis": null,
+          "title": null
+        },
+        "detail": {
+          "field": "state"
+        },
+        "color": {
+          "condition": [
+            {
+              "test": "datum.state === 'AUS'",
+              "value": "#1e2430"
+            }
+          ],
+          "field": "direction",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Fell",
+              "Rose"
+            ],
+            "range": [
+              "#c8465e",
+              "#3f7f86"
+            ]
+          },
+          "legend": {
+            "title": null,
+            "orient": "top",
+            "direction": "horizontal",
+            "symbolType": "stroke",
+            "labelExpr": "datum.label === 'Fell' ? 'Fell since 2018' : 'Rose since 2018'"
+          }
+        },
+        "strokeWidth": {
+          "condition": {
+            "test": "datum.state === 'AUS'",
+            "value": 3.5
+          },
+          "value": 1.8
+        },
+        "tooltip": [
+          {
+            "field": "state_name",
+            "title": "State"
+          },
+          {
+            "field": "year",
+            "title": "Year"
+          },
+          {
+            "field": "dpmp",
+            "type": "quantitative",
+            "title": "Donors per million",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year === 2025"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 8,
+        "fontSize": 11
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "title": null,
+          "scale": {
+            "padding": 0.6
+          },
+          "axis": {
+            "labelAngle": 0,
+            "labelFontSize": 13,
+            "labelFontWeight": 600,
+            "labelColor": "#1e2430",
+            "domain": false,
+            "ticks": false,
+            "orient": "top"
+          }
+        },
+        "y": {
+          "field": "label_y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              14,
+              45
+            ]
+          },
+          "axis": null,
+          "title": null
+        },
+        "text": {
+          "field": "label_right"
+        },
+        "color": {
+          "condition": [
+            {
+              "test": "datum.state === 'AUS'",
+              "value": "#1e2430"
+            }
+          ],
+          "field": "direction",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Fell",
+              "Rose"
+            ],
+            "range": [
+              "#c8465e",
+              "#3f7f86"
+            ]
+          },
+          "legend": {
+            "title": null,
+            "orient": "top",
+            "direction": "horizontal",
+            "symbolType": "stroke",
+            "labelExpr": "datum.label === 'Fell' ? 'Fell since 2018' : 'Rose since 2018'"
+          }
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year === 2018"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -8,
+        "fontSize": 11
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "title": null,
+          "scale": {
+            "padding": 0.6
+          },
+          "axis": {
+            "labelAngle": 0,
+            "labelFontSize": 13,
+            "labelFontWeight": 600,
+            "labelColor": "#1e2430",
+            "domain": false,
+            "ticks": false,
+            "orient": "top"
+          }
+        },
+        "y": {
+          "field": "label_y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              14,
+              45
+            ]
+          },
+          "axis": null,
+          "title": null
+        },
+        "text": {
+          "field": "label_left"
+        },
+        "color": {
+          "condition": [
+            {
+              "test": "datum.state === 'AUS'",
+              "value": "#1e2430"
+            }
+          ],
+          "field": "direction",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Fell",
+              "Rose"
+            ],
+            "range": [
+              "#c8465e",
+              "#3f7f86"
+            ]
+          },
+          "legend": {
+            "title": null,
+            "orient": "top",
+            "direction": "horizontal",
+            "symbolType": "stroke",
+            "labelExpr": "datum.label === 'Fell' ? 'Fell since 2018' : 'Rose since 2018'"
+          }
+        }
+      }
+    }
+  ]
+}
