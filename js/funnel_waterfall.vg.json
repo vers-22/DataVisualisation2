@@ -1,0 +1,174 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Organ donation funnel in Australia, 2025. Source: Organ and Tissue Authority, 2025 donation and transplantation data.",
+  "width": 680,
+  "height": 320,
+  "background": null,
+  "data": {
+    "url": "data/donation_funnel.csv"
+  },
+  "config": {
+    "view": {"stroke": null},
+    "font": "Inter, system-ui, sans-serif",
+    "axis": {
+      "labelFont": "Inter, system-ui, sans-serif",
+      "titleFont": "Inter, system-ui, sans-serif",
+      "labelColor": "#5c6675",
+      "titleColor": "#5c6675"
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "cornerRadiusEnd": 3,
+        "height": 36
+      },
+      "encoding": {
+        "y": {
+          "field": "stage",
+          "type": "nominal",
+          "sort": {"field": "order"},
+          "axis": {
+            "title": null,
+            "labelFontSize": 13,
+            "labelFontWeight": 500,
+            "labelColor": "#1e2430",
+            "labelLimit": 250
+          }
+        },
+        "x": {
+          "field": "value",
+          "type": "quantitative",
+          "axis": {
+            "title": "Number of people",
+            "grid": true,
+            "gridDash": [3, 3],
+            "gridColor": "#e0e4ea"
+          }
+        },
+        "color": {
+          "condition": {
+            "test": "datum.order === 6",
+            "value": "#c8465e"
+          },
+          "value": "#8fa3b8"
+        },
+        "tooltip": [
+          {"field": "stage", "type": "nominal", "title": "Stage"},
+          {"field": "value", "type": "quantitative", "title": "People", "format": ","}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 6,
+        "fontSize": 13,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "y": {
+          "field": "stage",
+          "type": "nominal",
+          "sort": {"field": "order"}
+        },
+        "x": {
+          "field": "value",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "value",
+          "type": "quantitative",
+          "format": ","
+        },
+        "color": {
+          "condition": {
+            "test": "datum.order === 6",
+            "value": "#c8465e"
+          },
+          "value": "#1e2430"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 6,
+        "dy": 16,
+        "fontSize": 11,
+        "fontStyle": "italic"
+      },
+      "transform": [
+        {"filter": "datum.order === 1"}
+      ],
+      "encoding": {
+        "y": {
+          "field": "stage",
+          "type": "nominal",
+          "sort": {"field": "order"}
+        },
+        "x": {
+          "field": "value",
+          "type": "quantitative"
+        },
+        "text": {"value": "Only ~2% are suitable for organ donation"},
+        "color": {"value": "#5c6675"}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 6,
+        "dy": 16,
+        "fontSize": 11,
+        "fontStyle": "italic"
+      },
+      "transform": [
+        {"filter": "datum.order === 4"}
+      ],
+      "encoding": {
+        "y": {
+          "field": "stage",
+          "type": "nominal",
+          "sort": {"field": "order"}
+        },
+        "x": {
+          "field": "value",
+          "type": "quantitative"
+        },
+        "text": {"value": "Consent rate: 53%"},
+        "color": {"value": "#5c6675"}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 6,
+        "dy": 16,
+        "fontSize": 11,
+        "fontStyle": "italic"
+      },
+      "transform": [
+        {"filter": "datum.order === 6"}
+      ],
+      "encoding": {
+        "y": {
+          "field": "stage",
+          "type": "nominal",
+          "sort": {"field": "order"}
+        },
+        "x": {
+          "field": "value",
+          "type": "quantitative"
+        },
+        "text": {"value": "One donor can save up to 7 lives"},
+        "color": {"value": "#c8465e"}
+      }
+    }
+  ]
+}
