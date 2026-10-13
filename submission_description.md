@@ -15,7 +15,7 @@ Denver Samarakoon (32911149)
 world leaders such as Spain. Most Australians say they support donation, yet only about a third
 have registered, and only 53% of families agree when asked in hospital. The visualisation
 explains why donation is so rare, shows that the family conversation is the main bottleneck,
-and ends with a simple action: register and tell your family.
+and compares states and countries to show how much room there is to improve.
 
 **Who:** the average Australian adult with no medical or statistical background. Technical terms
 (such as "donors per million") are explained in plain language where they first appear.
