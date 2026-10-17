@@ -5,7 +5,7 @@
     "text": "Only Tasmania beats the national target",
     "subtitle": [
       "Deceased organ donors per million people by state, 2025.",
-      "Red = below the national target of 25; blue = above"
+      "Red = below the national average; blue = above"
     ],
     "anchor": "start"
   },
@@ -108,8 +108,8 @@
       ],
       "mark": {
         "type": "geoshape",
-        "stroke": "#ffffff",
-        "strokeWidth": 1.2
+        "stroke": "#b9b2a7",
+        "strokeWidth": 0.8
       },
       "encoding": {
         "shape": {
@@ -124,28 +124,26 @@
               15,
               45
             ],
-            "domainMid": 25,
+            "domainMid": 20.2,
             "range": [
-              "#c8465e",
-              "#f4efea",
-              "#466ec8"
+              "#8e1f37",
+              "#ffffff",
+              "#1f4e9e"
             ],
             "interpolate": "lab"
           },
           "legend": {
-            "title": "Donors per million (25 = target)",
+            "title": "Donors per million (white = national average)",
             "orient": "bottom",
             "direction": "horizontal",
-            "gradientLength": 220,
+            "gradientLength": 240,
             "values": [
-              15,
-              20,
-              25,
+              20.2,
               30,
-              35,
-              40,
-              45
-            ]
+              40
+            ],
+            "labelExpr": "datum.value === 20.2 ? '20.2 avg' : datum.label",
+            "titleLimit": 320
           }
         },
         "tooltip": [
@@ -166,7 +164,7 @@
           }
         ]
       },
-      "description": "State shapes. Data rows (2025 rates) are joined to ABS state boundaries with a lookup on the state name. Diverging red-blue scale centred on the national target of 25: red = below target, blue = above."
+      "description": "State shapes. Data rows (2025 rates) are joined to ABS state boundaries with a lookup on the state name. Diverging scale centred on the national average (20.2, white): darker red = further below, darker blue = further above. Hue is fixed on each side; only lightness changes. Thin grey borders keep near-white states visible against the page."
     },
     {
       "data": {
@@ -265,7 +263,7 @@
           "value": "#1e2430"
         }
       },
-      "description": "State abbreviation and rate, placed at hand-picked label positions (ACT and TAS offshore)."
+      "description": "State abbreviation and rate at hand-picked label positions (ACT and TAS offshore)."
     },
     {
       "data": {
@@ -285,7 +283,7 @@
         "align": "right",
         "fontSize": 11,
         "fontStyle": "italic",
-        "color": "#2f57a8",
+        "color": "#1f4e9e",
         "lineHeight": 13,
         "font": "Inter, system-ui, sans-serif"
       },

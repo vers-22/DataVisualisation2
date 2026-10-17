@@ -49,10 +49,11 @@ of the page uses ANZOD's 2025 figure (20.2). Total data downloaded is about 620 
    middle-aged and more often men.
 5. **Isotype (person icons):** "out of 10 families" compares consent for registered and
    unregistered donors in a way that needs no axis reading.
-6. **Diverging choropleth map:** state donation rates on a red-blue scale centred on the
-   national target of 25 (red = below, blue = above), so the one state that meets it (Tasmania)
-   stands out. Red-blue avoids the red-green pairing that colour-blind readers cannot separate.
-   Conic equal-area projection suited to Australia.
+6. **Diverging choropleth map:** state donation rates on a red-white-blue scale centred on the
+   national average (20.2 per million, white). Each side keeps one hue and only changes
+   lightness, so darker red means further below average and darker blue further above. Red-blue
+   avoids the red-green pairing that colour-blind readers cannot separate. Conic equal-area
+   projection suited to Australia.
 7. **Slope graph:** each state's 2018 rate against 2025, so the direction of change is the main
    visual signal.
 8. **Heatmap:** state × year rates over 20 years in one compact grid; colour reveals the long-run

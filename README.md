@@ -13,7 +13,7 @@ Live page: GitHub Pages from the `main` branch (`index.html` at the repo root).
 | 3 | Part 1 | `js/donors_recipients_trend.vg.json` | Annotated multi-line | `data/national_trend.csv` (ANZOD A1.1, A1.24) |
 | 4 | Part 1 | `js/donor_pyramid.vg.json` | Population pyramid | `data/donor_age_sex.csv` (ANZOD A1.2) |
 | 5 | Part 2 | `js/consent_waffle.vg.json` | Isotype | `data/consent_registration.csv` (OTA 2025) |
-| 6 | Part 3 | `js/dpmp_choropleth.vg.json` | **Map:** diverging red-blue choropleth | ANZOD Table 2.1 + ABS ASGS boundaries |
+| 6 | Part 3 | `js/dpmp_choropleth.vg.json` | **Map:** diverging red-white-blue choropleth (centred on the national average) | ANZOD Table 2.1 + ABS ASGS boundaries |
 | 7 | Part 3 | `js/dpmp_slope.vg.json` | Slope graph | `data/donors_by_state_year.csv` (ANZOD Table 2.1) |
 | 8 | Part 3 | `js/state_year_heatmap.vg.json` | Heatmap matrix | ANZOD Table 2.1 |
 | 9–10 | Part 4 | `js/organ_journeys.vg.json` | **Maps:** hexagonal tile map linked to a flow map (click a state to filter) | ANZOD A1.25 |
