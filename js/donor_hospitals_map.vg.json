@@ -1,16 +1,21 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Proportional symbol map of hospitals where deceased organ donors died, sized by number of donors 2021-2025 (hospitals with 5 or more). Sources: ANZOD Registry Annual Report 2026 Appendix I Table A1.3; ABS state boundaries. Hospital locations geocoded by the author.",
+  "description": "Proportional symbol map of deceased organ donors by the city or town of the donor hospital, 2021-2025. Hospitals with 5 or more donors are grouped into 34 cities and towns (outer suburbs are part of their capital). Sources: ANZOD Registry Annual Report 2026 Appendix I Table A1.3; ABS state boundaries. Hospital locations geocoded by the author.",
   "title": {
-    "text": "15 hospitals provide half of all donors",
+    "text": "Three in four donors come from capital-city hospitals",
     "subtitle": [
-      "Hospitals by number of deceased organ donors, 2021–2025.",
-      "Shows hospitals with 5+ donors; 120 had at least one"
+      "Deceased organ donors by city of the donor hospital, 2021–2025.",
+      "Circle area = donors. Hover a circle to see its hospitals"
     ],
     "anchor": "start"
   },
   "width": "container",
   "height": 500,
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "padding": 0,
   "background": null,
   "config": {
     "view": {
@@ -76,6 +81,7 @@
   },
   "layer": [
     {
+      "description": "Grey base map of the states.",
       "data": {
         "url": "data/au_states.topojson.json",
         "format": {
@@ -93,40 +99,28 @@
         "fill": "#ece7df",
         "stroke": "#ffffff",
         "strokeWidth": 1
-      },
-      "description": "Grey base map of the states."
+      }
     },
     {
+      "description": "One circle per city or town. Area is proportional to donors from 2021 to 2025; colour shows capital city (coral) or regional centre (grey). Small circles are drawn on top of large ones.",
       "data": {
-        "url": "data/donor_hospitals.csv",
+        "url": "data/donor_cities.csv",
         "format": {
           "type": "csv",
           "parse": {
             "lat": "number",
             "lon": "number",
-            "donors_2025": "number",
+            "hospitals": "number",
             "donors_2021_2025": "number",
-            "donors_1989_2025": "number"
+            "donors_2025": "number"
           }
         }
       },
-      "params": [
-        {
-          "name": "pick",
-          "select": {
-            "type": "point",
-            "fields": [
-              "state"
-            ],
-            "on": "pointerover",
-            "clear": "pointerout"
-          }
-        }
-      ],
       "mark": {
         "type": "circle",
         "stroke": "#ffffff",
-        "strokeWidth": 0.8
+        "strokeWidth": 1,
+        "opacity": 0.85
       },
       "encoding": {
         "longitude": {
@@ -142,34 +136,43 @@
           "type": "quantitative",
           "scale": {
             "range": [
-              20,
-              1400
+              25,
+              2200
             ]
           },
           "legend": {
             "title": "Donors 2021–2025",
             "values": [
-              10,
-              50,
+              25,
               100,
-              150
+              250,
+              500
             ],
             "orient": "bottom",
             "direction": "horizontal",
-            "symbolFillColor": "#c8465e",
-            "symbolStrokeColor": "#ffffff",
-            "symbolOpacity": 0.7
+            "symbolFillColor": "#8fa3b8",
+            "symbolStrokeColor": "#ffffff"
           }
         },
         "color": {
-          "value": "#c8465e"
-        },
-        "opacity": {
-          "condition": {
-            "param": "pick",
-            "value": 0.75
+          "field": "city_type",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Capital city",
+              "Regional"
+            ],
+            "range": [
+              "#c8465e",
+              "#8fa3b8"
+            ]
           },
-          "value": 0.25
+          "legend": {
+            "title": null,
+            "orient": "bottom",
+            "direction": "horizontal",
+            "symbolType": "circle"
+          }
         },
         "order": {
           "field": "donors_2021_2025",
@@ -177,12 +180,19 @@
         },
         "tooltip": [
           {
-            "field": "hospital",
-            "title": "Hospital"
+            "field": "city",
+            "title": "City or town"
           },
           {
-            "field": "city",
-            "title": "City"
+            "field": "hospitals",
+            "type": "quantitative",
+            "title": "Hospitals shown"
+          },
+          {
+            "field": "donors_2021_2025",
+            "type": "quantitative",
+            "title": "Donors 2021–2025",
+            "format": ","
           },
           {
             "field": "donors_2025",
@@ -190,84 +200,196 @@
             "title": "Donors in 2025"
           },
           {
-            "field": "donors_2021_2025",
-            "type": "quantitative",
-            "title": "Donors 2021–2025"
-          },
-          {
-            "field": "donors_1989_2025",
-            "type": "quantitative",
-            "title": "Donors since 1989"
+            "field": "top_hospitals",
+            "title": "Busiest hospitals"
           }
         ]
-      },
-      "description": "One circle per hospital (5+ donors 2021-2025), area proportional to donors. Hovering a circle highlights all hospitals in the same state."
+      }
     },
     {
+      "description": "Labels (city and donor total) for the largest places, placed to the right of the circle.",
       "data": {
-        "values": [
-          {
-            "lon": 141.0,
-            "lat": -40.6,
-            "t": [
-              "Royal Melbourne (167)",
-              "& The Alfred (138)"
-            ]
-          },
-          {
-            "lon": 129.6,
-            "lat": -36.4,
-            "t": [
-              "Royal Adelaide",
-              "Hospital (126)"
-            ]
-          },
-          {
-            "lon": 151.4,
-            "lat": -25.4,
-            "t": [
-              "Princess Alexandra,",
-              "Brisbane (86)"
-            ]
-          },
-          {
-            "lon": 147.6,
-            "lat": -31.2,
-            "t": [
-              "John Hunter,",
-              "Newcastle (90)"
-            ]
+        "url": "data/donor_cities.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "lat": "number",
+            "lon": "number",
+            "hospitals": "number",
+            "donors_2021_2025": "number",
+            "donors_2025": "number"
           }
-        ]
+        }
       },
+      "transform": [
+        {
+          "lookup": "city",
+          "from": {
+            "data": {
+              "values": [
+                {
+                  "city": "Sydney",
+                  "lon": 153.0,
+                  "lat": -34.7
+                },
+                {
+                  "city": "Brisbane",
+                  "lon": 154.4,
+                  "lat": -25.9
+                },
+                {
+                  "city": "Newcastle",
+                  "lon": 153.4,
+                  "lat": -31.2
+                },
+                {
+                  "city": "Gold Coast",
+                  "lon": 154.4,
+                  "lat": -29.0
+                },
+                {
+                  "city": "Hobart",
+                  "lon": 148.6,
+                  "lat": -43.0
+                },
+                {
+                  "city": "Townsville",
+                  "lon": 147.9,
+                  "lat": -19.0
+                },
+                {
+                  "city": "Darwin",
+                  "lon": 132.0,
+                  "lat": -12.4
+                },
+                {
+                  "city": "Perth",
+                  "lon": 117.6,
+                  "lat": -32.0
+                }
+              ]
+            },
+            "key": "city",
+            "fields": [
+              "lon",
+              "lat"
+            ]
+          },
+          "as": [
+            "lx",
+            "ly"
+          ]
+        },
+        {
+          "filter": "isValid(datum.lx)"
+        },
+        {
+          "calculate": "[datum.city, format(datum.donors_2021_2025, ',') + ' donors']",
+          "as": "label"
+        }
+      ],
       "mark": {
         "type": "text",
-        "align": "right",
+        "align": "left",
+        "baseline": "middle",
+        "lineHeight": 13,
         "fontSize": 11,
-        "fontStyle": "italic",
-        "color": "#1e2430",
-        "lineHeight": 12,
-        "font": "Inter, system-ui, sans-serif"
+        "font": "Inter, system-ui, sans-serif",
+        "color": "#1e2430"
       },
       "encoding": {
         "longitude": {
-          "field": "lon",
+          "field": "lx",
           "type": "quantitative"
         },
         "latitude": {
-          "field": "lat",
+          "field": "ly",
           "type": "quantitative"
         },
         "text": {
-          "field": "t"
+          "field": "label"
+        }
+      }
+    },
+    {
+      "description": "Labels (city and donor total) for the largest places, placed to the left of the circle.",
+      "data": {
+        "url": "data/donor_cities.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "lat": "number",
+            "lon": "number",
+            "hospitals": "number",
+            "donors_2021_2025": "number",
+            "donors_2025": "number"
+          }
         }
       },
-      "description": "Annotations naming the busiest hospitals, right-aligned so each label ends just left of its circles."
+      "transform": [
+        {
+          "lookup": "city",
+          "from": {
+            "data": {
+              "values": [
+                {
+                  "city": "Melbourne",
+                  "lon": 142.4,
+                  "lat": -38.2
+                },
+                {
+                  "city": "Adelaide",
+                  "lon": 136.6,
+                  "lat": -35.0
+                },
+                {
+                  "city": "Canberra",
+                  "lon": 146.6,
+                  "lat": -33.4
+                }
+              ]
+            },
+            "key": "city",
+            "fields": [
+              "lon",
+              "lat"
+            ]
+          },
+          "as": [
+            "lx",
+            "ly"
+          ]
+        },
+        {
+          "filter": "isValid(datum.lx)"
+        },
+        {
+          "calculate": "[datum.city, format(datum.donors_2021_2025, ',') + ' donors']",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "lineHeight": 13,
+        "fontSize": 11,
+        "font": "Inter, system-ui, sans-serif",
+        "color": "#1e2430"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lx",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "ly",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
     }
-  ],
-  "autosize": {
-    "type": "fit-x",
-    "contains": "padding"
-  },
-  "padding": 0
+  ]
 }

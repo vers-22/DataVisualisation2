@@ -17,7 +17,7 @@ Live page: GitHub Pages from the `main` branch (`index.html` at the repo root).
 | 7 | Part 3 | `js/dpmp_slope.vg.json` | Slope graph | `data/donors_by_state_year.csv` (ANZOD Table 2.1) |
 | 8 | Part 3 | `js/state_year_heatmap.vg.json` | Heatmap matrix | ANZOD Table 2.1 |
 | 9–10 | Part 4 | `js/organ_journeys.vg.json` | **Maps:** hexagonal tile map linked to a flow map (click a state to filter) | ANZOD A1.25 |
-| 11 | Part 4 | `js/donor_hospitals_map.vg.json` | **Map:** proportional symbol map | `data/donor_hospitals.csv` (ANZOD A1.3) |
+| 11 | Part 4 | `js/donor_hospitals_map.vg.json` | **Map:** proportional symbol map (hospitals grouped by city) | `data/donor_cities.csv` (ANZOD A1.3) |
 | 12 | Part 5 | `js/world_dpmp.vg.json` | **Map:** world choropleth | `data/world_dpmp.csv` (IRODaT 2024) |
 
 The Moodle description draft is in `submission_description.md`.
@@ -31,6 +31,9 @@ The Moodle description draft is in `submission_description.md`.
   shifted 0.45° to the right of travel so that A→B and B→A don't sit on top of each other.
 - `donor_hospitals.csv` keeps hospitals with 5 or more donors in 2021–2025. The author geocoded
   the hospital coordinates by hand from street addresses.
+- `donor_cities.csv` groups those hospitals into 34 cities and towns for the symbol map (outer
+  suburbs such as Logan, Ipswich and Frankston count as their capital). Each place sits at the
+  donor-weighted centre of its hospitals and lists its three busiest hospitals for the tooltip.
 - `donor_age_sex.csv` combines 2021–2025 so the pyramid has enough donors (2,472) to show a
   stable shape.
 

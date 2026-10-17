@@ -63,8 +63,10 @@ of the page uses ANZOD's 2025 figure (20.2). Total data downloaded is about 620 
 10. **Flow map (linked):** tapered lines (thick at the donor state, thin at the transplanting state)
     show direction and volume of organs crossing state lines. Clicking a hexagon filters the flow
     map to that state's organs.
-11. **Proportional symbol map:** circles sized by donors at each hospital show that a small number
-    of large hospitals provide half of all donors.
+11. **Proportional symbol map:** hospitals are grouped into one circle per city or town, sized by
+    donors, so hospitals in the same city do not overlap. Colour separates capital cities from
+    regional centres and shows that nearly three in four donors come from capital-city hospitals.
+    The tooltip lists each place's busiest hospitals.
 12. **World choropleth:** Equal Earth projection; compares Australia with 82 other countries.
 
 **Special features:** a click-to-filter link between the tile map and the flow map; a hand-built
