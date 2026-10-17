@@ -192,14 +192,10 @@
           "format": ".0f"
         },
         "color": {
-          "condition": {
-            "test": "datum.dpmp >= 30",
-            "value": "#ffffff"
-          },
-          "value": "#1e2430"
+          "value": "#ffffff"
         }
       },
-      "description": "Values written in the darkest cells and the 2018 national peak."
+      "description": "Values written in white in the darkest cells and on the 2018 national peak (22)."
     }
   ],
   "autosize": {
