@@ -104,6 +104,10 @@
             "key": "properties.STE_NAME26"
           },
           "as": "geo"
+        },
+        {
+          "calculate": "datum.dpmp < 20.2 ? (datum.dpmp - 20.2) / (20.2 - 15) : (datum.dpmp - 20.2) / (45 - 20.2)",
+          "as": "rel"
         }
       ],
       "mark": {
@@ -117,14 +121,13 @@
           "type": "geojson"
         },
         "color": {
-          "field": "dpmp",
+          "field": "rel",
           "type": "quantitative",
           "scale": {
             "domain": [
-              15,
-              45
+              -1,
+              1
             ],
-            "domainMid": 20.2,
             "range": [
               "#8e1f37",
               "#ffffff",
@@ -134,16 +137,18 @@
           },
           "legend": {
             "title": "Donors per million (white = national average)",
+            "titleLimit": 320,
             "orient": "bottom",
             "direction": "horizontal",
-            "gradientLength": 240,
+            "gradientLength": 260,
             "values": [
-              20.2,
-              30,
-              40
+              -1,
+              -0.5,
+              0,
+              0.5,
+              1
             ],
-            "labelExpr": "datum.value === 20.2 ? '20.2 avg' : datum.label",
-            "titleLimit": 320
+            "labelExpr": "datum.value === -1 ? '15' : datum.value === -0.5 ? '17.6' : datum.value === 0 ? '20.2' : datum.value === 0.5 ? '32.6' : '45'"
           }
         },
         "tooltip": [
@@ -164,7 +169,7 @@
           }
         ]
       },
-      "description": "State shapes. Data rows (2025 rates) are joined to ABS state boundaries with a lookup on the state name. Diverging scale centred on the national average (20.2, white): darker red = further below, darker blue = further above. Hue is fixed on each side; only lightness changes. Thin grey borders keep near-white states visible against the page."
+      "description": "State shapes. 2025 rates are joined to ABS state boundaries by state name. 'rel' rescales each rate so the national average (20.2) is 0, 15 is -1 and 45 is +1; colouring by 'rel' keeps white exactly in the middle of the legend with equal-length red and blue arms. Each arm keeps one hue and only changes lightness. Thin grey borders keep near-white states visible."
     },
     {
       "data": {
