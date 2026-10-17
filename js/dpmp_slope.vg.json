@@ -6,18 +6,10 @@
     "subtitle": [
       "Deceased organ donors per million people, 2018 (national peak) vs 2025"
     ],
-    "anchor": "start",
-    "font": "Inter, system-ui, sans-serif",
-    "fontSize": 15,
-    "fontWeight": 600,
-    "color": "#1e2430",
-    "subtitleFont": "Inter, system-ui, sans-serif",
-    "subtitleFontSize": 12,
-    "subtitleColor": "#5c6675",
-    "offset": 12
+    "anchor": "start"
   },
-  "width": 380,
-  "height": 400,
+  "width": "container",
+  "height": 420,
   "background": null,
   "data": {
     "url": "data/donors_by_state_year.csv",
@@ -137,12 +129,26 @@
       "stroke": null
     },
     "font": "Inter, system-ui, sans-serif",
+    "title": {
+      "anchor": "start",
+      "font": "Inter, system-ui, sans-serif",
+      "fontSize": 17,
+      "fontWeight": 600,
+      "color": "#1e2430",
+      "subtitleFont": "Inter, system-ui, sans-serif",
+      "subtitleFontSize": 13,
+      "subtitleColor": "#545e6c",
+      "offset": 12,
+      "subtitlePadding": 4
+    },
     "axis": {
-      "labelColor": "#5c6675",
-      "titleColor": "#5c6675",
+      "labelFont": "Inter, system-ui, sans-serif",
+      "titleFont": "Inter, system-ui, sans-serif",
       "labelFontSize": 11,
       "titleFontSize": 11,
-      "titleFontWeight": 500,
+      "titleFontWeight": 400,
+      "labelColor": "#545e6c",
+      "titleColor": "#545e6c",
       "domainColor": "#c9cfd8",
       "tickColor": "#c9cfd8",
       "gridColor": "#e6e2db",
@@ -152,11 +158,17 @@
       ]
     },
     "legend": {
-      "labelColor": "#5c6675",
-      "titleColor": "#5c6675",
+      "labelFont": "Inter, system-ui, sans-serif",
+      "titleFont": "Inter, system-ui, sans-serif",
       "labelFontSize": 11,
       "titleFontSize": 11,
-      "titleFontWeight": 500
+      "titleFontWeight": 400,
+      "labelColor": "#545e6c",
+      "titleColor": "#545e6c"
+    },
+    "text": {
+      "font": "Inter, system-ui, sans-serif",
+      "fontSize": 11
     }
   },
   "layer": [
@@ -189,7 +201,8 @@
           "axis": null,
           "title": null
         }
-      }
+      },
+      "description": "Dashed horizontal rule at the national target (25 per million)."
     },
     {
       "data": {
@@ -204,10 +217,11 @@
         "type": "text",
         "align": "right",
         "dy": -7,
-        "fontSize": 10,
+        "fontSize": 11,
         "fontStyle": "italic",
         "color": "#5c6675",
-        "x": "width"
+        "x": "width",
+        "font": "Inter, system-ui, sans-serif"
       },
       "encoding": {
         "y": {
@@ -225,7 +239,8 @@
         "text": {
           "field": "t"
         }
-      }
+      },
+      "description": "Label for the target rule."
     },
     {
       "mark": {
@@ -284,7 +299,7 @@
             ],
             "range": [
               "#c8465e",
-              "#3f7f86"
+              "#466ec8"
             ]
           },
           "legend": {
@@ -318,7 +333,8 @@
             "format": ".1f"
           }
         ]
-      }
+      },
+      "description": "One line per state from 2018 to 2025. Red = fell, blue = rose, black = Australia."
     },
     {
       "transform": [
@@ -330,7 +346,8 @@
         "type": "text",
         "align": "left",
         "dx": 8,
-        "fontSize": 11
+        "fontSize": 11,
+        "font": "Inter, system-ui, sans-serif"
       },
       "encoding": {
         "x": {
@@ -381,7 +398,7 @@
             ],
             "range": [
               "#c8465e",
-              "#3f7f86"
+              "#466ec8"
             ]
           },
           "legend": {
@@ -392,7 +409,8 @@
             "labelExpr": "datum.label === 'Fell' ? 'Fell since 2018' : 'Rose since 2018'"
           }
         }
-      }
+      },
+      "description": "Labels at the 2025 end (state + value). Positions are nudged apart where values collide."
     },
     {
       "transform": [
@@ -404,7 +422,8 @@
         "type": "text",
         "align": "right",
         "dx": -8,
-        "fontSize": 11
+        "fontSize": 11,
+        "font": "Inter, system-ui, sans-serif"
       },
       "encoding": {
         "x": {
@@ -466,7 +485,13 @@
             "labelExpr": "datum.label === 'Fell' ? 'Fell since 2018' : 'Rose since 2018'"
           }
         }
-      }
+      },
+      "description": "Labels at the 2018 end (value + state)."
     }
-  ]
+  ],
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "padding": 0
 }

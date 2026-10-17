@@ -2,31 +2,63 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Unit chart. Each dot is one person. 557 deceased organ donors in Australia in 2025 made 1,438 transplants possible. Source: Organ and Tissue Authority, 2025 donation and transplantation data.",
   "background": null,
-  "padding": 5,
   "config": {
     "view": {
       "stroke": null
     },
+    "font": "Inter, system-ui, sans-serif",
     "title": {
+      "anchor": "start",
       "font": "Inter, system-ui, sans-serif",
-      "fontSize": 15,
+      "fontSize": 17,
       "fontWeight": 600,
       "color": "#1e2430",
       "subtitleFont": "Inter, system-ui, sans-serif",
       "subtitleFontSize": 13,
-      "subtitleColor": "#5c6675",
-      "anchor": "start",
-      "offset": 12
+      "subtitleColor": "#545e6c",
+      "offset": 12,
+      "subtitlePadding": 4
+    },
+    "axis": {
+      "labelFont": "Inter, system-ui, sans-serif",
+      "titleFont": "Inter, system-ui, sans-serif",
+      "labelFontSize": 11,
+      "titleFontSize": 11,
+      "titleFontWeight": 400,
+      "labelColor": "#545e6c",
+      "titleColor": "#545e6c",
+      "domainColor": "#c9cfd8",
+      "tickColor": "#c9cfd8",
+      "gridColor": "#e6e2db",
+      "gridDash": [
+        3,
+        3
+      ]
+    },
+    "legend": {
+      "labelFont": "Inter, system-ui, sans-serif",
+      "titleFont": "Inter, system-ui, sans-serif",
+      "labelFontSize": 11,
+      "titleFontSize": 11,
+      "titleFontWeight": 400,
+      "labelColor": "#545e6c",
+      "titleColor": "#545e6c"
+    },
+    "text": {
+      "font": "Inter, system-ui, sans-serif",
+      "fontSize": 11
     }
   },
   "vconcat": [
     {
       "title": {
         "text": "557 people became organ donors in 2025",
-        "subtitle": "Each dot is one deceased organ donor"
+        "subtitle": "Each dot is one deceased organ donor",
+        "fontSize": 13,
+        "subtitleFontSize": 11
       },
-      "width": 585,
-      "height": 169,
+      "width": 520,
+      "height": 150,
       "data": {
         "sequence": {
           "start": 0,
@@ -47,7 +79,7 @@
       ],
       "mark": {
         "type": "circle",
-        "size": 42,
+        "size": 34,
         "color": "#c8465e"
       },
       "encoding": {
@@ -69,15 +101,18 @@
             "paddingOuter": 0
           }
         }
-      }
+      },
+      "description": "Top block: 557 coral dots, one per deceased organ donor in 2025. A sequence 0-556 is laid out 45 dots per row (col = i mod 45, row = i / 45)."
     },
     {
       "title": {
         "text": "1,438 people received a transplant",
-        "subtitle": "One donor can save or transform several lives"
+        "subtitle": "One donor can save or transform several lives",
+        "fontSize": 13,
+        "subtitleFontSize": 11
       },
-      "width": 585,
-      "height": 416,
+      "width": 520,
+      "height": 370,
       "data": {
         "sequence": {
           "start": 0,
@@ -98,7 +133,7 @@
       ],
       "mark": {
         "type": "circle",
-        "size": 42,
+        "size": 34,
         "color": "#8fa3b8"
       },
       "encoding": {
@@ -120,7 +155,9 @@
             "paddingOuter": 0
           }
         }
-      }
+      },
+      "description": "Bottom block: 1,438 grey dots, one per transplant recipient, in the same 45-column grid so the two blocks can be compared by area."
     }
-  ]
+  ],
+  "padding": 0
 }

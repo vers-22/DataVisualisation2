@@ -4,32 +4,39 @@
   "title": {
     "text": "Only Tasmania beats the national target",
     "subtitle": [
-      "Deceased organ donors per million people by state, 2025. Target: 25 per million"
+      "Deceased organ donors per million people by state, 2025.",
+      "Red = below the national average; blue = above"
     ],
-    "anchor": "start",
-    "font": "Inter, system-ui, sans-serif",
-    "fontSize": 15,
-    "fontWeight": 600,
-    "color": "#1e2430",
-    "subtitleFont": "Inter, system-ui, sans-serif",
-    "subtitleFontSize": 12,
-    "subtitleColor": "#5c6675",
-    "offset": 12
+    "anchor": "start"
   },
-  "width": 620,
-  "height": 500,
+  "width": "container",
+  "height": 520,
   "background": null,
   "config": {
     "view": {
       "stroke": null
     },
     "font": "Inter, system-ui, sans-serif",
+    "title": {
+      "anchor": "start",
+      "font": "Inter, system-ui, sans-serif",
+      "fontSize": 17,
+      "fontWeight": 600,
+      "color": "#1e2430",
+      "subtitleFont": "Inter, system-ui, sans-serif",
+      "subtitleFontSize": 13,
+      "subtitleColor": "#545e6c",
+      "offset": 12,
+      "subtitlePadding": 4
+    },
     "axis": {
-      "labelColor": "#5c6675",
-      "titleColor": "#5c6675",
+      "labelFont": "Inter, system-ui, sans-serif",
+      "titleFont": "Inter, system-ui, sans-serif",
       "labelFontSize": 11,
       "titleFontSize": 11,
-      "titleFontWeight": 500,
+      "titleFontWeight": 400,
+      "labelColor": "#545e6c",
+      "titleColor": "#545e6c",
       "domainColor": "#c9cfd8",
       "tickColor": "#c9cfd8",
       "gridColor": "#e6e2db",
@@ -39,11 +46,17 @@
       ]
     },
     "legend": {
-      "labelColor": "#5c6675",
-      "titleColor": "#5c6675",
+      "labelFont": "Inter, system-ui, sans-serif",
+      "titleFont": "Inter, system-ui, sans-serif",
       "labelFontSize": 11,
       "titleFontSize": 11,
-      "titleFontWeight": 500
+      "titleFontWeight": 400,
+      "labelColor": "#545e6c",
+      "titleColor": "#545e6c"
+    },
+    "text": {
+      "font": "Inter, system-ui, sans-serif",
+      "fontSize": 11
     }
   },
   "projection": {
@@ -95,8 +108,8 @@
       ],
       "mark": {
         "type": "geoshape",
-        "stroke": "#ffffff",
-        "strokeWidth": 1.2
+        "stroke": "#b9b2a7",
+        "strokeWidth": 0.8
       },
       "encoding": {
         "shape": {
@@ -111,27 +124,26 @@
               15,
               45
             ],
-            "domainMid": 25,
+            "domainMid": 20.2,
             "range": [
-              "#c8465e",
-              "#f3e3df",
-              "#2f6f73"
-            ]
+              "#8e1f37",
+              "#ffffff",
+              "#1f4e9e"
+            ],
+            "interpolate": "lab"
           },
           "legend": {
-            "title": "Donors per million",
-            "orient": "bottom-left",
+            "title": "Donors per million (white = national average)",
+            "orient": "bottom",
             "direction": "horizontal",
-            "gradientLength": 180,
+            "gradientLength": 240,
             "values": [
-              15,
-              20,
-              25,
+              20.2,
               30,
-              35,
-              40,
-              45
-            ]
+              40
+            ],
+            "labelExpr": "datum.value === 20.2 ? '20.2 avg' : datum.label",
+            "titleLimit": 320
           }
         },
         "tooltip": [
@@ -151,7 +163,8 @@
             "format": ".1f"
           }
         ]
-      }
+      },
+      "description": "State shapes. Data rows (2025 rates) are joined to ABS state boundaries with a lookup on the state name. Diverging scale centred on the national average (20.2, white): darker red = further below, darker blue = further above. Hue is fixed on each side; only lightness changes. Thin grey borders keep near-white states visible against the page."
     },
     {
       "data": {
@@ -230,8 +243,9 @@
       ],
       "mark": {
         "type": "text",
-        "fontSize": 12,
-        "fontWeight": 600
+        "fontSize": 13,
+        "fontWeight": 600,
+        "font": "Inter, system-ui, sans-serif"
       },
       "encoding": {
         "longitude": {
@@ -246,20 +260,17 @@
           "field": "label"
         },
         "color": {
-          "condition": {
-            "test": "datum.state === 'TAS' || datum.state === 'ACT'",
-            "value": "#1e2430"
-          },
-          "value": "#ffffff"
+          "value": "#1e2430"
         }
-      }
+      },
+      "description": "State abbreviation and rate at hand-picked label positions (ACT and TAS offshore)."
     },
     {
       "data": {
         "values": [
           {
-            "lon": 140.5,
-            "lat": -43.9,
+            "lon": 140.2,
+            "lat": -43.0,
             "t": [
               "Tasmania: 43.4 per million,",
               "the highest rate in the country"
@@ -272,8 +283,9 @@
         "align": "right",
         "fontSize": 11,
         "fontStyle": "italic",
-        "color": "#2f6f73",
-        "lineHeight": 13
+        "color": "#1f4e9e",
+        "lineHeight": 13,
+        "font": "Inter, system-ui, sans-serif"
       },
       "encoding": {
         "longitude": {
@@ -287,7 +299,13 @@
         "text": {
           "field": "t"
         }
-      }
+      },
+      "description": "Annotation pointing out Tasmania."
     }
-  ]
+  ],
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "padding": 0
 }

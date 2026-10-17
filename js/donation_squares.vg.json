@@ -3,25 +3,61 @@
   "description": "Nested proportional squares: each square's area is proportional to the number of people at each stage of the organ donation pathway in Australia, 2025. Source: Organ and Tissue Authority, 2025 donation and transplantation data.",
   "title": {
     "text": "From 89,000 hospital deaths to 557 donors",
-    "subtitle": "Each square's area is proportional to the number of people at that stage, Australia, 2025",
-    "anchor": "start",
-    "font": "Inter, system-ui, sans-serif",
-    "fontSize": 15,
-    "fontWeight": 600,
-    "color": "#1e2430",
-    "subtitleFont": "Inter, system-ui, sans-serif",
-    "subtitleFontSize": 12,
-    "subtitleColor": "#5c6675",
-    "offset": 14
+    "subtitle": [
+      "Each square's area is proportional to the number of people",
+      "at that stage, Australia, 2025"
+    ],
+    "anchor": "start"
   },
-  "width": 900,
-  "height": 447,
+  "width": 1100,
+  "height": 469,
   "background": null,
   "config": {
     "view": {
       "stroke": null
     },
-    "font": "Inter, system-ui, sans-serif"
+    "font": "Inter, system-ui, sans-serif",
+    "title": {
+      "anchor": "start",
+      "font": "Inter, system-ui, sans-serif",
+      "fontSize": 17,
+      "fontWeight": 600,
+      "color": "#1e2430",
+      "subtitleFont": "Inter, system-ui, sans-serif",
+      "subtitleFontSize": 13,
+      "subtitleColor": "#545e6c",
+      "offset": 12,
+      "subtitlePadding": 4
+    },
+    "axis": {
+      "labelFont": "Inter, system-ui, sans-serif",
+      "titleFont": "Inter, system-ui, sans-serif",
+      "labelFontSize": 11,
+      "titleFontSize": 11,
+      "titleFontWeight": 400,
+      "labelColor": "#545e6c",
+      "titleColor": "#545e6c",
+      "domainColor": "#c9cfd8",
+      "tickColor": "#c9cfd8",
+      "gridColor": "#e6e2db",
+      "gridDash": [
+        3,
+        3
+      ]
+    },
+    "legend": {
+      "labelFont": "Inter, system-ui, sans-serif",
+      "titleFont": "Inter, system-ui, sans-serif",
+      "labelFontSize": 11,
+      "titleFontSize": 11,
+      "titleFontWeight": 400,
+      "labelColor": "#545e6c",
+      "titleColor": "#545e6c"
+    },
+    "text": {
+      "font": "Inter, system-ui, sans-serif",
+      "fontSize": 11
+    }
   },
   "data": {
     "url": "data/donation_funnel.csv",
@@ -104,7 +140,7 @@
           "scale": {
             "domain": [
               0,
-              600
+              700
             ],
             "nice": false,
             "zero": true
@@ -168,7 +204,8 @@
             "format": ".1%"
           }
         ]
-      }
+      },
+      "description": "Squares: each stage is a square anchored at the bottom-left corner, side = sqrt(people), so area is proportional to the number of people. Darker = later stage; donors in coral."
     },
     {
       "transform": [
@@ -182,10 +219,11 @@
         "baseline": "top",
         "dx": 14,
         "dy": 14,
-        "fontSize": 15,
+        "fontSize": 13,
         "fontWeight": 600,
         "color": "#1e2430",
-        "lineHeight": 20
+        "lineHeight": 20,
+        "font": "Inter, system-ui, sans-serif"
       },
       "encoding": {
         "x": {
@@ -195,7 +233,7 @@
           "scale": {
             "domain": [
               0,
-              600
+              700
             ],
             "nice": false,
             "zero": true
@@ -220,7 +258,8 @@
             "Australian hospitals each year"
           ]
         }
-      }
+      },
+      "description": "Label inside the big square (hospital deaths)."
     },
     {
       "transform": [
@@ -234,10 +273,11 @@
         "baseline": "top",
         "dx": 14,
         "dy": 60,
-        "fontSize": 12,
+        "fontSize": 11,
         "fontStyle": "italic",
         "color": "#5c6675",
-        "lineHeight": 16
+        "lineHeight": 16,
+        "font": "Inter, system-ui, sans-serif"
       },
       "encoding": {
         "x": {
@@ -247,7 +287,7 @@
           "scale": {
             "domain": [
               0,
-              600
+              700
             ],
             "nice": false,
             "zero": true
@@ -272,7 +312,8 @@
             "ventilator, makes organ donation possible."
           ]
         }
-      }
+      },
+      "description": "Italic explanation under the big-square label."
     },
     {
       "transform": [
@@ -301,7 +342,7 @@
           "scale": {
             "domain": [
               0,
-              600
+              700
             ],
             "nice": false,
             "zero": true
@@ -326,7 +367,8 @@
         "y2": {
           "field": "ly"
         }
-      }
+      },
+      "description": "Dotted leader lines from the top-right corner of each small square to its label."
     },
     {
       "transform": [
@@ -342,8 +384,9 @@
         "type": "text",
         "align": "left",
         "baseline": "bottom",
-        "fontSize": 14,
-        "fontWeight": 600
+        "fontSize": 13,
+        "fontWeight": 600,
+        "font": "Inter, system-ui, sans-serif"
       },
       "encoding": {
         "x": {
@@ -353,7 +396,7 @@
           "scale": {
             "domain": [
               0,
-              600
+              700
             ],
             "nice": false,
             "zero": true
@@ -382,7 +425,8 @@
           },
           "value": "#1e2430"
         }
-      }
+      },
+      "description": "Bold first line of each stage label (number and stage)."
     },
     {
       "transform": [
@@ -399,8 +443,9 @@
         "align": "left",
         "baseline": "top",
         "dy": 3,
-        "fontSize": 12,
-        "color": "#5c6675"
+        "fontSize": 11,
+        "color": "#5c6675",
+        "font": "Inter, system-ui, sans-serif"
       },
       "encoding": {
         "x": {
@@ -410,7 +455,7 @@
           "scale": {
             "domain": [
               0,
-              600
+              700
             ],
             "nice": false,
             "zero": true
@@ -432,7 +477,9 @@
         "text": {
           "field": "line2"
         }
-      }
+      },
+      "description": "Grey second line of each stage label (what the stage means)."
     }
-  ]
+  ],
+  "padding": 0
 }
