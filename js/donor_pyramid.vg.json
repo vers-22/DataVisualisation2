@@ -4,17 +4,10 @@
   "title": {
     "text": "Donors are mostly middle-aged, and more often men",
     "subtitle": [
-      "Deceased organ donors by age and sex, Australia, 2021–2025 combined (2,472 donors)"
+      "Deceased organ donors by age and sex, Australia,",
+      "2021–2025 combined (2,472 donors)"
     ],
-    "anchor": "start",
-    "font": "Inter, system-ui, sans-serif",
-    "fontSize": 15,
-    "fontWeight": 600,
-    "color": "#1e2430",
-    "subtitleFont": "Inter, system-ui, sans-serif",
-    "subtitleFontSize": 12,
-    "subtitleColor": "#5c6675",
-    "offset": 12
+    "anchor": "start"
   },
   "background": null,
   "data": {
@@ -32,12 +25,26 @@
       "stroke": null
     },
     "font": "Inter, system-ui, sans-serif",
+    "title": {
+      "anchor": "start",
+      "font": "Inter, system-ui, sans-serif",
+      "fontSize": 17,
+      "fontWeight": 600,
+      "color": "#1e2430",
+      "subtitleFont": "Inter, system-ui, sans-serif",
+      "subtitleFontSize": 13,
+      "subtitleColor": "#545e6c",
+      "offset": 12,
+      "subtitlePadding": 4
+    },
     "axis": {
-      "labelColor": "#5c6675",
-      "titleColor": "#5c6675",
+      "labelFont": "Inter, system-ui, sans-serif",
+      "titleFont": "Inter, system-ui, sans-serif",
       "labelFontSize": 11,
       "titleFontSize": 11,
-      "titleFontWeight": 500,
+      "titleFontWeight": 400,
+      "labelColor": "#545e6c",
+      "titleColor": "#545e6c",
       "domainColor": "#c9cfd8",
       "tickColor": "#c9cfd8",
       "gridColor": "#e6e2db",
@@ -47,11 +54,17 @@
       ]
     },
     "legend": {
-      "labelColor": "#5c6675",
-      "titleColor": "#5c6675",
+      "labelFont": "Inter, system-ui, sans-serif",
+      "titleFont": "Inter, system-ui, sans-serif",
       "labelFontSize": 11,
       "titleFontSize": 11,
-      "titleFontWeight": 500
+      "titleFontWeight": 400,
+      "labelColor": "#545e6c",
+      "titleColor": "#545e6c"
+    },
+    "text": {
+      "font": "Inter, system-ui, sans-serif",
+      "fontSize": 11
     }
   },
   "spacing": 0,
@@ -59,18 +72,16 @@
     {
       "title": {
         "text": "Females",
+        "anchor": "end",
         "fontSize": 13,
-        "fontWeight": 600,
-        "color": "#1e2430",
-        "font": "Inter, system-ui, sans-serif",
-        "anchor": "end"
+        "subtitleFontSize": 11
       },
       "transform": [
         {
           "filter": "datum.sex === 'Female'"
         }
       ],
-      "width": 220,
+      "width": 228,
       "height": 250,
       "layer": [
         {
@@ -137,15 +148,17 @@
                 "title": "Donors"
               }
             ]
-          }
+          },
+          "description": "Female bars (one per age group)."
         },
         {
           "mark": {
             "type": "text",
             "align": "right",
             "dx": -4,
-            "fontSize": 10,
-            "color": "#5c6675"
+            "fontSize": 11,
+            "color": "#5c6675",
+            "font": "Inter, system-ui, sans-serif"
           },
           "encoding": {
             "y": {
@@ -164,7 +177,8 @@
               "field": "donors",
               "type": "quantitative"
             }
-          }
+          },
+          "description": "Donor count at the end of each female bar."
         },
         {
           "data": {
@@ -180,20 +194,23 @@
           "mark": {
             "type": "text",
             "align": "right",
-            "fontSize": 10.5,
+            "fontSize": 11,
             "fontStyle": "italic",
             "color": "#1e2430",
             "lineHeight": 13,
             "x": 125,
-            "y": 222
+            "y": 222,
+            "font": "Inter, system-ui, sans-serif"
           },
           "encoding": {
             "text": {
               "field": "t"
             }
-          }
+          },
+          "description": "Annotation: share of donors who are women."
         }
-      ]
+      ],
+      "description": "Left half: female donors by age group. The x scale is reversed so bars grow leftwards."
     },
     {
       "width": 50,
@@ -203,9 +220,10 @@
       },
       "mark": {
         "type": "text",
-        "fontSize": 11,
+        "fontSize": 13,
         "fontWeight": 600,
-        "color": "#1e2430"
+        "color": "#1e2430",
+        "font": "Inter, system-ui, sans-serif"
       },
       "encoding": {
         "y": {
@@ -225,23 +243,22 @@
         {
           "filter": "datum.sex === 'Male'"
         }
-      ]
+      ],
+      "description": "Centre column: age-group labels shared by both halves."
     },
     {
       "title": {
         "text": "Males",
+        "anchor": "start",
         "fontSize": 13,
-        "fontWeight": 600,
-        "color": "#1e2430",
-        "font": "Inter, system-ui, sans-serif",
-        "anchor": "start"
+        "subtitleFontSize": 11
       },
       "transform": [
         {
           "filter": "datum.sex === 'Male'"
         }
       ],
-      "width": 220,
+      "width": 228,
       "height": 250,
       "layer": [
         {
@@ -308,15 +325,17 @@
                 "title": "Donors"
               }
             ]
-          }
+          },
+          "description": "Male bars (one per age group)."
         },
         {
           "mark": {
             "type": "text",
             "align": "left",
             "dx": 4,
-            "fontSize": 10,
-            "color": "#5c6675"
+            "fontSize": 11,
+            "color": "#5c6675",
+            "font": "Inter, system-ui, sans-serif"
           },
           "encoding": {
             "y": {
@@ -335,7 +354,8 @@
               "field": "donors",
               "type": "quantitative"
             }
-          }
+          },
+          "description": "Donor count at the end of each male bar."
         },
         {
           "data": {
@@ -351,20 +371,24 @@
           "mark": {
             "type": "text",
             "align": "left",
-            "fontSize": 10.5,
+            "fontSize": 11,
             "fontStyle": "italic",
             "color": "#1e2430",
             "lineHeight": 13,
             "x": 95,
-            "y": 222
+            "y": 222,
+            "font": "Inter, system-ui, sans-serif"
           },
           "encoding": {
             "text": {
               "field": "t"
             }
-          }
+          },
+          "description": "Annotation: the largest single group (men aged 55-64)."
         }
-      ]
+      ],
+      "description": "Right half: male donors by age group."
     }
-  ]
+  ],
+  "padding": 0
 }

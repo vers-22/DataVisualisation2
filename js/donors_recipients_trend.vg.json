@@ -4,18 +4,10 @@
   "title": {
     "text": "Donation has more than doubled since 2009",
     "subtitle": "Deceased organ donors and organs transplanted each year, Australia, 1989–2025",
-    "anchor": "start",
-    "font": "Inter, system-ui, sans-serif",
-    "fontSize": 15,
-    "fontWeight": 600,
-    "color": "#1e2430",
-    "subtitleFont": "Inter, system-ui, sans-serif",
-    "subtitleFontSize": 12,
-    "subtitleColor": "#5c6675",
-    "offset": 12
+    "anchor": "start"
   },
-  "width": 420,
-  "height": 300,
+  "width": "container",
+  "height": 320,
   "background": null,
   "data": {
     "url": "data/national_trend.csv",
@@ -32,12 +24,26 @@
       "stroke": null
     },
     "font": "Inter, system-ui, sans-serif",
+    "title": {
+      "anchor": "start",
+      "font": "Inter, system-ui, sans-serif",
+      "fontSize": 17,
+      "fontWeight": 600,
+      "color": "#1e2430",
+      "subtitleFont": "Inter, system-ui, sans-serif",
+      "subtitleFontSize": 13,
+      "subtitleColor": "#545e6c",
+      "offset": 12,
+      "subtitlePadding": 4
+    },
     "axis": {
-      "labelColor": "#5c6675",
-      "titleColor": "#5c6675",
+      "labelFont": "Inter, system-ui, sans-serif",
+      "titleFont": "Inter, system-ui, sans-serif",
       "labelFontSize": 11,
       "titleFontSize": 11,
-      "titleFontWeight": 500,
+      "titleFontWeight": 400,
+      "labelColor": "#545e6c",
+      "titleColor": "#545e6c",
       "domainColor": "#c9cfd8",
       "tickColor": "#c9cfd8",
       "gridColor": "#e6e2db",
@@ -45,6 +51,19 @@
         3,
         3
       ]
+    },
+    "legend": {
+      "labelFont": "Inter, system-ui, sans-serif",
+      "titleFont": "Inter, system-ui, sans-serif",
+      "labelFontSize": 11,
+      "titleFontSize": 11,
+      "titleFontWeight": 400,
+      "labelColor": "#545e6c",
+      "titleColor": "#545e6c"
+    },
+    "text": {
+      "font": "Inter, system-ui, sans-serif",
+      "fontSize": 11
     }
   },
   "layer": [
@@ -77,7 +96,8 @@
         "x2": {
           "field": "end"
         }
-      }
+      },
+      "description": "Grey band marking the COVID-19 years (2020-2021)."
     },
     {
       "data": {
@@ -93,10 +113,11 @@
         "align": "left",
         "dx": 3,
         "y": 4,
-        "fontSize": 10,
+        "fontSize": 11,
         "fontStyle": "italic",
         "color": "#5c6675",
-        "baseline": "top"
+        "baseline": "top",
+        "font": "Inter, system-ui, sans-serif"
       },
       "encoding": {
         "x": {
@@ -113,7 +134,8 @@
         "text": {
           "field": "label"
         }
-      }
+      },
+      "description": "'COVID-19' label at the top of the grey band."
     },
     {
       "data": {
@@ -129,10 +151,11 @@
         "baseline": "top",
         "dx": -4,
         "y": 4,
-        "fontSize": 10,
+        "fontSize": 11,
         "fontStyle": "italic",
         "color": "#5c6675",
-        "lineHeight": 12
+        "lineHeight": 12,
+        "font": "Inter, system-ui, sans-serif"
       },
       "encoding": {
         "x": {
@@ -152,7 +175,8 @@
             "& DonateLife network"
           ]
         }
-      }
+      },
+      "description": "Two-line annotation for the 2009 national reform."
     },
     {
       "data": {
@@ -182,7 +206,8 @@
             "zero": false
           }
         }
-      }
+      },
+      "description": "Dashed vertical rule at 2009."
     },
     {
       "mark": {
@@ -240,7 +265,8 @@
           },
           "legend": null
         }
-      }
+      },
+      "description": "The two lines: donors (coral) and organs transplanted (grey) per year."
     },
     {
       "params": [
@@ -310,7 +336,8 @@
             "format": ","
           }
         ]
-      }
+      },
+      "description": "Invisible points that appear on hover (nearest year) and carry the tooltip."
     },
     {
       "transform": [
@@ -322,8 +349,9 @@
         "type": "text",
         "align": "left",
         "dx": 6,
-        "fontSize": 11,
-        "fontWeight": 600
+        "fontSize": 13,
+        "fontWeight": 600,
+        "font": "Inter, system-ui, sans-serif"
       },
       "encoding": {
         "x": {
@@ -351,7 +379,8 @@
           "type": "nominal",
           "legend": null
         }
-      }
+      },
+      "description": "Value labels at the 2025 end of each line."
     },
     {
       "transform": [
@@ -363,8 +392,9 @@
         "type": "text",
         "align": "left",
         "dy": -14,
-        "fontSize": 11,
-        "fontWeight": 600
+        "fontSize": 13,
+        "fontWeight": 600,
+        "font": "Inter, system-ui, sans-serif"
       },
       "encoding": {
         "x": {
@@ -390,7 +420,13 @@
           "type": "nominal",
           "legend": null
         }
-      }
+      },
+      "description": "Series names written directly on the lines (replaces a legend)."
     }
-  ]
+  ],
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "padding": 0
 }

@@ -6,17 +6,9 @@
     "subtitle": [
       "Out of every 10 families asked about organ donation in hospital"
     ],
-    "anchor": "start",
-    "font": "Inter, system-ui, sans-serif",
-    "fontSize": 15,
-    "fontWeight": 600,
-    "color": "#1e2430",
-    "subtitleFont": "Inter, system-ui, sans-serif",
-    "subtitleFontSize": 12,
-    "subtitleColor": "#5c6675",
-    "offset": 12
+    "anchor": "start"
   },
-  "width": 300,
+  "width": "container",
   "height": 150,
   "background": null,
   "data": {
@@ -50,12 +42,26 @@
       "stroke": null
     },
     "font": "Inter, system-ui, sans-serif",
+    "title": {
+      "anchor": "start",
+      "font": "Inter, system-ui, sans-serif",
+      "fontSize": 17,
+      "fontWeight": 600,
+      "color": "#1e2430",
+      "subtitleFont": "Inter, system-ui, sans-serif",
+      "subtitleFontSize": 13,
+      "subtitleColor": "#545e6c",
+      "offset": 12,
+      "subtitlePadding": 4
+    },
     "axis": {
-      "labelColor": "#5c6675",
-      "titleColor": "#5c6675",
+      "labelFont": "Inter, system-ui, sans-serif",
+      "titleFont": "Inter, system-ui, sans-serif",
       "labelFontSize": 11,
       "titleFontSize": 11,
-      "titleFontWeight": 500,
+      "titleFontWeight": 400,
+      "labelColor": "#545e6c",
+      "titleColor": "#545e6c",
       "domainColor": "#c9cfd8",
       "tickColor": "#c9cfd8",
       "gridColor": "#e6e2db",
@@ -65,11 +71,17 @@
       ]
     },
     "legend": {
-      "labelColor": "#5c6675",
-      "titleColor": "#5c6675",
+      "labelFont": "Inter, system-ui, sans-serif",
+      "titleFont": "Inter, system-ui, sans-serif",
       "labelFontSize": 11,
       "titleFontSize": 11,
-      "titleFontWeight": 500
+      "titleFontWeight": 400,
+      "labelColor": "#545e6c",
+      "titleColor": "#545e6c"
+    },
+    "text": {
+      "font": "Inter, system-ui, sans-serif",
+      "fontSize": 11
     }
   },
   "layer": [
@@ -133,7 +145,13 @@
             "title": "Families who say yes (of 10)"
           }
         ]
-      }
+      },
+      "description": "Person icons: each row is 10 families; each icon is coral if that family said yes. The CSV row is expanded into 10 icons with sequence() + flatten."
     }
-  ]
+  ],
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "padding": 0
 }

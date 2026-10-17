@@ -1,115 +1,253 @@
-/* ==========================================================
-   FIT3179 Data Visualisation 2 — The Gift Gap
-   Organ donation in Australia
-   ========================================================== */
+/* ==========================================================================
+   FIT3179 Data Visualisation 2 — Organ Donation in Australia
+   Stylesheet for index.html
 
+   How this file is organised
+     1. Design tokens   – colours, the type scale and layout sizes, defined once
+     2. Base            – page defaults (font, colour, background)
+     3. Type hierarchy  – one rule per level of the type scale
+     4. Bands           – the full-width horizontal sections of the page
+     5. Grid            – the equal-width two-column layout
+     6. Hero statistics – the big numbers beside the first chart
+     7. Charts          – containers that hold each Vega-Lite chart
+     8. Footer          – metadata, sources and AI statement
+     9. Small screens   – collapses the two columns into one
+
+   Typography and layout follow the FIT2179 course notes:
+     - a small, fixed type scale so every size has one job (visual hierarchy)
+     - lines of 8–11 words (about 60 characters) for readability
+     - left-aligned text, generous leading (line spacing)
+     - equal-width columns, with all elements aligned on shared sight-lines
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. DESIGN TOKENS
+   Every colour, font size and spacing value used on the page lives here,
+   so the whole design can be adjusted in one place.
+   -------------------------------------------------------------------------- */
 :root {
-  /* Colour tokens */
-  --ink:        #1e2430;   /* body text */
-  --ink-soft:   #5c6675;   /* captions, secondary text */
-  --paper:      #faf7f2;   /* warm off-white page */
-  --paper-alt:  #f1ece4;   /* alternating band */
-  --rule:       #e2dcd2;
-  --dark:       #1e2430;   /* the one dark band */
-  --accent:     #c8465e;   /* donors / action. Used sparingly. */
-  --slate:      #8fa3b8;   /* recipients / structure */
+  /* Colours */
+  --ink:        #1e2430;   /* headings and body text: strongest contrast */
+  --ink-2:      #3b4352;   /* lede paragraphs: one step softer than body */
+  --ink-soft:   #545e6c;   /* notes, captions, sources: still readable on paper */
+  --paper:      #faf7f2;   /* warm off-white page background */
+  --paper-alt:  #f1ece4;   /* tint for alternating bands (figure-ground) */
+  --rule:       #e2dcd2;   /* thin divider lines */
+  --dark:       #1e2430;   /* background of the one dark band (world map) */
+  --accent:     #c8465e;   /* coral: donors and key numbers only */
 
-  /* Type */
+  /* Typefaces: a serif for headings, a sans-serif for reading text */
   --serif: "Fraunces", Georgia, "Times New Roman", serif;
   --sans:  "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 
+  /* Type scale. Each size has exactly one role; nothing else is used.
+     The chart specs (js/*.vg.json) use the bottom three steps. */
+  --fs-display: 3.5rem;     /* 56px  page title (h1)                          */
+  --fs-h2:      2.25rem;    /* 36px  section headings (h2), hero numbers      */
+  --fs-h3:      1.375rem;   /* 22px  sub-headings beside charts (h3)          */
+  --fs-lede:    1.25rem;    /* 20px  opening paragraph of each section        */
+  --fs-body:    1.0625rem;  /* 17px  body text; chart titles                  */
+  --fs-small:   0.9375rem;  /* 15px  notes under charts, statistic labels     */
+  --fs-micro:   0.8125rem;  /* 13px  kickers, sources; chart subtitles/labels */
+                            /* 11px  (charts only) axes, legends, annotations  */
+
+  /* Line length. One measure in em for ALL running text: because em scales
+     with the font size, every size holds about 55 characters per line,
+     which is 8–11 words (course notes: about 60 characters, 7–10 words). */
+  --measure: 26em;
+
   /* Layout */
-  --column:     1100px;    /* fits a 13" laptop without horizontal scroll */
-  --gutter:     32px;
-  --band-pad:   80px;
+  --column:   1100px;       /* content width: fits a 13" laptop with no sideways scroll */
+  --gutter:   48px;         /* white space between the two columns */
+  --band-pad: 96px;         /* white space above and below each band */
 }
 
-/* ---------- Base ---------- */
 
+/* --------------------------------------------------------------------------
+   2. BASE
+   -------------------------------------------------------------------------- */
+
+/* Width and height include padding and borders, which makes sizing predictable. */
 * { box-sizing: border-box; }
 
+/* Belt and braces: never allow sideways page scrolling. */
 html { overflow-x: hidden; }
 
 body {
   margin: 0;
   font-family: var(--sans);
-  font-size: 17px;
-  line-height: 1.65;
+  font-size: var(--fs-body);
+  line-height: 1.6;                 /* generous leading for easy line-to-line reading */
   color: var(--ink);
   background: var(--paper);
   -webkit-font-smoothing: antialiased;
 }
 
+
+/* --------------------------------------------------------------------------
+   3. TYPE HIERARCHY
+   Size, weight and colour step down together, so the eye reads the page
+   title first, then section headings, ledes, body, and finally notes.
+   -------------------------------------------------------------------------- */
+
+/* Shared settings for all headings: serif, tight leading, balanced line breaks. */
 h1, h2, h3 {
   font-family: var(--serif);
   font-optical-sizing: auto;
-  font-weight: 600;
   line-height: 1.15;
-  margin: 0 0 0.5em;
+  margin: 0 0 0.6em;
   text-wrap: balance;
+  color: var(--ink);
 }
 
-h1 { font-size: clamp(2.2rem, 4.5vw, 3.5rem); font-weight: 700; letter-spacing: -0.01em; max-width: 22ch; }
-h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); max-width: 28ch; }
-h3 { font-size: 1.25rem; margin-top: 0.2em; }
+/* Level 1 — page title: largest and heaviest element on the page. */
+h1 {
+  font-size: var(--fs-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
 
-p { max-width: 68ch; margin: 0 0 1em; }
+/* Level 2 — section headings. */
+h2 {
+  font-size: var(--fs-h2);
+  font-weight: 600;
+  max-width: 18em;                  /* keeps long headings to two lines */
+}
 
+/* Level 3 — sub-headings that introduce a chart's explanation. */
+h3 {
+  font-size: var(--fs-h3);
+  font-weight: 600;
+}
+
+/* Level 4 — lede: the opening paragraph of a section, slightly larger
+   and softer than body text. */
+.lede,
+.standfirst {
+  font-size: var(--fs-lede);
+  line-height: 1.5;
+  color: var(--ink-2);
+  max-width: var(--measure);
+  margin: 0 0 1.6em;
+}
+
+/* Level 5 — body text. Every paragraph and list item is limited to the
+   reading measure so lines never run past about 11 words. */
+p, li {
+  max-width: var(--measure);
+  margin: 0 0 1em;
+}
+
+/* Level 6 — notes: explanations and reading instructions under charts. */
+.note {
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: var(--measure);
+}
+
+/* Level 7 — kicker: the small uppercase label above each section heading.
+   Uppercase plus letter-spacing marks it as a label, not a sentence. */
+.kicker {
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 1em;
+}
+
+/* Level 7 — sources: smallest running text, italic to separate it from notes. */
+.source {
+  font-size: var(--fs-micro);
+  line-height: 1.5;
+  font-style: italic;
+  color: var(--ink-soft);
+  max-width: var(--measure);
+}
+
+/* Links use the accent colour; underlines are kept only for links. */
 a { color: var(--accent); text-underline-offset: 2px; }
 
 strong { font-weight: 600; }
 
+/* Helper class for the coral accent colour (used on the donor statistic). */
 .accent { color: var(--accent); }
 
-/* ---------- Bands and the content column ---------- */
 
+/* --------------------------------------------------------------------------
+   4. BANDS
+   The page is a stack of full-width bands. Alternating tints separate the
+   parts of the story (figure-ground); .wrap centres the content column.
+   -------------------------------------------------------------------------- */
 .band { padding: var(--band-pad) var(--gutter); }
 
+/* Centred content column: its left and right edges are the page's main
+   vertical sight-lines. */
 .wrap {
   max-width: var(--column);
   margin: 0 auto;
 }
 
+/* Every second band is tinted. */
 .band--tinted { background: var(--paper-alt); }
 
+/* The hero band gets extra room at the top and a thin rule underneath. */
+.band--hero {
+  padding-top: 120px;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* Dark band for the world map. Text colours are lightened to keep contrast. */
 .band--dark {
   background: var(--dark);
   color: #e8ebf0;
 }
-.band--dark h2 { color: #ffffff; }
+.band--dark h2     { color: #ffffff; }
 .band--dark .kicker { color: #f08a9b; }
-.band--dark .source { color: #a6afbc; }
+.band--dark .lede  { color: #d3d8df; }
+.band--dark .note,
+.band--dark .source { color: #b4bcc7; }
 
-.band--hero { padding-top: 96px; border-bottom: 1px solid var(--rule); }
+/* Space between a heading block and the first row of charts. */
+.section-head { margin-bottom: 48px; }
 
-.kicker {
-  font-family: var(--sans);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 0.8em;
+
+/* --------------------------------------------------------------------------
+   5. GRID
+   One grid: two equal columns. A chart either fills one column or spans
+   both (.span-2). Every chart and text block therefore starts on one of
+   three vertical sight-lines: the left edge, the centre gutter, or the
+   right edge of the content column.
+   -------------------------------------------------------------------------- */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;    /* equal-width columns */
+  column-gap: var(--gutter);
+  row-gap: 56px;
+  align-items: start;                /* tops of neighbouring items share a sight-line */
+  margin-bottom: 64px;
 }
+.grid:last-child { margin-bottom: 0; }
 
-.standfirst {
-  font-size: 1.25rem;
-  line-height: 1.55;
-  color: var(--ink-soft);
-  margin-bottom: 2.5em;
-  max-width: 60ch;
-}
+/* Lets a wide chart shrink inside its cell instead of pushing the grid wider. */
+.grid > * { min-width: 0; }
 
-.lede {
-  font-size: 1.1rem;
-  color: var(--ink-soft);
-  margin-bottom: 2em;
-}
+/* An item that spans both columns (wide charts, the world map). */
+.span-2 { grid-column: 1 / -1; }
 
-/* ---------- Hero stats ---------- */
+/* Removes the top margin of the first text element in a cell, so the text
+   starts exactly level with the top of the chart beside it. */
+.prose > :first-child { margin-top: 0; }
 
-.stat-stack { padding-top: 3.2em; }
 
+/* --------------------------------------------------------------------------
+   6. HERO STATISTICS
+   Three large numbers beside the dot chart. The numbers use the h2 size
+   so they do not introduce a new font size.
+   -------------------------------------------------------------------------- */
 .stat {
   display: block;
   padding: 0 0 1.1em;
@@ -120,74 +258,49 @@ strong { font-weight: 600; }
 .stat__num {
   display: block;
   font-family: var(--serif);
-  font-size: 2.6rem;
+  font-size: var(--fs-h2);
   font-weight: 700;
   line-height: 1.1;
 }
 
 .stat__label {
   display: block;
-  font-size: 0.95rem;
+  font-size: var(--fs-small);
   color: var(--ink-soft);
+  max-width: var(--measure);
 }
 
-/* ---------- Captions ---------- */
 
-.note {
-  font-size: 0.9rem;
-  color: var(--ink-soft);
-}
-
-.source {
-  font-size: 0.78rem;
-  color: var(--ink-soft);
-  font-style: italic;
-}
-
-/* ---------- Footer ---------- */
-
-.band--footer {
-  background: var(--paper-alt);
-  font-size: 0.92rem;
-}
-
-.band--footer h3 { font-size: 1.1rem; margin-top: 2em; }
-
-.meta { color: var(--ink-soft); }
-
-.sources {
-  max-width: 80ch;
-  padding-left: 1.2em;
-}
-.sources li { margin-bottom: 0.5em; }
-
-/* ---------- Grid splits ---------- */
-
-.grid {
-  display: grid;
-  gap: var(--gutter);
-  margin-bottom: calc(var(--gutter) * 1.5);
-  align-items: start;
-}
-
-.grid > * { min-width: 0; }   /* lets wide charts scroll inside their cell */
-
-.grid--halves     { grid-template-columns: 1fr 1fr; }
-.grid--thirds     { grid-template-columns: 1fr 1fr 1fr; }
-.grid--two-thirds { grid-template-columns: 2fr 1fr; }
-
-/* ---------- Chart containers ---------- */
-
+/* --------------------------------------------------------------------------
+   7. CHARTS
+   Each chart is drawn by vega-embed into a <div class="vis">. Charts with
+   "width": "container" fill their grid cell exactly, so their edges sit on
+   the column sight-lines. Fixed-size charts scale down proportionally on
+   narrow screens instead of being cut off.
+   -------------------------------------------------------------------------- */
 .vis {
   width: 100%;
   overflow-x: hidden;
 }
 
-.vis--full { margin: 0 0 var(--gutter); }
+/* vega-embed adds the class "vega-embed" to the .vis div; make it a block
+   so it fills the cell width. */
+.vis.vega-embed { display: block; }
 
-.prose { padding-top: 0.5em; }
+/* Scale the chart's SVG down if its cell is narrower than the chart. */
+.vis svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
 
-/* Vega tooltip, matched to the page */
+/* Space between a chart and the note or source stacked directly under it
+   inside the same grid cell. (Notes that sit in their own grid cells are
+   spaced by the grid's row gap instead.) */
+.grid > * > .vis + .note,
+.grid > * > .vis + .source { margin-top: 16px; }
+
+/* Tooltip shown on hover, styled to match the page typography. */
 #vg-tooltip-element {
   font-family: var(--sans);
   font-size: 12px;
@@ -195,23 +308,46 @@ strong { font-weight: 600; }
   box-shadow: 0 4px 14px rgba(30, 36, 48, 0.15);
 }
 
-/* ---------- Small screens ---------- */
 
-@media (max-width: 900px) {
-  .grid--halves,
-  .grid--thirds,
-  .grid--two-thirds { grid-template-columns: 1fr; }
+/* --------------------------------------------------------------------------
+   8. FOOTER
+   Two columns like the rest of the page: author and sources on the left,
+   AI statement on the right.
+   -------------------------------------------------------------------------- */
+.band--footer { background: var(--paper-alt); }
 
-  .stat-stack { padding-top: 0; }
-
-  :root { --band-pad: 48px; --gutter: 20px; }
+/* Footer text uses the small size; it is reference material, not story. */
+.band--footer p,
+.band--footer li {
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  max-width: var(--measure);
 }
 
-.band--dark .lede { color: #c3cad4; }
+.band--footer h3 { margin-top: 0; }
 
-/* Charts shrink proportionally when their column is narrower than the
-   spec's width (e.g. a small laptop at 125% zoom), instead of clipping. */
-.vis.vega-embed { display: block; }
-.vis svg { display: block; max-width: 100%; height: auto; }
+.meta { color: var(--ink-soft); }
 
-.vis--padded { padding-top: 0.5em; }
+/* Bullet list of sources, indented slightly. */
+.sources { padding-left: 1.2em; margin: 0; }
+.sources li { margin-bottom: 0.6em; }
+
+
+/* --------------------------------------------------------------------------
+   9. SMALL SCREENS
+   Below 900px the two columns stack into one, and spacing shrinks.
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
+  .span-2 { grid-column: auto; }
+
+  :root {
+    --band-pad: 56px;
+    --gutter: 20px;
+    --fs-display: 2.5rem;
+    --fs-h2: 1.75rem;
+  }
+}
+
+/* A source line tucked inside a note paragraph starts on its own line. */
+.note .source { display: block; margin-top: 0.5em; }

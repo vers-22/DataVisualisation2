@@ -1,41 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Character set and mobile scaling -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Browser tab title and search-engine summary -->
   <title>The Gift Gap: Organ Donation in Australia</title>
   <meta name="description" content="A data story about organ donation in Australia: who donates, why so few families say yes, and where donated organs go.">
 
-  <!-- Typefaces: Fraunces (headings) + Inter (body) from Google Fonts -->
+  <!-- Typefaces from Google Fonts:
+       Fraunces = serif for headings and big numbers
+       Inter    = sans-serif for body text and all chart text -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap">
 
-  <!-- Vega stack, pinned versions -->
+  <!-- Vega stack, pinned to exact versions so the page cannot break when
+       a new version is released:
+       vega        = the rendering engine
+       vega-lite   = compiles the short JSON chart specs (js/*.vg.json) into Vega
+       vega-embed  = loads a spec and draws it into a <div> on this page -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5.25.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.16.3"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.22.2"></script>
 
+  <!-- Page layout and typography (see comments in css/styles.css) -->
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
 
+<!--
+  PAGE STRUCTURE
+  The page is a single scrolling column of full-width "bands".
+  Inside each band, .wrap centres an 1100px content column and .grid splits
+  it into two equal columns. Charts and text sit in those columns, so they
+  line up on the same vertical sight-lines all the way down the page.
+  Each <div class="vis"> is an empty box that the script at the bottom of
+  the page fills with a Vega-Lite chart.
+-->
+
+
 <!-- ============================================================
      SECTION 1 — HERO
+     Page title, opening paragraph, then the dot chart (left column)
+     beside the three headline numbers (right column).
      ============================================================ -->
 <header class="band band--hero">
   <div class="wrap">
     <h1>Organ Donation in Australia</h1>
     <p class="standfirst">
-      Last year 557 people became organ donors after they died. Their gift
-      reached 1,438 people. Most Australians say they support donation, yet
-      only about one in three has registered, and half of grieving families
-      still say no.
+      Last year 557 people became organ donors after they died.
+      Their gift reached 1,438 people. Most Australians support
+      donation, yet only about one in three has registered, and
+      half of grieving families still say no.
     </p>
 
-    <div class="grid grid--two-thirds">
+    <div class="grid">
+      <!-- Chart 1: unit chart, one dot per donor and per recipient -->
       <div id="vis-hero" class="vis"></div>
+
+      <!-- Headline numbers. Each pairs a big number with a short label. -->
       <aside class="stat-stack">
         <div class="stat">
           <span class="stat__num accent">557</span>
@@ -47,10 +72,11 @@
         </div>
         <div class="stat">
           <span class="stat__num">20.2</span>
-          <span class="stat__label">donors per million people, against a national target of 25</span>
+          <span class="stat__label">donors per million people, against a
+          national target of 25</span>
         </div>
-        <p class="note">Each dot is one person. One donor can save or transform the lives
-        of up to seven people, which is why the grey block is so much bigger.</p>
+        <p class="note">Each dot is one person. One donor can save or
+        transform up to seven lives, so the grey block is much bigger.</p>
       </aside>
     </div>
   </div>
@@ -58,46 +84,56 @@
 
 
 <!-- ============================================================
-     SECTION 2 — DONATION IS RARER THAN YOU THINK
+     SECTION 2 — PART 1: THE ODDS
+     Wide chart first (proportional squares), then two rows that
+     alternate chart-left/text-right and text-left/chart-right.
      ============================================================ -->
 <section class="band">
   <div class="wrap">
-    <p class="kicker">Part 1 · The odds</p>
-    <h2>Almost nobody dies in a way that makes donation possible</h2>
-    <p class="lede">
-      Organs can only be donated if someone dies in an intensive care unit,
-      usually on a ventilator. Fewer than 2 in every 100 hospital deaths
-      happen this way, so every one of those chances matters.
-    </p>
+    <!-- Section heading block: kicker, heading, lede -->
+    <div class="section-head">
+      <p class="kicker">Part 1 · The odds</p>
+      <h2>Almost nobody dies in a way that makes donation possible</h2>
+      <p class="lede">
+        Organs can only be donated if someone dies in intensive care,
+        usually on a ventilator. Fewer than 2 in 100 hospital deaths
+        happen this way, so every chance matters.
+      </p>
+    </div>
 
-    <div id="vis-funnel" class="vis vis--full"></div>
-    <p class="source">Source: Organ and Tissue Authority, 2025 donation and
-    transplantation data.</p>
+    <div class="grid">
+      <!-- Chart 2: nested proportional squares, spans both columns -->
+      <div class="span-2">
+        <div id="vis-funnel" class="vis"></div>
+        <p class="source">Source: Organ and Tissue Authority, 2025
+        donation and transplantation data.</p>
+      </div>
 
-    <div class="grid grid--halves">
+      <!-- Chart 3: line chart (left) with its explanation (right) -->
       <div id="vis-trend" class="vis"></div>
       <div class="prose">
         <h3>A national reform worked, then stalled</h3>
-        <p>For twenty years Australia hovered around 200 donors a year. In
-        2009 the Commonwealth set up the Organ and Tissue Authority and the
-        DonateLife network of specialist hospital staff. Donor numbers
-        climbed almost every year after that, peaking at 554 in 2018.</p>
-        <p>COVID-19 hit hard: intensive care units filled and donation fell to
-        421 donors in 2021. Numbers have now recovered to a record 557, but the
-        rate per person is still below its 2018 level.</p>
+        <p>For twenty years Australia had about 200 donors a year.
+        In 2009 the Commonwealth set up the Organ and Tissue
+        Authority and the DonateLife network of hospital specialists.
+        Donor numbers then climbed almost every year, peaking at 554
+        in 2018.</p>
+        <p>COVID-19 hit hard: intensive care units filled, and donors
+        fell to 421 in 2021. Numbers have recovered to a record 557,
+        but the rate per person is still below 2018.</p>
         <p class="source">Source: ANZOD Registry Annual Report 2026,
         Appendix I, Tables A1.1 and A1.24.</p>
       </div>
-    </div>
 
-    <div class="grid grid--halves">
+      <!-- Chart 4: population pyramid (right) with its explanation (left) -->
       <div class="prose">
         <h3>Who becomes a donor?</h3>
-        <p>Because donation depends on dying in intensive care, donors are
-        mostly people aged 35 to 74 who have had a stroke, a brain injury or
-        a cardiac arrest. Three in five donors since 2021 have been men.</p>
-        <p>Young children are rare donors, but every age group contributes,
-        including people aged 75 and older.</p>
+        <p>Donation depends on dying in intensive care, so most donors
+        are between 35 and 74 years old, following a stroke, brain
+        injury or cardiac arrest. Three in five donors since 2021 were
+        men.</p>
+        <p>Young children are rare donors, but every age group
+        contributes, including people aged 75 and older.</p>
         <p class="source">Source: ANZOD Registry Annual Report 2026,
         Appendix I, Table A1.2.</p>
       </div>
@@ -108,118 +144,141 @@
 
 
 <!-- ============================================================
-     SECTION 3 — THE BOTTLENECK IS CONSENT
+     SECTION 3 — PART 2: THE CONVERSATION
+     Text (left) beside the person-icon chart (right).
      ============================================================ -->
 <section class="band band--tinted">
   <div class="wrap">
-    <p class="kicker">Part 2 · The conversation</p>
-    <h2>The bottleneck is one conversation</h2>
+    <div class="section-head">
+      <p class="kicker">Part 2 · The conversation</p>
+      <h2>The bottleneck is one conversation</h2>
+    </div>
 
-    <div class="grid grid--halves">
+    <div class="grid">
       <div class="prose">
         <p class="lede">
-          When donation is possible, a specialist asks the family. In 2025
-          only 53% said yes, down from a peak of 60% in 2018. Of the 1,500
+          When donation is possible, a specialist asks the family.
+          In 2025 only 53% said yes, down from 60% in 2018. Of 1,500
           families asked, about 700 said no.
         </p>
-        <p>The single biggest thing that changes the answer is whether the
-        person who died had registered on the Australian Organ Donor
-        Register. When they had, about 8 in 10 families agree. When they had
-        not, it falls to about 4 in 10. Families who know what their loved
-        one wanted find the decision much easier.</p>
-        <p>Yet only around 8 million Australians, about 35% of people
-        eligible, have registered, even though 4 in 5 say they support
-        donation.</p>
+        <p>The biggest thing that changes the answer is whether the
+        person had joined the Australian Organ Donor Register. If they
+        had, about 8 in 10 families agree. Otherwise, agreement falls
+        to about 4 in 10. Knowing a loved one's wishes makes the
+        decision easier.</p>
+        <p>Yet only about 8 million Australians, around 35% of those
+        eligible, have registered, though 4 in 5 support donation.</p>
         <p class="source">Source: Organ and Tissue Authority, 2025
         donation and transplantation data.</p>
       </div>
-      <div id="vis-consent" class="vis vis--padded"></div>
+      <!-- Chart 5: isotype, 10 people per row -->
+      <div id="vis-consent" class="vis"></div>
     </div>
   </div>
 </section>
 
 
 <!-- ============================================================
-     SECTION 4 — GEOGRAPHY: CHOROPLETH, SLOPE, HEATMAP
+     SECTION 4 — PART 3: THE MAP
+     Row 1: choropleth map (left) + explanation (right).
+     Row 2: slope graph (left) + heatmap (right), each with a note.
      ============================================================ -->
 <section class="band">
   <div class="wrap">
-    <p class="kicker">Part 3 · The map</p>
-    <h2>Where you live changes the odds</h2>
+    <div class="section-head">
+      <p class="kicker">Part 3 · The map</p>
+      <h2>Where you live changes the odds</h2>
+    </div>
 
-    <div class="grid grid--two-thirds">
+    <div class="grid">
+      <!-- Chart 6: choropleth map of donors per million by state -->
       <div id="vis-choropleth" class="vis"></div>
       <div class="prose">
-        <p>Donation rates are measured as donors per million people, so
-        large and small states can be compared fairly.</p>
-        <p><strong>Tasmania</strong> is the stand-out: 25 donors from about
-        575,000 people gives 43.4 per million. In 2024 only Spain and the
-        United States reported higher national rates.</p>
-        <p><strong>Every other state and territory</strong> sits below the
-        national target of 25 per million. Victoria is closest at 22.1.</p>
-        <p>Small states swing a lot from year to year: one or two extra donors
-        in the Northern Territory moves its rate by four to eight points.</p>
-        <p class="source">Sources: ANZOD Registry Annual Report 2026, Table 2.1;
-        ABS state boundaries (ASGS Edition 3).</p>
+        <p>Donation rates are measured as donors per million people,
+        so large and small states can be compared fairly.</p>
+        <p><strong>Tasmania</strong> stands out: 25 donors from about
+        575,000 people gives 43.4 per million. In 2024 only Spain and
+        the United States had higher national rates.</p>
+        <p><strong>Every other state and territory</strong> is below
+        the national target of 25 per million. Victoria is closest,
+        at 22.1.</p>
+        <p>Rates in small states swing widely from year to year. One
+        or two extra donors shifts the Northern Territory's rate by
+        four to eight points.</p>
+        <p class="source">Sources: ANZOD Registry Annual Report 2026,
+        Table 2.1; ABS state boundaries (ASGS Edition 3).</p>
       </div>
-    </div>
 
-    <div class="grid grid--halves">
+      <!-- Chart 7: slope graph, 2018 vs 2025 -->
       <div>
         <div id="vis-slope" class="vis"></div>
-        <p class="note">Five of the eight states and territories donate at a
-        lower rate than in 2018, matching the national fall in family
-        consent. The ACT and Victoria fell furthest.</p>
+        <p class="note">Five of the eight states and territories donate
+        at a lower rate than in 2018, matching the national fall in
+        family consent. The ACT and Victoria fell furthest.</p>
       </div>
+      <!-- Chart 8: heatmap, state by year -->
       <div>
         <div id="vis-heatmap" class="vis"></div>
-        <p class="note">Read across a row to follow one state over time. The
-        slow darkening from left to right is the 2009 reform at work; the
-        lighter cells in 2020–2021 are the pandemic.</p>
+        <p class="note">Read across a row to follow one state over
+        time. The slow darkening is the 2009 reform at work; lighter
+        cells in 2020–2021 show the pandemic.</p>
       </div>
+
+      <p class="source span-2">Source for both charts: ANZOD Registry
+      Annual Report 2026, Table 2.1. Rates use June 2025 ABS population.</p>
     </div>
-    <p class="source">Source for both charts: ANZOD Registry Annual Report 2026,
-    Table 2.1. Rates use June 2025 ABS population.</p>
   </div>
 </section>
 
 
 <!-- ============================================================
-     SECTION 5 — THE JOURNEY: LINKED TILE + FLOW MAP, SYMBOL MAP
+     SECTION 5 — PART 4: THE JOURNEY
+     Row 1: linked tile map + flow map spanning both columns, sized to
+            the full content width so its edges sit on the outer
+            sight-lines.
+     Row 2: reading note (left) + source (right).
+     Row 3: hospital map (left) + explanation (right).
      ============================================================ -->
 <section class="band band--tinted">
   <div class="wrap">
-    <p class="kicker">Part 4 · The journey</p>
-    <h2>From hospital bed to operating theatre</h2>
-    <p class="lede">
-      Donation happens in intensive care units across 120 hospitals, but the
-      busiest 15 provide half of all donors. The organs then often travel
-      interstate to the patient who is the best match.
-    </p>
+    <div class="section-head">
+      <p class="kicker">Part 4 · The journey</p>
+      <h2>From hospital bed to operating theatre</h2>
+      <p class="lede">
+        Donation happens in intensive care units across 120 hospitals,
+        but the busiest 15 provide half of all donors. The organs then
+        often travel interstate to the best-matched patient.
+      </p>
+    </div>
 
-    <div id="vis-journeys" class="vis vis--full"></div>
-    <p class="note">Each hexagon is a state or territory, drawn the same size
-    so small places are not lost. <strong>Click a hexagon</strong> to show only
-    the organs donated in that state; double-click to show all again. In 2025
-    no organs were transplanted in Tasmania, the Northern Territory or the
-    ACT, so all of theirs were flown interstate. 52 of Tasmania's 73 organs
-    went to Victoria.</p>
-    <p class="source">Sources: ANZOD Registry Annual Report 2026, Appendix I,
-    Table A1.25; ABS state boundaries.</p>
+    <div class="grid">
+      <!-- Charts 9 and 10: hexagon tile map linked to a flow map -->
+      <div id="vis-journeys" class="vis span-2"></div>
 
-    <div class="grid grid--two-thirds">
+      <p class="note">Each hexagon is a state or territory, all drawn
+      the same size so small places are not lost. <strong>Click a
+      hexagon</strong> to show only that state's organs; double-click
+      to show all again.</p>
+      <p class="note">In 2025 no organs were transplanted in Tasmania,
+      the Northern Territory or the ACT, so all of theirs were flown
+      interstate. 52 of Tasmania's 73 organs went to Victoria.
+      <span class="source">Sources: ANZOD Registry Annual Report 2026,
+      Appendix I, Table A1.25; ABS state boundaries.</span></p>
+
+      <!-- Chart 11: proportional symbol map of donor hospitals -->
       <div id="vis-symbolmap" class="vis"></div>
       <div class="prose">
-        <p>Large hospitals with major trauma, neurosurgery and intensive care
-        units see the most donors. The Royal Melbourne and The Alfred together
-        had 305 donors between 2021 and 2025.</p>
-        <p>Regional hospitals matter too. Newcastle's John Hunter Hospital had
-        30 donors in 2025, the third most in the country, and the Gold Coast
-        and Townsville university hospitals are among the 15 busiest.</p>
-        <p class="note">Hover over a circle for hospital details. Circle area
-        is proportional to the number of donors.</p>
-        <p class="source">Source: ANZOD Registry Annual Report 2026, Appendix I,
-        Table A1.3. Hospital locations geocoded by the author.</p>
+        <p>Large hospitals with major trauma, neurosurgery and intensive
+        care units see the most donors. The Royal Melbourne and The
+        Alfred together had 305 donors from 2021 to 2025.</p>
+        <p>Regional hospitals matter too. Newcastle's John Hunter
+        Hospital had 30 donors in 2025, the third most in Australia.
+        The Gold Coast and Townsville hospitals are in the busiest 15.</p>
+        <p class="note">Hover over a circle for hospital details. Circle
+        area is proportional to the number of donors.</p>
+        <p class="source">Source: ANZOD Registry Annual Report 2026,
+        Appendix I, Table A1.3. Hospital locations geocoded by the
+        author.</p>
       </div>
     </div>
   </div>
@@ -227,44 +286,56 @@
 
 
 <!-- ============================================================
-     SECTION 6 — INTERNATIONAL (MAP 5)
+     SECTION 6 — PART 5: THE WORLD
+     Dark band. World map spans both columns; note and source sit
+     underneath in the two columns.
      ============================================================ -->
 <section class="band band--dark">
   <div class="wrap">
-    <p class="kicker">Part 5 · The world</p>
-    <h2>Other countries are further ahead</h2>
-    <p class="lede">
-      In 2024 Spain recorded 53.9 donors per million people and the United
-      States 49.7. Australia's 19.7 placed it 21st of the 83 countries that
-      reported, behind Portugal, Italy, France and Canada, and about a third
-      of Spain's rate.
-    </p>
-    <div id="vis-world" class="vis vis--full"></div>
-    <p class="note">Every country on this map uses IRODaT's 2024 figures, so
-    all are measured the same way in the same year. That is why Australia
-    shows 19.7 here but 20.2 elsewhere on this page, which is ANZOD's 2025
-    figure. Malta (12.0), Singapore (4.8) and Hong Kong (4.1) also reported
-    but are too small to see at this scale. Canada's figure counts
-    utilised donors only.</p>
-    <p class="source">Source: International Registry in Organ Donation and
-    Transplantation (IRODaT), <em>Worldwide Actual Deceased Organ Donors Rate
-    2024 (pmp)</em>.</p>
+    <div class="section-head">
+      <p class="kicker">Part 5 · The world</p>
+      <h2>Other countries are further ahead</h2>
+      <p class="lede">
+        In 2024 Spain recorded 53.9 donors per million people and the
+        United States 49.7. Australia's 19.7 placed it 21st of 83
+        countries, about a third of Spain's rate.
+      </p>
+    </div>
+
+    <div class="grid">
+      <!-- Chart 12: world choropleth map -->
+      <div id="vis-world" class="vis span-2"></div>
+
+      <p class="note">Every country here uses IRODaT's 2024 figures, so
+      all are measured the same way in the same year. That is why
+      Australia shows 19.7 here but 20.2 elsewhere on this page (ANZOD,
+      2025).</p>
+      <p class="note">Malta (12.0), Singapore (4.8) and Hong Kong (4.1)
+      also reported but are too small to see. Canada's figure counts
+      utilised donors only. <span class="source">Source: International
+      Registry in Organ Donation and Transplantation (IRODaT),
+      <em>Worldwide Actual Deceased Organ Donors Rate 2024 (pmp)</em>.</span></p>
+    </div>
   </div>
 </section>
 
 
 <!-- ============================================================
-     SECTION 7 — FOOTER: metadata
+     SECTION 7 — FOOTER
+     Left column: author, date and data sources.
+     Right column: statement on the use of generative AI.
      ============================================================ -->
 <footer class="band band--footer">
   <div class="wrap">
-    <p class="meta">
-      Created by Denver Samarakoon (32911149), Monash University,
-      FIT3179 Data Visualisation 2, October 2026.
-    </p>
+    <div class="grid">
+      <div>
+        <p class="meta">
+          Created by Denver Samarakoon (32911149), Monash University,
+          FIT3179 Data Visualisation 2, October 2026.
+        </p>
 
-    <h3>Data sources</h3>
-    <ul class="sources">
+        <h3>Data sources</h3>
+        <ul class="sources">
       <li>ANZOD Registry (2026). <em>ANZOD Registry Annual Report 2026</em>, Chapter 2 and
         Appendix I: Australian Data Tables. Australia and New Zealand Organ Donation Registry,
         Adelaide. <a href="https://anzorrg.org.au/reports/anzod-registry-annual-report-2026">anzorrg.org.au</a></li>
@@ -282,30 +353,44 @@
         <a href="https://fonts.google.com">fonts.google.com</a></li>
       <li>Built with Vega-Lite. <a href="https://vega.github.io/vega-lite/">vega.github.io/vega-lite</a></li>
     </ul>
+      </div>
 
-    <h3>Use of generative AI</h3>
-    <p>Claude (Anthropic) was used to help plan the page structure, extract
-    tables from the ANZOD Excel files into CSV, draft Vega-Lite specifications
-    and CSS, and suggest wording. All data values were taken from the cited
-    sources and all charts and text were checked and edited by the author.</p>
+      <div>
+        <h3>Use of generative AI</h3>
+        <p>Claude (Anthropic) was used to help plan the page structure,
+        extract tables from the ANZOD Excel files into CSV, draft the
+        Vega-Lite specifications and CSS, and suggest wording. All data
+        values come from the cited sources, and all charts and text were
+        checked and edited by the author.</p>
+      </div>
+    </div>
   </div>
 </footer>
 
 
+<!-- ============================================================
+     CHART LOADER
+     vegaEmbed(target, spec, options) fetches a Vega-Lite JSON spec
+     from the js/ folder and draws it into the matching <div>.
+     ============================================================ -->
 <script>
+  // Shared options for every chart:
+  //   actions: false  hides the "..." export menu vega-embed adds by default
+  //   renderer: "svg" draws crisp vector graphics that scale with the page
   const opts = { actions: false, renderer: "svg" };
 
-  vegaEmbed("#vis-hero",       "js/hero_unit_chart.vg.json", opts);
-  vegaEmbed("#vis-funnel",     "js/donation_squares.vg.json", opts);
-  vegaEmbed("#vis-trend",      "js/donors_recipients_trend.vg.json", opts);
-  vegaEmbed("#vis-pyramid",    "js/donor_pyramid.vg.json", opts);
-  vegaEmbed("#vis-consent",   "js/consent_waffle.vg.json", opts);
-  vegaEmbed("#vis-slope",      "js/dpmp_slope.vg.json", opts);
-  vegaEmbed("#vis-choropleth", "js/dpmp_choropleth.vg.json", opts);
-  vegaEmbed("#vis-heatmap",    "js/state_year_heatmap.vg.json", opts);
-  vegaEmbed("#vis-symbolmap",  "js/donor_hospitals_map.vg.json", opts);
-  vegaEmbed("#vis-journeys",   "js/organ_journeys.vg.json", opts);
-  vegaEmbed("#vis-world",      "js/world_dpmp.vg.json", opts);
+  // One line per chart, in page order: target <div>, then spec file.
+  vegaEmbed("#vis-hero",       "js/hero_unit_chart.vg.json", opts);         // 1 unit chart
+  vegaEmbed("#vis-funnel",     "js/donation_squares.vg.json", opts);        // 2 proportional squares
+  vegaEmbed("#vis-trend",      "js/donors_recipients_trend.vg.json", opts); // 3 line chart
+  vegaEmbed("#vis-pyramid",    "js/donor_pyramid.vg.json", opts);           // 4 population pyramid
+  vegaEmbed("#vis-consent",    "js/consent_waffle.vg.json", opts);          // 5 isotype
+  vegaEmbed("#vis-choropleth", "js/dpmp_choropleth.vg.json", opts);         // 6 choropleth map
+  vegaEmbed("#vis-slope",      "js/dpmp_slope.vg.json", opts);              // 7 slope graph
+  vegaEmbed("#vis-heatmap",    "js/state_year_heatmap.vg.json", opts);      // 8 heatmap
+  vegaEmbed("#vis-journeys",   "js/organ_journeys.vg.json", opts);          // 9–10 tile map + flow map
+  vegaEmbed("#vis-symbolmap",  "js/donor_hospitals_map.vg.json", opts);     // 11 proportional symbol map
+  vegaEmbed("#vis-world",      "js/world_dpmp.vg.json", opts);              // 12 world choropleth
 </script>
 
 </body>

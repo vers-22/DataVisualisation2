@@ -4,32 +4,39 @@
   "title": {
     "text": "Australia ranks 21st of 83 countries",
     "subtitle": [
-      "Actual deceased organ donors per million people, 2024. Grey = no data reported to IRODaT"
+      "Actual deceased organ donors per million people, 2024.",
+      "Grey = no data reported to IRODaT"
     ],
-    "anchor": "start",
-    "font": "Inter, system-ui, sans-serif",
-    "fontSize": 15,
-    "fontWeight": 600,
-    "color": "#ffffff",
-    "subtitleFont": "Inter, system-ui, sans-serif",
-    "subtitleFontSize": 12,
-    "subtitleColor": "#c3cad4",
-    "offset": 12
+    "anchor": "start"
   },
-  "width": 1000,
-  "height": 500,
+  "width": "container",
+  "height": 540,
   "background": null,
   "config": {
     "view": {
       "stroke": null
     },
     "font": "Inter, system-ui, sans-serif",
+    "title": {
+      "anchor": "start",
+      "font": "Inter, system-ui, sans-serif",
+      "fontSize": 17,
+      "fontWeight": 600,
+      "color": "#ffffff",
+      "subtitleFont": "Inter, system-ui, sans-serif",
+      "subtitleFontSize": 13,
+      "subtitleColor": "#c3cad4",
+      "offset": 12,
+      "subtitlePadding": 4
+    },
     "axis": {
-      "labelColor": "#5c6675",
-      "titleColor": "#5c6675",
+      "labelFont": "Inter, system-ui, sans-serif",
+      "titleFont": "Inter, system-ui, sans-serif",
       "labelFontSize": 11,
       "titleFontSize": 11,
-      "titleFontWeight": 500,
+      "titleFontWeight": 400,
+      "labelColor": "#545e6c",
+      "titleColor": "#545e6c",
       "domainColor": "#c9cfd8",
       "tickColor": "#c9cfd8",
       "gridColor": "#e6e2db",
@@ -39,11 +46,17 @@
       ]
     },
     "legend": {
-      "labelColor": "#c3cad4",
-      "titleColor": "#c3cad4",
+      "labelFont": "Inter, system-ui, sans-serif",
+      "titleFont": "Inter, system-ui, sans-serif",
       "labelFontSize": 11,
       "titleFontSize": 11,
-      "titleFontWeight": 500
+      "titleFontWeight": 400,
+      "labelColor": "#c3cad4",
+      "titleColor": "#c3cad4"
+    },
+    "text": {
+      "font": "Inter, system-ui, sans-serif",
+      "fontSize": 11
     }
   },
   "projection": {
@@ -58,7 +71,8 @@
         "type": "geoshape",
         "fill": "#262e3c",
         "stroke": "#3a4456"
-      }
+      },
+      "description": "Outline of the globe (the 'sphere') behind the countries."
     },
     {
       "data": {
@@ -167,7 +181,8 @@
           },
           "value": 0.5
         }
-      }
+      },
+      "description": "Countries coloured by IRODaT 2024 donors per million, joined on the 3-digit ISO country code. Countries with no data stay grey. Australia gets a white outline."
     },
     {
       "data": {
@@ -224,17 +239,19 @@
             "latitude2": {
               "field": "ty"
             }
-          }
+          },
+          "description": "Leader lines from each country to its label."
         },
         {
           "mark": {
             "type": "text",
-            "fontSize": 11,
+            "fontSize": 13,
             "fontWeight": 600,
             "color": "#ffffff",
             "lineHeight": 13,
             "baseline": "top",
-            "dy": 3
+            "dy": 3,
+            "font": "Inter, system-ui, sans-serif"
           },
           "encoding": {
             "longitude": {
@@ -248,9 +265,16 @@
             "text": {
               "field": "t"
             }
-          }
+          },
+          "description": "Call-out labels."
         }
-      ]
+      ],
+      "description": "Call-outs: leader line plus label for Spain, the United States and Australia."
     }
-  ]
+  ],
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "padding": 0
 }

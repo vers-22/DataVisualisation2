@@ -4,33 +4,39 @@
   "title": {
     "text": "15 hospitals provide half of all donors",
     "subtitle": [
-      "Hospitals by number of deceased organ donors, 2021–2025",
-      "Hospitals with 5 or more donors shown; 120 hospitals had at least one donor"
+      "Hospitals by number of deceased organ donors, 2021–2025.",
+      "Shows hospitals with 5+ donors; 120 had at least one"
     ],
-    "anchor": "start",
-    "font": "Inter, system-ui, sans-serif",
-    "fontSize": 15,
-    "fontWeight": 600,
-    "color": "#1e2430",
-    "subtitleFont": "Inter, system-ui, sans-serif",
-    "subtitleFontSize": 12,
-    "subtitleColor": "#5c6675",
-    "offset": 12
+    "anchor": "start"
   },
-  "width": 450,
-  "height": 410,
+  "width": "container",
+  "height": 500,
   "background": null,
   "config": {
     "view": {
       "stroke": null
     },
     "font": "Inter, system-ui, sans-serif",
+    "title": {
+      "anchor": "start",
+      "font": "Inter, system-ui, sans-serif",
+      "fontSize": 17,
+      "fontWeight": 600,
+      "color": "#1e2430",
+      "subtitleFont": "Inter, system-ui, sans-serif",
+      "subtitleFontSize": 13,
+      "subtitleColor": "#545e6c",
+      "offset": 12,
+      "subtitlePadding": 4
+    },
     "axis": {
-      "labelColor": "#5c6675",
-      "titleColor": "#5c6675",
+      "labelFont": "Inter, system-ui, sans-serif",
+      "titleFont": "Inter, system-ui, sans-serif",
       "labelFontSize": 11,
       "titleFontSize": 11,
-      "titleFontWeight": 500,
+      "titleFontWeight": 400,
+      "labelColor": "#545e6c",
+      "titleColor": "#545e6c",
       "domainColor": "#c9cfd8",
       "tickColor": "#c9cfd8",
       "gridColor": "#e6e2db",
@@ -40,11 +46,17 @@
       ]
     },
     "legend": {
-      "labelColor": "#5c6675",
-      "titleColor": "#5c6675",
+      "labelFont": "Inter, system-ui, sans-serif",
+      "titleFont": "Inter, system-ui, sans-serif",
       "labelFontSize": 11,
       "titleFontSize": 11,
-      "titleFontWeight": 500
+      "titleFontWeight": 400,
+      "labelColor": "#545e6c",
+      "titleColor": "#545e6c"
+    },
+    "text": {
+      "font": "Inter, system-ui, sans-serif",
+      "fontSize": 11
     }
   },
   "projection": {
@@ -81,7 +93,8 @@
         "fill": "#ece7df",
         "stroke": "#ffffff",
         "strokeWidth": 1
-      }
+      },
+      "description": "Grey base map of the states."
     },
     {
       "data": {
@@ -187,7 +200,8 @@
             "title": "Donors since 1989"
           }
         ]
-      }
+      },
+      "description": "One circle per hospital (5+ donors 2021-2025), area proportional to donors. Hovering a circle highlights all hospitals in the same state."
     },
     {
       "data": {
@@ -215,37 +229,10 @@
               "Princess Alexandra,",
               "Brisbane (86)"
             ]
-          }
-        ]
-      },
-      "mark": {
-        "type": "text",
-        "align": "right",
-        "fontSize": 10.5,
-        "fontStyle": "italic",
-        "color": "#1e2430",
-        "lineHeight": 12
-      },
-      "encoding": {
-        "longitude": {
-          "field": "lon",
-          "type": "quantitative"
-        },
-        "latitude": {
-          "field": "lat",
-          "type": "quantitative"
-        },
-        "text": {
-          "field": "t"
-        }
-      }
-    },
-    {
-      "data": {
-        "values": [
+          },
           {
-            "lon": 155.6,
-            "lat": -31.9,
+            "lon": 147.6,
+            "lat": -31.2,
             "t": [
               "John Hunter,",
               "Newcastle (90)"
@@ -255,11 +242,12 @@
       },
       "mark": {
         "type": "text",
-        "align": "left",
-        "fontSize": 10.5,
+        "align": "right",
+        "fontSize": 11,
         "fontStyle": "italic",
         "color": "#1e2430",
-        "lineHeight": 12
+        "lineHeight": 12,
+        "font": "Inter, system-ui, sans-serif"
       },
       "encoding": {
         "longitude": {
@@ -273,7 +261,13 @@
         "text": {
           "field": "t"
         }
-      }
+      },
+      "description": "Annotations naming the busiest hospitals, right-aligned so each label ends just left of its circles."
     }
-  ]
+  ],
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "padding": 0
 }

@@ -6,30 +6,36 @@
     "subtitle": [
       "Deceased organ donors per million people, 2006–2025. Darker = higher rate"
     ],
-    "anchor": "start",
-    "font": "Inter, system-ui, sans-serif",
-    "fontSize": 15,
-    "fontWeight": 600,
-    "color": "#1e2430",
-    "subtitleFont": "Inter, system-ui, sans-serif",
-    "subtitleFontSize": 12,
-    "subtitleColor": "#5c6675",
-    "offset": 12
+    "anchor": "start"
   },
-  "width": 420,
-  "height": 270,
+  "width": "container",
+  "height": 300,
   "background": null,
   "config": {
     "view": {
       "stroke": null
     },
     "font": "Inter, system-ui, sans-serif",
+    "title": {
+      "anchor": "start",
+      "font": "Inter, system-ui, sans-serif",
+      "fontSize": 17,
+      "fontWeight": 600,
+      "color": "#1e2430",
+      "subtitleFont": "Inter, system-ui, sans-serif",
+      "subtitleFontSize": 13,
+      "subtitleColor": "#545e6c",
+      "offset": 12,
+      "subtitlePadding": 4
+    },
     "axis": {
-      "labelColor": "#5c6675",
-      "titleColor": "#5c6675",
+      "labelFont": "Inter, system-ui, sans-serif",
+      "titleFont": "Inter, system-ui, sans-serif",
       "labelFontSize": 11,
       "titleFontSize": 11,
-      "titleFontWeight": 500,
+      "titleFontWeight": 400,
+      "labelColor": "#545e6c",
+      "titleColor": "#545e6c",
       "domainColor": "#c9cfd8",
       "tickColor": "#c9cfd8",
       "gridColor": "#e6e2db",
@@ -39,11 +45,17 @@
       ]
     },
     "legend": {
-      "labelColor": "#5c6675",
-      "titleColor": "#5c6675",
+      "labelFont": "Inter, system-ui, sans-serif",
+      "titleFont": "Inter, system-ui, sans-serif",
       "labelFontSize": 11,
       "titleFontSize": 11,
-      "titleFontWeight": 500
+      "titleFontWeight": 400,
+      "labelColor": "#545e6c",
+      "titleColor": "#545e6c"
+    },
+    "text": {
+      "font": "Inter, system-ui, sans-serif",
+      "fontSize": 11
     }
   },
   "data": {
@@ -158,7 +170,8 @@
             "format": ".1f"
           }
         ]
-      }
+      },
+      "description": "One cell per state and year, coloured by donors per million (square-root scale so low values still show differences)."
     },
     {
       "transform": [
@@ -168,8 +181,9 @@
       ],
       "mark": {
         "type": "text",
-        "fontSize": 9,
-        "fontWeight": 600
+        "fontSize": 11,
+        "fontWeight": 600,
+        "font": "Inter, system-ui, sans-serif"
       },
       "encoding": {
         "text": {
@@ -184,7 +198,13 @@
           },
           "value": "#1e2430"
         }
-      }
+      },
+      "description": "Values written in the darkest cells and the 2018 national peak."
     }
-  ]
+  ],
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "padding": 0
 }

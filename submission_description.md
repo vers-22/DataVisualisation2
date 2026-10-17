@@ -49,9 +49,10 @@ of the page uses ANZOD's 2025 figure (20.2). Total data downloaded is about 620 
    middle-aged and more often men.
 5. **Isotype (person icons):** "out of 10 families" compares consent for registered and
    unregistered donors in a way that needs no axis reading.
-6. **Diverging choropleth map:** state donation rates coloured above or below the target of 25,
-   so the one state that meets it (Tasmania) stands out. Conic equal-area projection suited to
-   Australia.
+6. **Diverging choropleth map:** state donation rates on a red-blue scale centred on the
+   national target of 25 (red = below, blue = above), so the one state that meets it (Tasmania)
+   stands out. Red-blue avoids the red-green pairing that colour-blind readers cannot separate.
+   Conic equal-area projection suited to Australia.
 7. **Slope graph:** each state's 2018 rate against 2025, so the direction of change is the main
    visual signal.
 8. **Heatmap:** state × year rates over 20 years in one compact grid; colour reveals the long-run
@@ -68,7 +69,16 @@ of the page uses ANZOD's 2025 figure (20.2). Total data downloaded is about 620 
 **Special features:** a click-to-filter link between the tile map and the flow map; a hand-built
 line-width legend for the flow map; direct labels and annotations on charts instead of legends
 where possible; hover tooltips throughout; one accent colour (coral) reserved for donors and the
-key message; Fraunces and Inter typefaces; charts scale down on smaller screens.
+key message; charts scale down on smaller screens.
+
+**Typography and layout:** a fixed type scale where each size has one job (56px title, 36px
+section headings, 22px sub-headings, 20px ledes, 17px body, 15px notes, 13px kickers and sources;
+inside charts 17px titles, 13px subtitles and key labels, 11px axes and annotations). Fraunces
+(serif) is used for headings and Inter (sans-serif) for reading text and all chart text. All
+running text is limited to about 55 characters (8–11 words) per line and left-aligned. The page
+uses two equal-width columns; every chart and text block starts on the left edge, the centre
+gutter or the right edge, so elements share the same sight-lines, with alternating band tints
+for figure-ground.
 
 ## Use of generative AI
 

@@ -4,15 +4,7 @@
   "title": {
     "text": "Organs from small states travel",
     "subtitle": "Solid organs from deceased donors transplanted in another state, 2025",
-    "anchor": "start",
-    "font": "Inter, system-ui, sans-serif",
-    "fontSize": 15,
-    "fontWeight": 600,
-    "color": "#1e2430",
-    "subtitleFont": "Inter, system-ui, sans-serif",
-    "subtitleFontSize": 12,
-    "subtitleColor": "#5c6675",
-    "offset": 14
+    "anchor": "start"
   },
   "background": null,
   "config": {
@@ -20,12 +12,26 @@
       "stroke": null
     },
     "font": "Inter, system-ui, sans-serif",
+    "title": {
+      "anchor": "start",
+      "font": "Inter, system-ui, sans-serif",
+      "fontSize": 17,
+      "fontWeight": 600,
+      "color": "#1e2430",
+      "subtitleFont": "Inter, system-ui, sans-serif",
+      "subtitleFontSize": 13,
+      "subtitleColor": "#545e6c",
+      "offset": 12,
+      "subtitlePadding": 4
+    },
     "axis": {
-      "labelColor": "#5c6675",
-      "titleColor": "#5c6675",
+      "labelFont": "Inter, system-ui, sans-serif",
+      "titleFont": "Inter, system-ui, sans-serif",
       "labelFontSize": 11,
       "titleFontSize": 11,
-      "titleFontWeight": 500,
+      "titleFontWeight": 400,
+      "labelColor": "#545e6c",
+      "titleColor": "#545e6c",
       "domainColor": "#c9cfd8",
       "tickColor": "#c9cfd8",
       "gridColor": "#e6e2db",
@@ -35,14 +41,20 @@
       ]
     },
     "legend": {
-      "labelColor": "#5c6675",
-      "titleColor": "#5c6675",
+      "labelFont": "Inter, system-ui, sans-serif",
+      "titleFont": "Inter, system-ui, sans-serif",
       "labelFontSize": 11,
       "titleFontSize": 11,
-      "titleFontWeight": 500
+      "titleFontWeight": 400,
+      "labelColor": "#545e6c",
+      "titleColor": "#545e6c"
+    },
+    "text": {
+      "font": "Inter, system-ui, sans-serif",
+      "fontSize": 11
     }
   },
-  "spacing": 50,
+  "spacing": 48,
   "hconcat": [
     {
       "data": {
@@ -127,8 +139,8 @@
           "axis": null,
           "scale": {
             "domain": [
-              -0.4,
-              3.5
+              -1.0,
+              4.5
             ],
             "nice": false,
             "zero": false
@@ -141,7 +153,7 @@
           "scale": {
             "domain": [
               -0.65,
-              5.083
+              6.112
             ],
             "nice": false,
             "zero": false,
@@ -155,7 +167,7 @@
             "type": "point",
             "shape": "M0,-1 L0.866,-0.5 L0.866,0.5 L0,1 L-0.866,0.5 L-0.866,-0.5 Z",
             "filled": true,
-            "size": 7600,
+            "size": 9709,
             "stroke": "#ffffff",
             "strokeWidth": 2,
             "opacity": 1,
@@ -177,16 +189,18 @@
               },
               "legend": {
                 "title": "% sent interstate",
-                "orient": "bottom",
+                "orient": "none",
                 "direction": "horizontal",
-                "gradientLength": 150,
+                "gradientLength": 180,
                 "values": [
                   0,
                   25,
                   50,
                   75,
                   100
-                ]
+                ],
+                "legendX": 0,
+                "legendY": 470
               }
             },
             "tooltip": [
@@ -253,14 +267,16 @@
                 "clear": "dblclick"
               }
             }
-          ]
+          ],
+          "description": "Hexagons coloured by the share of organs sent interstate. Defines the 'pick' selection: click a hexagon to select that state."
         },
         {
           "mark": {
             "type": "text",
-            "fontSize": 12,
-            "fontWeight": 700,
-            "dy": -7
+            "fontSize": 13,
+            "fontWeight": 600,
+            "dy": -7,
+            "font": "Inter, system-ui, sans-serif"
           },
           "encoding": {
             "text": {
@@ -273,13 +289,15 @@
               },
               "value": "#1e2430"
             }
-          }
+          },
+          "description": "State abbreviation in each hexagon."
         },
         {
           "mark": {
             "type": "text",
-            "fontSize": 10,
-            "dy": 7
+            "fontSize": 11,
+            "dy": 7,
+            "font": "Inter, system-ui, sans-serif"
           },
           "encoding": {
             "text": {
@@ -292,7 +310,8 @@
               },
               "value": "#1e2430"
             }
-          }
+          },
+          "description": "Percentage sent interstate, under the abbreviation."
         },
         {
           "data": {
@@ -311,10 +330,11 @@
           "mark": {
             "type": "text",
             "align": "left",
-            "fontSize": 10,
+            "fontSize": 11,
             "fontStyle": "italic",
             "color": "#1e2430",
-            "lineHeight": 12
+            "lineHeight": 12,
+            "font": "Inter, system-ui, sans-serif"
           },
           "encoding": {
             "x": {
@@ -328,45 +348,37 @@
             "text": {
               "field": "t"
             }
-          }
+          },
+          "description": "Annotation explaining the 100% states."
         }
       ],
       "title": {
         "text": "Share of donated organs sent interstate",
         "subtitle": [
-          "Click a state to show where its organs went"
+          "Click a state to show",
+          "where its organs went"
         ],
         "anchor": "start",
-        "font": "Inter, system-ui, sans-serif",
         "fontSize": 13,
-        "fontWeight": 600,
-        "color": "#1e2430",
-        "subtitleFont": "Inter, system-ui, sans-serif",
-        "subtitleFontSize": 11,
-        "subtitleColor": "#5c6675",
-        "offset": 10
+        "subtitleFontSize": 11
       },
-      "width": 330,
-      "height": 420
+      "width": 526,
+      "height": 560,
+      "description": "LEFT PANEL (one grid column wide): hexagon tile map. Each state is one equal-sized hexagon at a fixed grid position (q = column, r = row) that roughly matches its geography. Rows are 0.866 apart and the y range is set from the panel size so hexagons stay regular."
     },
     {
       "title": {
         "text": "Where the organs went, 2025",
         "subtitle": [
-          "Lines taper from the donor state (thick) to the transplanting state (thin)"
+          "Lines taper from the donor state (thick)",
+          "to the transplanting state (thin)"
         ],
         "anchor": "start",
-        "font": "Inter, system-ui, sans-serif",
         "fontSize": 13,
-        "fontWeight": 600,
-        "color": "#1e2430",
-        "subtitleFont": "Inter, system-ui, sans-serif",
-        "subtitleFontSize": 11,
-        "subtitleColor": "#5c6675",
-        "offset": 10
+        "subtitleFontSize": 11
       },
-      "width": 560,
-      "height": 480,
+      "width": 526,
+      "height": 560,
       "projection": {
         "type": "conicEqualArea",
         "rotate": [
@@ -401,7 +413,8 @@
             "fill": "#ece7df",
             "stroke": "#ffffff",
             "strokeWidth": 1
-          }
+          },
+          "description": "Grey base map of the states."
         },
         {
           "data": {
@@ -486,7 +499,8 @@
                 "title": "Organs (2025)"
               }
             ]
-          }
+          },
+          "description": "Tapered flow lines (trail mark): thick at the donor state, zero at the transplanting state. Faded unless they start in the state picked on the left."
         },
         {
           "data": {
@@ -512,7 +526,8 @@
                 "title": "City"
               }
             ]
-          }
+          },
+          "description": "Dots for the state capitals."
         },
         {
           "data": {
@@ -520,10 +535,11 @@
           },
           "mark": {
             "type": "text",
-            "fontSize": 11,
+            "fontSize": 13,
             "fontWeight": 600,
             "color": "#1e2430",
-            "dy": -10
+            "dy": -10,
+            "font": "Inter, system-ui, sans-serif"
           },
           "encoding": {
             "longitude": {
@@ -537,7 +553,8 @@
             "text": {
               "field": "city"
             }
-          }
+          },
+          "description": "Capital city names."
         },
         {
           "data": {
@@ -555,10 +572,11 @@
           "mark": {
             "type": "text",
             "align": "right",
-            "fontSize": 10.5,
+            "fontSize": 11,
             "fontStyle": "italic",
             "color": "#1e2430",
-            "lineHeight": 12
+            "lineHeight": 12,
+            "font": "Inter, system-ui, sans-serif"
           },
           "encoding": {
             "longitude": {
@@ -572,7 +590,8 @@
             "text": {
               "field": "t"
             }
-          }
+          },
+          "description": "Annotation about Tasmania to Victoria."
         },
         {
           "data": {
@@ -597,7 +616,7 @@
               "as": "w"
             },
             {
-              "calculate": "380 + datum.y * 22",
+              "calculate": "460 + datum.y * 22",
               "as": "py"
             }
           ],
@@ -621,7 +640,8 @@
                   "type": "quantitative",
                   "scale": null
                 }
-              }
+              },
+              "description": "Legend sample lines: one short rule per value, drawn at the same widths the size scale gives the flow lines."
             },
             {
               "mark": {
@@ -629,7 +649,8 @@
                 "align": "left",
                 "x": 60,
                 "fontSize": 11,
-                "color": "#5c6675"
+                "color": "#5c6675",
+                "font": "Inter, system-ui, sans-serif"
               },
               "encoding": {
                 "y": {
@@ -641,9 +662,11 @@
                   "field": "organs",
                   "type": "quantitative"
                 }
-              }
+              },
+              "description": "Legend values (organs per year) beside each sample line."
             }
-          ]
+          ],
+          "description": "Hand-built legend for line width (trail marks have no size legend)."
         },
         {
           "data": {
@@ -657,18 +680,22 @@
             "type": "text",
             "align": "left",
             "x": 12,
-            "y": 360,
+            "y": 440,
             "fontSize": 11,
-            "fontWeight": 500,
-            "color": "#5c6675"
+            "fontWeight": 400,
+            "color": "#5c6675",
+            "font": "Inter, system-ui, sans-serif"
           },
           "encoding": {
             "text": {
               "field": "t"
             }
-          }
+          },
+          "description": "Title of the line-width legend."
         }
-      ]
+      ],
+      "description": "RIGHT PANEL (one grid column wide, starting on the centre sight-line): flow map of organs moving between states in 2025."
     }
-  ]
+  ],
+  "padding": 0
 }
